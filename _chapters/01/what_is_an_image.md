@@ -17,7 +17,7 @@ redirect_from:
 In this page we explore the nature of NIfTI images.
 
 Before you start, please follow the instructions on [installing
-nibabel]({{ site.baseurl }}/install_nibabel).
+nibabel]({{ site.baseurl }}{% link install_nibabel.md %})
 
 First we load an example image to see if we can understand the image data.
 
