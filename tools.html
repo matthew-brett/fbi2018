@@ -3,16 +3,16 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>Tools - Data Science for Everyone</title>
+<!-- begin _includes/seo.html --><title>Tools - FBI 2018</title>
 <meta name="description" content="">
 
 
 
 <meta property="og:type" content="website">
 <meta property="og:locale" content="en_UK">
-<meta property="og:site_name" content="Data Science for Everyone">
+<meta property="og:site_name" content="FBI 2018">
 <meta property="og:title" content="Tools">
-<meta property="og:url" content="https://matthew-brett.github.io/dsfe/tools">
+<meta property="og:url" content="https://matthew-brett.github.io/fbi2018/tools">
 
 
 
@@ -30,7 +30,7 @@
   
 
 
-<link rel="canonical" href="https://matthew-brett.github.io/dsfe/tools">
+<link rel="canonical" href="https://matthew-brett.github.io/fbi2018/tools">
 
 
 
@@ -43,7 +43,7 @@
       "@context": "http://schema.org",
       "@type": "Person",
       "name": "Matthew Brett",
-      "url": "https://matthew-brett.github.io/dsfe",
+      "url": "https://matthew-brett.github.io/fbi2018",
       "sameAs": null
     }
   </script>
@@ -57,7 +57,7 @@
 <!-- end _includes/seo.html -->
 
 
-<link href="/dsfe/feed.xml" type="application/atom+xml" rel="alternate" title="Data Science for Everyone Feed">
+<link href="/fbi2018/feed.xml" type="application/atom+xml" rel="alternate" title="FBI 2018 Feed">
 
 <!-- http://t.co/dKP3o1e -->
 <meta name="HandheldFriendly" content="True">
@@ -69,7 +69,7 @@
 </script>
 
 <!-- For all browsers -->
-<link rel="stylesheet" href="/dsfe/assets/css/main.css">
+<link rel="stylesheet" href="/fbi2018/assets/css/main.css">
 
 <!--[if lte IE 9]>
   <style>
@@ -92,9 +92,9 @@
 
 <!-- end custom head snippets -->
 
-    <link rel="stylesheet" href="/dsfe/assets/css/notebook-markdown.css">
-    <link rel="stylesheet" href="/dsfe/assets/css/custom.css">
-    <link rel="shortcut icon" type="image/png" href="/dsfe/favicon.png">
+    <link rel="stylesheet" href="/fbi2018/assets/css/notebook-markdown.css">
+    <link rel="stylesheet" href="/fbi2018/assets/css/custom.css">
+    <link rel="shortcut icon" type="image/png" href="/fbi2018/favicon.png">
     <script src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.1/anchor.min.js"></script>
   </head>
@@ -110,30 +110,20 @@
   <div class="masthead__inner-wrap">
     <div class="masthead__menu">
       <nav id="site-nav" class="greedy-nav">
-        <a class="site-title" href="/dsfe/">
-          <img src="/dsfe/images/dsfe_logo.png" class="masthead_logo" />
-          Data Science for Everyone
+        <a class="site-title" href="/fbi2018/">
+          <img src="/fbi2018/images/fbi2018.png" class="masthead_logo" />
+          FBI 2018
         </a>
         <ul class="visible-links">
           
             
             <li class="masthead__menu-item">
-              <a href="https://matthew-brett.github.io/dsfe/about" >About</a>
-            </li>
-          
-            
-            <li class="masthead__menu-item">
-              <a href="https://matthew-brett.github.io/dsfe/syllabus" >Syllabus</a>
-            </li>
-          
-            
-            <li class="masthead__menu-item">
-              <a href="https://matthew-brett.github.io/dsfe/classes" >Classes</a>
+              <a href="https://matthew-brett.github.io/fbi2018/about" >About</a>
             </li>
           
           
             <li class="masthead__menu-item">
-              <a href="/dsfe/chapters/01/what-is-data-science">Textbook</a>
+              <a href="/fbi2018/chapters/01/intro">Textbook</a>
             </li>
           
           
@@ -184,26 +174,23 @@
         
         <h1 id="tools">Tools</h1>
 
-<p>There are two main sets of tools in data science:</p>
-
-<ul>
-  <li>The <a href="https://python.org">Python</a> programming language, and its libraries,
-including <a href="https://pandas.pydata.org">Pandas</a> for handling data in tables,
+<p>These notes use the <a href="https://python.org">Python</a> programming language, and its
+libraries, including <a href="https://numpy.org/numpy">Numpy</a> for handling array data,
 and <a href="https://matplotlib.org">Matplotlib</a> for plotting.  Python is a general
 programming language that is excellent for teaching, but also for serious
-coding in business and academia.</li>
-  <li>The <a href="https://www.r-project.org">R language</a>. The main page for R describes
-it as a “a free software environment for statistical computing and
-graphics”.  R is a favorite for people who already know they need to do
-“statistics”, and want the largest range of statistical routines.  R is the
-standard language used by statisticians.</li>
-</ul>
+coding in business and academia.</p>
 
-<p>Both languages have <em>Notebook environments</em>.</p>
+<p>We will be using the <a href="https://jupyter.org">Jupyter Notebook</a> for combining
+code and text in a web browser.</p>
 
-<p>We will be using the <a href="https://jupyter.org">Jupyter Notebook</a> with Python.</p>
+<p>Python has some similarities to MATLAB - for an introduction to Python, with
+languages like MATLAB in mind, see <a href="http://matthew-brett.github.io/teaching/brisk_python.html">brisk
+Python</a></p>
 
 <p>To get set up for the class, see <a href="setup">the setup instructions</a></p>
+
+<p>We will also use <a href="https://nipy.org/nibabel">nibabel</a> for loading and saving
+neuroimaging image formats - see <a href="install_nibabel">installing nibabel</a>.</p>
 
         
       </section>
@@ -241,15 +228,15 @@ standard language used by statisticians.</li>
     
 
     
-  <script src="/dsfe/assets/js/main.min.js"></script>
+  <script src="/fbi2018/assets/js/main.min.js"></script>
   <script src="https://use.fontawesome.com/releases/v5.0.12/js/all.js"></script>
 
 
 
 
-<script src="/dsfe/assets/js/lunr/lunr.min.js"></script>
-<script src="/dsfe/assets/js/lunr/lunr-store.js"></script>
-<script src="/dsfe/assets/js/lunr/lunr-en.js"></script>
+<script src="/fbi2018/assets/js/lunr/lunr.min.js"></script>
+<script src="/fbi2018/assets/js/lunr/lunr-store.js"></script>
+<script src="/fbi2018/assets/js/lunr/lunr-en.js"></script>
 
 
 
