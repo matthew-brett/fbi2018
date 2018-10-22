@@ -13,3 +13,6 @@ For some related material in a similar format, see:
 
 * [the Berkeley neuroimaging course](https://bic-berkeley.github.io/psych-214-fall-2016/topics.html);
 * [my teaching pages](http://matthew-brett.github.io/teaching).
+
+For information on the logo, see [this Scientific American
+article](https://blogs.scientificamerican.com/symbiartic/oops-basic-anatomy-wrong-in-national-campaign-announcing-50m-gift)

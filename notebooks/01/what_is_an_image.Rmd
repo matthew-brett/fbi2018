@@ -2,6 +2,9 @@
 
 In this page we explore the nature of NIfTI images.
 
+Before you start, please follow the instructions on [installing
+nibabel]({{ site.baseurl }}/install_nibabel).
+
 First we load an example image to see if we can understand the image data.
 
 Download the image from <{{ site.url }}{{ site.baseurl }}/data/ds114_sub009_highres.nii>.
@@ -94,12 +97,14 @@ in the NIfTI1 header page above:
 
 ```{python}
 data_type_chars = contents[70:72]
+print(data_type_chars)
 ```
 
 The `datatype` value is stored in binary form (rather than text form).  The
 value for `datatype` is stored in the header in the same format that the
 computer stores the number in memory. We want to convert this binary format to
-a number that Python understands. To do that, we use the [struct module] (https://docs.python.org/2/library/struct.html)
+a number that Python understands. To do that, we use the [struct module]
+(https://docs.python.org/3/library/struct.html)
 
 ```{python}
 import struct
@@ -114,8 +119,8 @@ string that give the code for the binary format of the data. This is the
 "format string". The second is the string containing the bytes of the
 data.
 
-We first need to specify the format of the character data. Have a look
-at the [help on format
+We first need to specify the format of the character data. Have a look at the
+[help on format
 strings](https://docs.python.org/2/library/struct.html#format-characters) in
 the Python documentation and the NIfTI web page above.
 
