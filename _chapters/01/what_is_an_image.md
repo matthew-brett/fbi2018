@@ -17,7 +17,7 @@ redirect_from:
 In this page we explore the nature of NIfTI images.
 
 Before you start, please follow the instructions on [installing
-nibabel](/install_nibabel).
+nibabel]({{ site.baseurl }}/install_nibabel).
 
 First we load an example image to see if we can understand the image data.
 
@@ -217,7 +217,8 @@ b'\x10\x00'
 The `datatype` value is stored in binary form (rather than text form).  The
 value for `datatype` is stored in the header in the same format that the
 computer stores the number in memory. We want to convert this binary format to
-a number that Python understands. To do that, we use the [struct module] (https://docs.python.org/2/library/struct.html)
+a number that Python understands. To do that, we use the [struct module]
+(https://docs.python.org/3/library/struct.html)
 
 
 
