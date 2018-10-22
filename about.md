@@ -1,20 +1,15 @@
 ---
 layout: single
-title: About Data Science for Everyone
+title: About the FBI 2018 lecture notes
 permalink: /about
 ---
 
-## About the *Data Science for Everyone* textbook
+## About the *FBI 2018* lecture notes
 
-This is the textbook for the course "Data Science for Everyone" at the
-University of Birmingham.
+This are the notes for some of the analysis lectures in the "Fundamentals in
+Brain Imaging Methods" module, at the University of Birmingham
 
-The course is a "Widening Horizons Module", meaning that it is a course
-intended for students of any discipline.  The course covers some basic
-programming and uses some very basic mathematics, but you do not need to have
-any previous experience in programming, or great interest / ability in
-mathematics.
+For some related material in a similar format, see:
 
-Parts of the course use the material from the [excellent
-textbook](https://www.inferentialthinking.com) for Berkeley's course
-[Foundations of Data Science](http://data8.org).
+* [the Berkeley neuroimaging course](https://bic-berkeley.github.io/psych-214-fall-2016/topics.html);
+* [my teaching pages](http://matthew-brett.github.io/teaching).

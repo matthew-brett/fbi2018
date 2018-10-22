@@ -2,14 +2,14 @@
 permalink: /
 ---
 
-# Data Science for Everyone
+# FBI 2018 analysis
 
-This is the website for the course "Data Science for Everyone" at the University of Birmingham.
+This is the website for some of the analysis lectures of the "Fundamentals in
+Brain Imaging Methods" module, at the University of Birmingham
 
-* [Course textbook](chapters/01/what-is-data-science).
+* [Course notes](chapters/01/intro).
 * [Tools](tools)
 * [License](license) for the materials on this site.
-* [Classes](classes)
 
 For those with access, please see the [Canvas course
-page](https://canvas.bham.ac.uk/courses/35188).
+page](https://canvas.bham.ac.uk/courses/34040).
