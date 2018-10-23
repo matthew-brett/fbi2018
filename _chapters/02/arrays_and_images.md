@@ -6,8 +6,8 @@ previouschapter:
   url: chapters/02/what_is_an_image
   title: '2.1 A brain image'
 nextchapter:
-  url: chapters/02/voxel_time_courses
-  title: '2.3 Voxel time courses'
+  url: chapters/02/images_3d
+  title: '2.3 3D images'
 redirect_from:
   - 'chapters/02/arrays-and-images'
 ---

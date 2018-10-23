@@ -1,13 +1,13 @@
 ---
 interact_link: notebooks/02/images_4d.ipynb
-title: '2.4 Arrays and images'
+title: '2.4 4D images'
 permalink: 'chapters/02/images_4d'
 previouschapter:
   url: chapters/02/images_3d
-  title: '2.3 Arrays and images'
+  title: '2.3 3D images'
 nextchapter:
-  url: chapters/02/voxel_time_courses
-  title: '2.5 Voxel time courses'
+  url: chapters/02/first_activation
+  title: '2.5 First activation'
 redirect_from:
   - 'chapters/02/images-4d'
 ---

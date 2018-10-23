@@ -15,7 +15,44 @@ redirect_from:
 Neuroimaging is a highly technical field, on the border of neuroscience and
 computation.
 
-This is a risk, for false findings.
+This is a risk of false findings.
+
+## The reproducibility crisis
+
+Many of us are familiar with the [replication
+crisis](https://www.nature.com/news/1-500-scientists-lift-the-lid-on-reproducibility-1.19970).
+
+It is difficult to trace when the issue of replication started to enter
+discussion in the mainstream, but one landmark was {%cite begley2012drug %}.
+Begley and Ellis were scientists at Amgen - a drug company. They tried to
+reproduce findings from 53 "landmark" studies in hematological oncology -
+blood cancer.  They tried fairly hard:
+
+> ... when findings could not be reproduced, an attempt was made to contact
+> the original authors, discuss the discrepant findings, exchange reagents and
+> repeat experiments under the authors’ direction, occasionally even in the
+> laboratory of the original investigator.
+
+Of 53 studies, only 6 replicated (11%).
+
+They detected a difference between the working process of the labs that
+generated the findings that replicated:
+
+> In studies for which findings could be reproduced, authors had paid close
+> attention to controls, reagents, investigator bias and describing the
+> complete data set. For results that could not be reproduced, however, data
+> were not routinely analysed by investigators blinded to the experimental
+> versus control groups. Investigators frequently presented the results of one
+> experiment, such as a single Western-blot analysis. They sometimes said they
+> presented specific experiments that supported their underlying hypothesis,
+> but that were not reflective of the entire data set.
+
+The replication rate for these studies seemed to be about 11%, but it can be a
+lot worse.  When we look back at early results in genetics, with the benefit
+of hindsight from newer, larger genetic studies, the replication rate appears
+to be in the region of 2% {%cite ioannidis2011false %}.
+
+## The rate of false findings
 
 There is an increased risk of false findings for:
 

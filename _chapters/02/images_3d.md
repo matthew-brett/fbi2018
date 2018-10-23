@@ -1,13 +1,13 @@
 ---
 interact_link: notebooks/02/images_3d.ipynb
-title: '2.3 Arrays and images'
+title: '2.3 3D images'
 permalink: 'chapters/02/images_3d'
 previouschapter:
   url: chapters/02/arrays_and_images
   title: '2.2 Arrays and images'
 nextchapter:
   url: chapters/02/images_4d
-  title: '2.4 Arrays and images'
+  title: '2.4 4D images'
 redirect_from:
   - 'chapters/02/images-3d'
 ---

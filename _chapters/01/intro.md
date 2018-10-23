@@ -6,7 +6,7 @@ previouschapter:
   title: ''
 nextchapter:
   url: chapters/01/error
-  title: '1.2 Why worry?'
+  title: '1.1 Why worry?'
 redirect_from:
   - 'chapters/01/intro'
 ---

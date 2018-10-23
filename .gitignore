@@ -105,3 +105,6 @@ venv.bak/
 
 # Jekyll
 _site/
+
+# Mac
+.DS_Store

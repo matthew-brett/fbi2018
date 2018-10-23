@@ -1,13 +1,13 @@
 ---
 interact_link: notebooks/02/first_activation.ipynb
-title: '2.6 Arrays and images'
+title: '2.5 First activation'
 permalink: 'chapters/02/first_activation'
 previouschapter:
-  url: chapters/02/voxel_time_courses
-  title: '2.5 Voxel time courses'
+  url: chapters/02/images_4d
+  title: '2.4 4D images'
 nextchapter:
-  url: 
-  title: ''
+  url: chapters/02/voxel_time_courses
+  title: '2.6 Voxel time courses'
 redirect_from:
   - 'chapters/02/first-activation'
 ---
