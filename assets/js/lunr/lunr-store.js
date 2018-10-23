@@ -1,6 +1,6 @@
 var store = [{
         "title": "Why worry?",
-        "excerpt":"Neuroimaging is a highly technical field, on the border of neuroscience andcomputation. This is a risk, for false findings. There is an increased risk of false findings for: small sample size (low power); small effect size (low power); large number of tests (analysis bias); greater flexibility in analysis (analysis bias);...","categories": [],
+        "excerpt":"Neuroimaging is a highly technical field, on the border of neuroscience andcomputation. This is a risk of false findings. The reproducibility crisis Many of us are familiar with the replicationcrisis. It is difficult to trace when the issue of replication started to enterdiscussion in the mainstream, but one landmark was...","categories": [],
         "tags": [],
         "url": "https://matthew-brett.github.io/fbi2018/chapters/01/error",
         "teaser":null},{
