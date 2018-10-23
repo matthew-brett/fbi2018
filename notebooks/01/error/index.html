@@ -12,7 +12,7 @@
 <meta property="og:locale" content="en_UK">
 <meta property="og:site_name" content="FBI 2018">
 <meta property="og:title" content="Why worry?">
-<meta property="og:url" content="https://matthew-brett.github.io/fbi2018/notebooks/01/error/">
+<meta property="og:url" content="http://localhost:4000/fbi2018/notebooks/01/error/">
 
 
 
@@ -30,7 +30,7 @@
   
 
 
-<link rel="canonical" href="https://matthew-brett.github.io/fbi2018/notebooks/01/error/">
+<link rel="canonical" href="http://localhost:4000/fbi2018/notebooks/01/error/">
 
 
 
@@ -43,7 +43,7 @@
       "@context": "http://schema.org",
       "@type": "Person",
       "name": "Matthew Brett",
-      "url": "https://matthew-brett.github.io/fbi2018",
+      "url": "http://localhost:4000/fbi2018",
       "sameAs": null
     }
   </script>
@@ -118,7 +118,7 @@
           
             
             <li class="masthead__menu-item">
-              <a href="https://matthew-brett.github.io/fbi2018/about" >About</a>
+              <a href="http://localhost:4000/fbi2018/about" >About</a>
             </li>
           
           
@@ -184,8 +184,7 @@ computation.</p>
 crisis</a>.</p>
 
 <p>It is difficult to trace when the issue of replication started to enter
-discussion in the mainstream, but one landmark was (missing reference).
-Begley and Ellis were scientists at Amgen - a drug company. They tried to
+discussion in the mainstream, but one salient moment was <a href="#begley2012drug">(Begley &amp; Ellis, 2012)</a>.  Begley and Ellis were scientists at Amgen - a drug company. They tried to
 reproduce findings from 53 “landmark” studies in hematological oncology -
 blood cancer.  They tried fairly hard:</p>
 
@@ -350,7 +349,8 @@ need myself”.</p>
 
 <h2 id="references">References</h2>
 
-<ol class="bibliography"><li><span id="ioannidis2011false">Ioannidis, J. P. A., Tarone, R., &amp; McLaughlin, J. K. (2011). The false-positive to false-negative ratio in epidemiologic studies. <i>Epidemiology</i>, 450–456. Retrieved from https://www.jstor.org/stable/pdf/23047674.pdf</span></li>
+<ol class="bibliography"><li><span id="begley2012drug">Begley, C. G., &amp; Ellis, L. M. (2012). Drug development: Raise standards for preclinical cancer research. <i>Nature</i>, <i>483</i>(7391), 531.</span></li>
+<li><span id="ioannidis2011false">Ioannidis, J. P. A., Tarone, R., &amp; McLaughlin, J. K. (2011). The false-positive to false-negative ratio in epidemiologic studies. <i>Epidemiology</i>, 450–456. Retrieved from https://www.jstor.org/stable/pdf/23047674.pdf</span></li>
 <li><span id="ioannidis2005most">Ioannidis, J. P. A. (2005). Why most published research findings are false. <i>PLoS Medicine</i>, <i>2</i>(8), e124. https://doi.org/10.1371/journal.pmed.0020124</span></li>
 <li><span id="donoho2010invitation">Donoho, D. L. (2010). An invitation to reproducible computational research. <i>Biostatistics</i>, <i>11</i>(3), 385–388.</span></li>
 <li><span id="donoho2009reproducible">Donoho, D. L., Maleki, A., Rahman, I. U., Shahram, M., &amp; Stodden, V. (2009). Reproducible research in computational harmonic analysis. <i>Computing in Science &amp; Engineering</i>, <i>11</i>(1), 8–18. Retrieved from http://stanford.edu/ vcs/papers/RRCiSE-STODDEN2009.pdf</span></li></ol>
@@ -470,7 +470,7 @@ function addParamToInternalLinks(hub) {
   var links = $("a").each(function() {
     var href = this.href;
     // If the link is an internal link...
-    if (href.search("https://matthew-brett.github.io") !== -1 || href.startsWith('/') || href.search("127.0.0.1:") !== -1) {
+    if (href.search("http://localhost:4000") !== -1 || href.startsWith('/') || href.search("127.0.0.1:") !== -1) {
       // Assume we're an internal link, add the hub param to it
       var params = getJsonFromUrl(href);
       if (params !== false) {

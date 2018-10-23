@@ -1,1 +1,1 @@
-Sitemap: https://matthew-brett.github.io/fbi2018/sitemap.xml
+Sitemap: http://localhost:4000/fbi2018/sitemap.xml
