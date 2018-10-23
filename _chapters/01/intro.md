@@ -5,11 +5,12 @@ previouschapter:
   url: 
   title: ''
 nextchapter:
-  url: chapters/01/what_is_an_image
-  title: '1.1 A brain image'
+  url: chapters/01/error
+  title: '1.2 Why worry?'
 redirect_from:
   - 'chapters/01/intro'
 ---
-# Introduction to MRI data
+# These notes
 
-In which we cover the nature of images, and brain images, in particular.
+This section has some background on brain imaging as a science, and motivation
+for these notes.
