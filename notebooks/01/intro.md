@@ -1,3 +1,4 @@
-# Introduction to MRI data
+# These notes
 
-In which we cover the nature of images, and brain images, in particular.
+This section has some background on brain imaging as a science, and motivation
+for these notes.

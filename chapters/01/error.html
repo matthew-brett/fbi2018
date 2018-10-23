@@ -1,0 +1,684 @@
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Why worry? - FBI 2018</title>
+<meta name="description" content="Why worry?">
+
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_UK">
+<meta property="og:site_name" content="FBI 2018">
+<meta property="og:title" content="Why worry?">
+<meta property="og:url" content="https://matthew-brett.github.io/fbi2018/chapters/01/error">
+
+
+  <meta property="og:description" content="Why worry?">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2018-10-23T09:03:48+01:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://matthew-brett.github.io/fbi2018/chapters/01/error">
+
+
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Person",
+      "name": "Matthew Brett",
+      "url": "https://matthew-brett.github.io/fbi2018",
+      "sameAs": null
+    }
+  </script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/fbi2018/feed.xml" type="application/atom+xml" rel="alternate" title="FBI 2018 Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/fbi2018/assets/css/main.css">
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+    <!-- start custom head snippets -->
+
+
+<!-- end custom head snippets -->
+
+    <link rel="stylesheet" href="/fbi2018/assets/css/notebook-markdown.css">
+    <link rel="stylesheet" href="/fbi2018/assets/css/custom.css">
+    <link rel="shortcut icon" type="image/png" href="/fbi2018/favicon.png">
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.1/anchor.min.js"></script>
+  </head>
+
+  <body class="layout--textbook">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" class="textbook" role="main">
+  <div id="textbook_wrapper">
+    
+  <div class="sidebar sticky textbook">
+  
+  
+    <img src="/fbi2018/images/fbi2018.png" class="textbook_logo" />
+    
+
+    
+      
+
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">Toggle Menu</label>
+  <ul class="nav__items">
+    
+      <li>
+        
+          
+          
+
+          <a href="/fbi2018/"><span class="nav__sub-title">Home</span></a>
+        
+
+        
+      </li>
+    
+      <li>
+        
+          
+          
+
+          <a href="/fbi2018/chapters/01/intro"><span class="nav__sub-title">1. Introduction to MRI data</span></a>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/01/error" class="level_1">1.1 Why worry?</a></li>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/01/why_python" class="level_1">1.2 Why Python?</a></li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          
+          
+
+          <a href="/fbi2018/chapters/02/fmri_data"><span class="nav__sub-title">2. FMRI data</span></a>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/02/what_is_an_image" class="level_1">2.1 A brain image</a></li>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/02/arrays_and_images" class="level_1">2.2 Arrays and images</a></li>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/02/images_3d" class="level_1">2.3 3D images</a></li>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/02/images_4d" class="level_1">2.4 4D images</a></li>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/02/first_activation" class="level_1">2.5 First activation</a></li>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/02/voxel_time_courses" class="level_1">2.6 Voxel time courses</a></li>
+          
+        </ul>
+        
+      </li>
+    
+  </ul>
+</nav>
+
+    
+
+  
+  </div>
+
+
+    <article class="page textbook" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="headline" content="Why worry?">
+      <meta itemprop="description" content="Why worry?">
+      <meta itemprop="datePublished" content="October 23, 2018">
+      
+
+      <div class="page__inner-wrap">
+        
+          <header>
+            <h1 id="page-title" class="page__title" itemprop="headline">Why worry?
+</h1>
+          </header>
+        
+
+        <section class="page__content" itemprop="text">
+          
+            
+
+<!-- TOC will only show up if it has at least one item -->
+
+
+  <aside class="sidebar__right">
+    <nav class="toc">
+      <header><h4 class="nav__title"><i class="fas fa-list-ul"></i>   On this page</h4></header>
+      <ul class="toc__menu">
+  <li><a href="#false-findings-in-neuroimaging">False findings in neuroimaging</a></li>
+  <li><a href="#my-straw-poll">My straw poll</a></li>
+  <li><a href="#how-do-false-findings-get-through">How do false findings get through?</a></li>
+  <li><a href="#garbage-in-gospel-out">Garbage in, gospel out</a></li>
+  <li><a href="#understanding-by-building">Understanding by building</a></li>
+  <li><a href="#references">References</a></li>
+</ul>
+    </nav>
+  </aside>
+
+
+          
+          <!-- INTERACT LINKS -->
+
+
+          
+<p>Neuroimaging is a highly technical field, on the border of neuroscience and
+computation.</p>
+
+<p>This is a risk, for false findings.</p>
+
+<p>There is an increased risk of false findings for:</p>
+
+<ol>
+  <li>small sample size (low power);</li>
+  <li>small effect size (low power);</li>
+  <li>large number of tests (analysis bias);</li>
+  <li>greater flexibility in analysis (analysis bias);</li>
+  <li>greater financial interests (analysis bias);</li>
+  <li>larger numbers of groups studying same effects (publication bias);</li>
+</ol>
+
+<p>John P. A. Ioannidis (2005). “Why most published research findings are false.”
+<a href="#ioannidis2005most">(2005)</a>.</p>
+
+<p>See also
+<a href="https://matthew-brett.github.com/teaching/ioannidis_2005.html">https://matthew-brett.github.com/teaching/ioannidis_2005.html</a>.</p>
+
+<h2 id="false-findings-in-neuroimaging">False findings in neuroimaging</h2>
+
+<p>Nancy Kanwisher is one of the most important and influential researchers in
+functional MRI, particularly of the visual system.</p>
+
+<p>She left the following comment on <a href="http://www.danielbor.com/dilemma-weak-neuroimaging">Daniel Bor’s 2013 blog
+post</a> on “The Dilemma of
+Weak Neuroimaging Papers”.</p>
+
+<blockquote>
+  <p>I have occasionally asked respected colleagues what percent of published
+neuroimaging findings they think would replicate, and the answer is
+generally very depressing. My own guess is <strong>way</strong> less than 50%.</p>
+</blockquote>
+
+<p>There is more discussion of this comment attached to the blog post.</p>
+
+<h2 id="my-straw-poll">My straw poll</h2>
+
+<p>After Kanwisher’s post, I took to asking the following question, to colleagues
+running neuroimaging labs:</p>
+
+<blockquote>
+  <p>Let us say you took a random sample of papers using functional MRI over the
+last five years. For each study in the sample, you repeated the same
+experiment.  What proportion of your repeat experiments would substantially
+replicate the main findings of the original paper?</p>
+</blockquote>
+
+<p>Answers ranged from 5% to 50%.</p>
+
+<h2 id="how-do-false-findings-get-through">How do false findings get through?</h2>
+
+<p>There are many factors in neuroimaging that make us more prone to getting the
+answer wrong (see above).  Among them, is our approach to computing - we often
+do not take it seriously.  Here are some strong comments from an eminent
+statistician and advocate of <em>reproducible research</em>.</p>
+
+<blockquote>
+  <p>In my own experience, error is ubiquitous in scientific computing, and one
+needs to work very diligently and energetically to eliminate it. One needs a
+very clear idea of what has been done in order to know where to look for
+likely sources of error. I often cannot really be sure what a student or
+colleague has done from his/her own presentation, and in fact often his/her
+description does not agree with my own understanding of what has been done,
+once I look carefully at the scripts. Actually, I find that researchers
+quite generally forget what they have done and misrepresent their
+computations.</p>
+
+  <p>Computing results are now being presented in a very loose, “breezy” way—in
+journal articles, in conferences, and in books. All too often one simply
+takes computations at face value. This is spectacularly against the evidence
+of my own experience. I would much rather that at talks and in referee
+reports, the possibility of such error were seriously examined.</p>
+</blockquote>
+
+<p><a href="#donoho2010invitation">(Donoho, 2010)</a></p>
+
+<blockquote>
+  <p>In stark contrast to the sciences relying on deduction or empiricism,
+computational science is far less visibly concerned with the ubiquity of
+error. At conferences and in publications, it’s now completely acceptable
+for a researcher to simply say, “here is what I did, and here are my
+results.” Presenters devote almost no time to explaining why the audience
+should believe that they found and corrected errors in their computations.
+The presentation’s core isn’t about the struggle to root out error — as it
+would be in mature fields — but is instead a sales pitch: an enthusiastic
+presentation of ideas and a breezy demo of an implementation. Computational
+science has nothing like the elaborate mechanisms of formal proof in
+mathematics or meta-analysis in empirical science. Many users of scientific
+computing aren’t even trying to follow a systematic, rigorous discipline
+that would in principle allow others to verify the claims they make. How
+dare we imagine that computational science, as routinely practiced, is
+reliable!</p>
+</blockquote>
+
+<p><a href="#donoho2009reproducible">(Donoho, Maleki, Rahman, Shahram, &amp; Stodden, 2009)</a></p>
+
+<h2 id="garbage-in-gospel-out">Garbage in, gospel out</h2>
+
+<p>Neuroimaging is complicated and confusing.  You will have to use ideas from
+many different fields, including some you are trained in, such as psychology,
+and neuroscience, and others that you probably are not trained in, such as
+linear algebra, signal and image processing.  You will likely be using rather
+old-fashioned and complicated software that has grown organically with the
+field, and presents familiar ideas in unfamiliar ways.</p>
+
+<p>If you are not careful, you will succumb to “garbage in, gospel out”.  The
+process of analyzing the data becomes so complicated that you can’t criticize
+it any more.  You either object, and risk looking stupid and displeasing your
+masters, or give in, and accept that it’s all correct, even though it would be
+very hard to check.</p>
+
+<h2 id="understanding-by-building">Understanding by building</h2>
+
+<p>Some of you will have heard of <a href="https://en.wikipedia.org/wiki/Richard_Feynman">Richard Feynman</a>, a famous physicist and teacher.</p>
+
+<p>When he died, in 1988, he had this written on his blackboard:</p>
+
+<blockquote>
+  <p>What I cannot create, I do not understand.</p>
+</blockquote>
+
+<p>There is a copy of the original photo
+<a href="http://4.bp.blogspot.com/-dDIEBrnydU4/U1KyfconeZI/AAAAAAAARYk/bDhvfLteMjU/s1600/RF.png">here</a>.</p>
+
+<p>My desire is to give you an idea of what neuroimaging data looks like, and how
+you might build very basic versions of the processing you need.  If all the
+servers in the world go down, and you don’t have your neuroimaging software
+any more, you should think “wow, that’s a bummer, but now I can build what I
+need myself”.</p>
+
+<h2 id="references">References</h2>
+
+<ol class="bibliography"><li><span id="ioannidis2005most">Ioannidis, J. P. A. (2005). Why most published research findings are false. <i>PLoS Medicine</i>, <i>2</i>(8), e124. https://doi.org/10.1371/journal.pmed.0020124</span></li>
+<li><span id="donoho2010invitation">Donoho, D. L. (2010). An invitation to reproducible computational research. <i>Biostatistics</i>, <i>11</i>(3), 385–388.</span></li>
+<li><span id="donoho2009reproducible">Donoho, D. L., Maleki, A., Rahman, I. U., Shahram, M., &amp; Stodden, V. (2009). Reproducible research in computational harmonic analysis. <i>Computing in Science &amp; Engineering</i>, <i>11</i>(1), 8–18. Retrieved from http://stanford.edu/ vcs/papers/RRCiSE-STODDEN2009.pdf</span></li></ol>
+
+          
+        </section>
+
+        <footer class="page__meta">
+          
+          
+
+
+        </footer>
+
+        
+
+        
+  <nav class="pagination">
+    
+      <a href="/fbi2018/chapters/01/intro" class="pagination--pager" title="
+  Introduction to MRI data
+
+">Previous</a>
+    
+    
+      <a href="/fbi2018/chapters/01/why_python" class="pagination--pager" title="1.2 Why Python?
+">Next</a>
+    
+  </nav>
+
+
+      </div>
+
+      
+    </article>
+  </div>
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><input type="text" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+    <div id="results" class="results"></div></div>
+      </div>
+    
+
+    
+
+    
+  <script src="/fbi2018/assets/js/main.min.js"></script>
+  <script src="https://use.fontawesome.com/releases/v5.0.12/js/all.js"></script>
+
+
+
+
+<script src="/fbi2018/assets/js/lunr/lunr.min.js"></script>
+<script src="/fbi2018/assets/js/lunr/lunr-store.js"></script>
+<script src="/fbi2018/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+    <!-- Custom scripts to load after site JS is loaded -->
+
+    <!-- Custom HTML used for the textbooks -->
+<!-- Configure, then load MathJax -->
+<script type="text/javascript">
+  window.MathJax = {
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      processEnvironments: true
+    }
+  };
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML-full,Safe" type="text/javascript"></script>
+
+
+<script type="text/javascript">
+// --- To auto-embed hub URLs in interact links if given in a RESTful fashion ---
+function getJsonFromUrl(url) {
+  var query = url.split('?');
+  if (query.length < 2) {
+    // No queries so just return false
+    return false;
+  }
+  query = query[1];
+  // Collect REST params into a dictionary
+  var result = {};
+  query.split("&").forEach(function(part) {
+    var item = part.split("=");
+    result[item[0]] = decodeURIComponent(item[1]);
+  });
+  return result;
+}
+
+// Parse a Binder URL, converting it to the string needed for JupyterHub
+function binder2Jupyterhub(url) {
+  newUrl = {};
+  parts = url.split('v2/gh/')[1];
+  // Grab the base repo information
+  repoinfo = parts.split('?')[0];
+  var [org, repo, ref] = repoinfo.split('/');
+  newUrl['repo'] = ['https://github.com', org, repo].join('/');
+  newUrl['branch'] = ref
+  // Grab extra parameters passed
+  params = getJsonFromUrl(url);
+  if (params['filepath'] !== undefined) {
+    newUrl['subPath'] = params['filepath']
+  }
+  return jQuery.param(newUrl);
+}
+
+// Filter out potentially unsafe characters to prevent xss
+function safeUrl(url)
+{
+   return String(encodeURIComponent(url))
+            .replace(/&/g, '&amp;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#39;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;');
+}
+
+function addParamToInternalLinks(hub) {
+  var links = $("a").each(function() {
+    var href = this.href;
+    // If the link is an internal link...
+    if (href.search("https://matthew-brett.github.io") !== -1 || href.startsWith('/') || href.search("127.0.0.1:") !== -1) {
+      // Assume we're an internal link, add the hub param to it
+      var params = getJsonFromUrl(href);
+      if (params !== false) {
+        // We have REST params, so append a new one
+        params['hub'] = hub;
+      } else {
+        // Create the REST params
+        params = {'hub': hub};
+      }
+      // Update the link
+      var newHref = href.split('?')[0] + '?' + jQuery.param(params);
+      this.setAttribute('href', decodeURIComponent(newHref));
+    }
+  });
+  return false;
+}
+
+  // Update interact links
+function updateInteractLink() {
+    // hack to make this work since it expects a ? in the URL
+    rest = getJsonFromUrl("?" + location.search.substr(1));
+    hubUrl = rest['hub'];
+    if (hubUrl !== undefined) {
+      // Sanitize the hubUrl
+      hubUrl = safeUrl(hubUrl);
+      // Add HTTP text if omitted
+      if (hubUrl.indexOf('http') < 0) {hubUrl = 'http://' + hubUrl;}
+      link = $("a.interact-button")[0];
+      if (link !== undefined) {
+          // Update the interact link URL
+          var href = link.getAttribute('href');
+          if ('binder' == 'binder') {
+            // If binder links exist, we need to re-work them for jupyterhub
+            first = [hubUrl, 'hub', 'user-redirect', 'git-sync'].join('/')
+            href = first + '?' + binder2Jupyterhub(href);
+          } else {
+            // If JupyterHub links, we only need to replace the hub url
+            href = href.replace("https://mybinder.org", hubUrl);
+          }
+          link.setAttribute('href', decodeURIComponent(href));
+
+          // Add text after interact link saying where we're launching
+          hubUrlNoHttp = decodeURIComponent(hubUrl).replace('http://', '').replace('https://', '');
+          $("a.interact-button").after($('<div class="interact-context">on ' + hubUrlNoHttp + '</div>'));
+
+      }
+      // Update internal links so we retain the hub url
+      addParamToInternalLinks(hubUrl);
+    }
+}
+
+// --- Highlight the part of sidebar for current page ---
+
+// helper to replace trailing slash
+function replaceSlash(string)
+{
+    return string.replace(/\/$/, "");
+}
+
+// Add a class to the current page in the sidebar
+function highlightSidebarCurrentPage()
+{
+  var currentpage = location.href;
+  var links = $('.sidebar .nav__items a');
+  var ii = 0;
+  for(ii; ii < links.length; ii++) {
+    var link = links[ii];
+    if(replaceSlash(link.href) == replaceSlash(currentpage)) {
+      // Add CSS for styling
+      link.classList.add("current");
+      // Scroll to this element
+      $('div.sidebar').scrollTop(link.offsetTop - 300);
+    }
+  }
+}
+
+// --- Set up copy/paste for code blocks ---
+function addCopyButtonToCode(){
+  // get all <code> elements
+  var allCodeBlocksElements = $( "div.input_area code, div.highlighter-rouge code" );
+
+  allCodeBlocksElements.each(function(ii) {
+   	// add different id for each code block
+
+  	// target
+    var currentId = "codeblock" + (ii + 1);
+    $(this).attr('id', currentId);
+
+    //trigger
+    var clipButton = '<button class="btn copybtn" data-clipboard-target="#' + currentId + '"><img src="https://clipboardjs.com/assets/images/clippy.svg" width="13" alt="Copy to clipboard"></button>';
+       $(this).after(clipButton);
+    });
+
+    new Clipboard('.btn');
+}
+
+// Run scripts when page is loaded
+$(document).ready(function () {
+  // Add anchors to H1 etc links
+  anchors.add();
+  // Highlight current page in sidebar
+  highlightSidebarCurrentPage();
+  // Add copy button to code blocks
+  addCopyButtonToCode();
+  // Update the Interact link if a REST param given
+  updateInteractLink();
+});
+</script>
+
+  </body>
+</html>

@@ -1,0 +1,606 @@
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>FBI 2018</title>
+<meta name="description" content="">
+
+
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="en_UK">
+<meta property="og:site_name" content="FBI 2018">
+<meta property="og:title" content="FBI 2018">
+<meta property="og:url" content="https://matthew-brett.github.io/fbi2018/notebooks/02/arrays_and_images.Rmd">
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://matthew-brett.github.io/fbi2018/notebooks/02/arrays_and_images.Rmd">
+
+
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Person",
+      "name": "Matthew Brett",
+      "url": "https://matthew-brett.github.io/fbi2018",
+      "sameAs": null
+    }
+  </script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/fbi2018/feed.xml" type="application/atom+xml" rel="alternate" title="FBI 2018 Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/fbi2018/assets/css/main.css">
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+    <!-- start custom head snippets -->
+
+
+<!-- end custom head snippets -->
+
+    <link rel="stylesheet" href="/fbi2018/assets/css/notebook-markdown.css">
+    <link rel="stylesheet" href="/fbi2018/assets/css/custom.css">
+    <link rel="shortcut icon" type="image/png" href="/fbi2018/favicon.png">
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.1/anchor.min.js"></script>
+  </head>
+
+  <body class="layout--single">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+    <div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        <a class="site-title" href="/fbi2018/">
+          <img src="/fbi2018/images/fbi2018.png" class="masthead_logo" />
+          FBI 2018
+        </a>
+        <ul class="visible-links">
+          
+            
+            <li class="masthead__menu-item">
+              <a href="https://matthew-brett.github.io/fbi2018/about" >About</a>
+            </li>
+          
+          
+            <li class="masthead__menu-item">
+              <a href="/fbi2018/chapters/01/intro">Textbook</a>
+            </li>
+          
+          
+        </ul>
+        
+        <button class="search__toggle" type="button">
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle Menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+    
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    
+    
+    
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <!--  -->
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        $\newcommand{L}[1]{\| #1 \|}\newcommand{VL}[1]{\L{ \vec{#1} }}\newcommand{R}[1]{\operatorname{Re}\,(#1)}\newcommand{I}[1]{\operatorname{Im}\, (#1)}$
+
+## Arrays as images, images as arrays
+
+You can consider arrays as images, and images as arrays.
+
+We start off with our usual imports:
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+```
+
+Let’s make an array of numbers between 0 through 99:
+
+```{python}
+an_array = np.array([[ 0,  0,  0,  0,  0,  0,  0,  0],
+                     [ 0,  0,  0,  9, 99, 99, 94,  0],
+                     [ 0,  0,  0, 25, 99, 99, 79,  0],
+                     [ 0,  0,  0,  0,  0,  0,  0,  0],
+                     [ 0,  0,  0, 56, 99, 99, 49,  0],
+                     [ 0,  0,  0, 73, 99, 99, 31,  0],
+                     [ 0,  0,  0, 91, 99, 99, 13,  0],
+                     [ 0,  0,  9, 99, 99, 94,  0,  0],
+                     [ 0,  0, 27, 99, 99, 77,  0,  0],
+                     [ 0,  0, 45, 99, 99, 59,  0,  0],
+                     [ 0,  0, 63, 99, 99, 42,  0,  0],
+                     [ 0,  0, 80, 99, 99, 24,  0,  0],
+                     [ 0,  1, 96, 99, 99,  6,  0,  0],
+                     [ 0, 16, 99, 99, 88,  0,  0,  0],
+                     [ 0,  0,  0,  0,  0,  0,  0,  0]])
+an_array.shape
+```
+
+In fact this array represents a monochrome picture of a letter.
+
+We can show arrays as images using the `plt.imshow` command from
+[matplotlib](http://matplotlib.org/). Here is the default output:
+
+```{python}
+plt.imshow(an_array)
+```
+
+The image is weirdly colorful. That is because matplotlib is using the default
+*colormap*. A colormap is a mapping from values in the array to colors. In
+matplotlib < 2.0 the default colormap is called `jet` and maps low numbers
+in the image (0 in our case) to blue, and high numbers (99 in our case) to
+red. For matplotlib version 2.0 and above the default colormap is called
+`viridis`.  `viridis` maps low numbers to purple and high numbers to
+yellow.
+
+We can see the relationship of the numbers to the colors by asking matplotlib
+to show the colormap:
+
+```{python}
+# Nearest interpolation is now the default
+plt.imshow(an_array)
+plt.colorbar()
+```
+
+In our case, our image would make more sense as grayscale, so we use the
+`gray` colormap, like this:
+
+```{python}
+plt.imshow(an_array, cmap='gray')
+plt.colorbar()
+```
+
+A grayscale image is an array containing numbers giving the pixel intensity
+values - in our case between 0 and 99.
+
+Here we set `gray` to the default colormap for the rest of our plots:
+
+```{python}
+# Set 'gray' as the default colormap
+plt.rcParams['image.cmap'] = 'gray'
+```
+
+We can also plot lines in matplotlib. For example, we might want to plot the
+values in row 8 from this array.  Because Python indices start at 0, this is
+the 9th row of the array.
+
+```{python}
+plt.plot(an_array[8])
+```
+
+The x axis is the position in the array (0 through 7) and the y axis is the
+value of the array row at that position.
+
+The plot shows us the 0 values at the edges of the bar of the “i”, an the ramp
+up to the peak at the middle of the bar of the “i”, in columns number 3 and 4.
+
+A transpose in numpy uses the `.T` method on the array. This has the effect
+of flipping the rows and columns (in 2D):
+
+```{python}
+an_array.T
+```
+
+```{python}
+# Defaults of nearest interpolation and gray colormap
+plt.imshow(an_array.T)
+```
+
+We can also reshape the original array to a 1D array, by stacking all the rows
+end to end:
+
+```{python}
+old_shape = an_array.shape
+a_1d_array = np.reshape(an_array, old_shape[0] * old_shape[1])
+a_1d_array
+```
+
+```{python}
+a_1d_array.shape
+```
+
+Reshaping the array to one dimension is a common operation, so there is a
+separate numpy command for that, `np.ravel`:
+
+```{python}
+np.ravel(an_array)
+```
+
+One use of the 1D version of the array, is for making a histogram of the
+distribution of values in the array:
+
+```{python}
+plt.hist(a_1d_array)
+```
+
+By default, the `plt.hist` function uses 50 bins, but you can specify how
+many bins you want with the `bins` keyword:
+
+```{python}
+plt.hist(a_1d_array, bins=75)
+```
+
+As you can imagine, it’s not hard to go back to the 2D shape, by splitting the
+1D array back into 15 rows of 8 values each (and therefore 8 columns):
+
+```{python}
+array_back = np.reshape(a_1d_array, (15, 8))
+array_back
+plt.imshow(array_back)
+```
+
+In numpy, basic operations like multiplication, addition, comparison, are
+always elementwise. For example, this multiplies every array value by 10:
+
+```{python}
+an_array * 10
+```
+
+Comparison is also elementwise. For example, this gives True for every value >
+50, and False for every value <= 50:
+
+```{python}
+an_array > 50
+```
+
+Matplotlib will treat False as 0 and True as 1, so this is one way of
+binarizing the image at a threshold (of 50 in this case):
+
+```{python}
+plt.imshow(an_array > 50)
+```
+
+We can slice arrays as we slice strings or lists. The difference for arrays is
+that we can slice in any or all dimensions at the same time.  For example, to
+get the dot of the “i” it looks (from the numbers at the sides of the ploat)
+that we want to the top 4 rows, and the last 5 columns:
+
+```{python}
+an_array[0:4, 3:]
+plt.imshow(an_array[0:4, 3:])
+```
+
+<!-- vim:ft=rst -->
+<!-- Course -->
+<!-- BIC -->
+<!-- Python distributions -->
+<!-- Version control -->
+<!-- Editors -->
+<!-- Python and common libraries -->
+<!-- IPython -->
+<!-- Virtualenv and helpers -->
+<!-- Pypi and packaging -->
+<!-- Mac development -->
+<!-- Windows development -->
+<!-- Nipy and friends -->
+<!-- FMRI datasets -->
+<!-- Languages -->
+<!-- Imaging software -->
+<!-- Installation -->
+<!-- Tutorials -->
+<!-- MB tutorials -->
+<!-- Ideas -->
+<!-- Psych-214 -->
+<!-- People -->
+<!-- Licenses -->
+<!-- Neuroimaging stuff -->
+<!-- OpenFMRI projects -->
+<!-- Unix -->
+<!-- Substitutions -->
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+        
+      </footer>
+
+      
+
+      
+
+    </div>
+
+    
+  </article>
+
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><input type="text" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+    <div id="results" class="results"></div></div>
+      </div>
+    
+
+    
+
+    
+  <script src="/fbi2018/assets/js/main.min.js"></script>
+  <script src="https://use.fontawesome.com/releases/v5.0.12/js/all.js"></script>
+
+
+
+
+<script src="/fbi2018/assets/js/lunr/lunr.min.js"></script>
+<script src="/fbi2018/assets/js/lunr/lunr-store.js"></script>
+<script src="/fbi2018/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+    <!-- Custom scripts to load after site JS is loaded -->
+
+    <!-- Custom HTML used for the textbooks -->
+<!-- Configure, then load MathJax -->
+<script type="text/javascript">
+  window.MathJax = {
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      processEnvironments: true
+    }
+  };
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML-full,Safe" type="text/javascript"></script>
+
+
+<script type="text/javascript">
+// --- To auto-embed hub URLs in interact links if given in a RESTful fashion ---
+function getJsonFromUrl(url) {
+  var query = url.split('?');
+  if (query.length < 2) {
+    // No queries so just return false
+    return false;
+  }
+  query = query[1];
+  // Collect REST params into a dictionary
+  var result = {};
+  query.split("&").forEach(function(part) {
+    var item = part.split("=");
+    result[item[0]] = decodeURIComponent(item[1]);
+  });
+  return result;
+}
+
+// Parse a Binder URL, converting it to the string needed for JupyterHub
+function binder2Jupyterhub(url) {
+  newUrl = {};
+  parts = url.split('v2/gh/')[1];
+  // Grab the base repo information
+  repoinfo = parts.split('?')[0];
+  var [org, repo, ref] = repoinfo.split('/');
+  newUrl['repo'] = ['https://github.com', org, repo].join('/');
+  newUrl['branch'] = ref
+  // Grab extra parameters passed
+  params = getJsonFromUrl(url);
+  if (params['filepath'] !== undefined) {
+    newUrl['subPath'] = params['filepath']
+  }
+  return jQuery.param(newUrl);
+}
+
+// Filter out potentially unsafe characters to prevent xss
+function safeUrl(url)
+{
+   return String(encodeURIComponent(url))
+            .replace(/&/g, '&amp;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#39;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;');
+}
+
+function addParamToInternalLinks(hub) {
+  var links = $("a").each(function() {
+    var href = this.href;
+    // If the link is an internal link...
+    if (href.search("https://matthew-brett.github.io") !== -1 || href.startsWith('/') || href.search("127.0.0.1:") !== -1) {
+      // Assume we're an internal link, add the hub param to it
+      var params = getJsonFromUrl(href);
+      if (params !== false) {
+        // We have REST params, so append a new one
+        params['hub'] = hub;
+      } else {
+        // Create the REST params
+        params = {'hub': hub};
+      }
+      // Update the link
+      var newHref = href.split('?')[0] + '?' + jQuery.param(params);
+      this.setAttribute('href', decodeURIComponent(newHref));
+    }
+  });
+  return false;
+}
+
+  // Update interact links
+function updateInteractLink() {
+    // hack to make this work since it expects a ? in the URL
+    rest = getJsonFromUrl("?" + location.search.substr(1));
+    hubUrl = rest['hub'];
+    if (hubUrl !== undefined) {
+      // Sanitize the hubUrl
+      hubUrl = safeUrl(hubUrl);
+      // Add HTTP text if omitted
+      if (hubUrl.indexOf('http') < 0) {hubUrl = 'http://' + hubUrl;}
+      link = $("a.interact-button")[0];
+      if (link !== undefined) {
+          // Update the interact link URL
+          var href = link.getAttribute('href');
+          if ('binder' == 'binder') {
+            // If binder links exist, we need to re-work them for jupyterhub
+            first = [hubUrl, 'hub', 'user-redirect', 'git-sync'].join('/')
+            href = first + '?' + binder2Jupyterhub(href);
+          } else {
+            // If JupyterHub links, we only need to replace the hub url
+            href = href.replace("https://mybinder.org", hubUrl);
+          }
+          link.setAttribute('href', decodeURIComponent(href));
+
+          // Add text after interact link saying where we're launching
+          hubUrlNoHttp = decodeURIComponent(hubUrl).replace('http://', '').replace('https://', '');
+          $("a.interact-button").after($('<div class="interact-context">on ' + hubUrlNoHttp + '</div>'));
+
+      }
+      // Update internal links so we retain the hub url
+      addParamToInternalLinks(hubUrl);
+    }
+}
+
+// --- Highlight the part of sidebar for current page ---
+
+// helper to replace trailing slash
+function replaceSlash(string)
+{
+    return string.replace(/\/$/, "");
+}
+
+// Add a class to the current page in the sidebar
+function highlightSidebarCurrentPage()
+{
+  var currentpage = location.href;
+  var links = $('.sidebar .nav__items a');
+  var ii = 0;
+  for(ii; ii < links.length; ii++) {
+    var link = links[ii];
+    if(replaceSlash(link.href) == replaceSlash(currentpage)) {
+      // Add CSS for styling
+      link.classList.add("current");
+      // Scroll to this element
+      $('div.sidebar').scrollTop(link.offsetTop - 300);
+    }
+  }
+}
+
+// --- Set up copy/paste for code blocks ---
+function addCopyButtonToCode(){
+  // get all <code> elements
+  var allCodeBlocksElements = $( "div.input_area code, div.highlighter-rouge code" );
+
+  allCodeBlocksElements.each(function(ii) {
+   	// add different id for each code block
+
+  	// target
+    var currentId = "codeblock" + (ii + 1);
+    $(this).attr('id', currentId);
+
+    //trigger
+    var clipButton = '<button class="btn copybtn" data-clipboard-target="#' + currentId + '"><img src="https://clipboardjs.com/assets/images/clippy.svg" width="13" alt="Copy to clipboard"></button>';
+       $(this).after(clipButton);
+    });
+
+    new Clipboard('.btn');
+}
+
+// Run scripts when page is loaded
+$(document).ready(function () {
+  // Add anchors to H1 etc links
+  anchors.add();
+  // Highlight current page in sidebar
+  highlightSidebarCurrentPage();
+  // Add copy button to code blocks
+  addCopyButtonToCode();
+  // Update the Interact link if a REST param given
+  updateInteractLink();
+});
+</script>
+
+  </body>
+</html>
