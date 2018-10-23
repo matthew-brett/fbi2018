@@ -8,5 +8,5 @@
   * [2.2 Arrays and images](notebooks/02/arrays_and_images.ipynb)
   * [2.3 3D images](notebooks/02/images_3d.ipynb)
   * [2.4 4D images](notebooks/02/images_4d.ipynb)
-  * [2.5 Voxel time courses](notebooks/02/voxel_time_courses.ipynb)
-  * [2.6 First activation](notebooks/02/first_activation.ipynb)
+  * [2.5 First activation](notebooks/02/first_activation.ipynb)
+  * [2.6 Voxel time courses](notebooks/02/voxel_time_courses.ipynb)

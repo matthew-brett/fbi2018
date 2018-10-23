@@ -27,11 +27,11 @@ chapters:
     title: 2.4 4D images
     url: chapters/02/images_4d
   - class: level_1
-    title: 2.5 Voxel time courses
-    url: chapters/02/voxel_time_courses
-  - class: level_1
-    title: 2.6 First activation
+    title: 2.5 First activation
     url: chapters/02/first_activation
+  - class: level_1
+    title: 2.6 Voxel time courses
+    url: chapters/02/voxel_time_courses
   class: level_0
   title: 2. FMRI data
   url: chapters/02/fmri_data
