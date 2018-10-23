@@ -23,8 +23,8 @@ Many of us are familiar with the [replication
 crisis](https://www.nature.com/news/1-500-scientists-lift-the-lid-on-reproducibility-1.19970).
 
 It is difficult to trace when the issue of replication started to enter
-discussion in the mainstream, but one landmark was {%cite begley2012drug %}.
-Begley and Ellis were scientists at Amgen - a drug company. They tried to
+discussion in the mainstream, but one salient moment was {%cite begley2012drug
+%}.  Begley and Ellis were scientists at Amgen - a drug company. They tried to
 reproduce findings from 53 "landmark" studies in hematological oncology -
 blood cancer.  They tried fairly hard:
 
@@ -35,8 +35,8 @@ blood cancer.  They tried fairly hard:
 
 Of 53 studies, only 6 replicated (11%).
 
-They detected a difference between the working process of the labs that
-generated the findings that replicated:
+They detected a difference between the working process of the authors with
+reproducible findings compared to those with results they could not reproduce:
 
 > In studies for which findings could be reproduced, authors had paid close
 > attention to controls, reagents, investigator bias and describing the
