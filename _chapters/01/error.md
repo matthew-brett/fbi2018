@@ -1,12 +1,12 @@
 ---
-title: '1.2 Why worry?'
+title: '1.1 Why worry?'
 permalink: 'chapters/01/error'
 previouschapter:
   url: chapters/01/intro
   title: '1. Introduction to MRI data'
 nextchapter:
-  url: chapters/02/fmri_data
-  title: '2. FMRI data'
+  url: chapters/01/why_python
+  title: '1.2 Why Python?'
 redirect_from:
   - 'chapters/01/error'
 ---
@@ -82,7 +82,7 @@ statistician and advocate of *reproducible research*.
 > of my own experience. I would much rather that at talks and in referee
 > reports, the possibility of such error were seriously examined.
 
-David L. Donoho {% cite donoho2010invitation %}
+{% cite donoho2010invitation %}
 
 > In stark contrast to the sciences relying on deduction or empiricism,
 > computational science is far less visibly concerned with the ubiquity of

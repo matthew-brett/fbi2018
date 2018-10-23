@@ -70,7 +70,7 @@ statistician and advocate of *reproducible research*.
 > of my own experience. I would much rather that at talks and in referee
 > reports, the possibility of such error were seriously examined.
 
-David L. Donoho {% cite donoho2010invitation %}
+{% cite donoho2010invitation %}
 
 > In stark contrast to the sciences relying on deduction or empiricism,
 > computational science is far less visibly concerned with the ubiquity of

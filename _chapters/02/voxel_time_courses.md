@@ -1,13 +1,13 @@
 ---
 interact_link: notebooks/02/voxel_time_courses.ipynb
-title: '2.3 Voxel time courses'
+title: '2.5 Voxel time courses'
 permalink: 'chapters/02/voxel_time_courses'
 previouschapter:
-  url: chapters/02/arrays_and_images
-  title: '2.2 Arrays and images'
+  url: chapters/02/images_4d
+  title: '2.4 Arrays and images'
 nextchapter:
-  url: 
-  title: ''
+  url: chapters/02/first_activation
+  title: '2.6 Arrays and images'
 redirect_from:
   - 'chapters/02/voxel-time-courses'
 ---
@@ -33,6 +33,7 @@ For this notebook you will need:
 # Our usual set-up
 import numpy as np
 import matplotlib.pyplot as plt
+%matplotlib inline
 # Display array values to 4 digits of precision
 np.set_printoptions(precision=4, suppress=True)
 ```
@@ -146,7 +147,7 @@ plt.imshow(mean_data[:, :, 19], cmap='gray', interpolation='nearest')
 
 {:.output_data_text}
 ```
-<matplotlib.image.AxesImage at 0x10d96c668>
+<matplotlib.image.AxesImage at 0x113737a90>
 ```
 
 
@@ -174,7 +175,7 @@ plt.plot(voxel_time_course)
 
 {:.output_data_text}
 ```
-[<matplotlib.lines.Line2D at 0x10daddc88>]
+[<matplotlib.lines.Line2D at 0x11393bcc0>]
 ```
 
 
@@ -251,7 +252,7 @@ plt.plot(neural)
 
 {:.output_data_text}
 ```
-[<matplotlib.lines.Line2D at 0x10dbeb278>]
+[<matplotlib.lines.Line2D at 0x113db17f0>]
 ```
 
 
