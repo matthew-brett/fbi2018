@@ -11,8 +11,8 @@ Many of us are familiar with the [replication
 crisis](https://www.nature.com/news/1-500-scientists-lift-the-lid-on-reproducibility-1.19970).
 
 It is difficult to trace when the issue of replication started to enter
-discussion in the mainstream, but one landmark was {%cite begley2012drug %}.
-Begley and Ellis were scientists at Amgen - a drug company. They tried to
+discussion in the mainstream, but one salient moment was {%cite begley2012drug
+%}.  Begley and Ellis were scientists at Amgen - a drug company. They tried to
 reproduce findings from 53 "landmark" studies in hematological oncology -
 blood cancer.  They tried fairly hard:
 
