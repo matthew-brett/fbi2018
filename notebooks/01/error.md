@@ -23,8 +23,8 @@ blood cancer.  They tried fairly hard:
 
 Of 53 studies, only 6 replicated (11%).
 
-They detected a difference between the working process of the labs that
-generated the findings that replicated:
+They detected a difference between the working process of the authors with
+reproducible findings compared to those with results they could not reproduce:
 
 > In studies for which findings could be reproduced, authors had paid close
 > attention to controls, reagents, investigator bias and describing the

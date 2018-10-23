@@ -12,7 +12,7 @@
 <meta property="og:locale" content="en_UK">
 <meta property="og:site_name" content="FBI 2018">
 <meta property="og:title" content="What is data science?">
-<meta property="og:url" content="http://localhost:4000/fbi2018/what">
+<meta property="og:url" content="https://matthew-brett.github.io/fbi2018/what">
 
 
 
@@ -30,7 +30,7 @@
   
 
 
-<link rel="canonical" href="http://localhost:4000/fbi2018/what">
+<link rel="canonical" href="https://matthew-brett.github.io/fbi2018/what">
 
 
 
@@ -43,7 +43,7 @@
       "@context": "http://schema.org",
       "@type": "Person",
       "name": "Matthew Brett",
-      "url": "http://localhost:4000/fbi2018",
+      "url": "https://matthew-brett.github.io/fbi2018",
       "sameAs": null
     }
   </script>
@@ -118,7 +118,7 @@
           
             
             <li class="masthead__menu-item">
-              <a href="http://localhost:4000/fbi2018/about" >About</a>
+              <a href="https://matthew-brett.github.io/fbi2018/about" >About</a>
             </li>
           
           
@@ -347,7 +347,7 @@ function addParamToInternalLinks(hub) {
   var links = $("a").each(function() {
     var href = this.href;
     // If the link is an internal link...
-    if (href.search("http://localhost:4000") !== -1 || href.startsWith('/') || href.search("127.0.0.1:") !== -1) {
+    if (href.search("https://matthew-brett.github.io") !== -1 || href.startsWith('/') || href.search("127.0.0.1:") !== -1) {
       // Assume we're an internal link, add the hub param to it
       var params = getJsonFromUrl(href);
       if (params !== false) {
