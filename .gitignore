@@ -108,3 +108,8 @@ _site/
 
 # Mac
 .DS_Store
+
+# Generated files
+_bibliography/references.bib
+images/chapters/
+_chapters/
