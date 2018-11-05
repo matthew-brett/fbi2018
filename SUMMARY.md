@@ -10,3 +10,6 @@
   * [2.4 4D images](notebooks/02/images_4d.ipynb)
   * [2.5 First activation](notebooks/02/first_activation.ipynb)
   * [2.6 Voxel time courses](notebooks/02/voxel_time_courses.ipynb)
+* [3. FMRI pre-processing](notebooks/03/preprocessing.md)
+  * [3.1 slice timing](notebooks/03/slice_timing.ipynb)
+  * [3.2 optimizing space](notebooks/03/optimizing_space.ipynb)

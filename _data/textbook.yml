@@ -35,4 +35,14 @@ chapters:
   class: level_0
   title: 2. FMRI data
   url: chapters/02/fmri_data
+- children:
+  - class: level_1
+    title: 3.1 slice timing
+    url: chapters/03/slice_timing
+  - class: level_1
+    title: 3.2 optimizing space
+    url: chapters/03/optimizing_space
+  class: level_0
+  title: 3. FMRI pre-processing
+  url: chapters/03/preprocessing
 first_chapter_url: chapters/01/intro
