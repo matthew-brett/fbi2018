@@ -159,6 +159,7 @@ class Build:
         check_call(['jupytext', '--to', 'notebook', nb_src])
         # Run .ipynb
         check_call(['jupyter', 'nbconvert', '--inplace',
+                    '--ExecutePreprocessor.timeout=60',
                     '--ExecutePreprocessor.kernel_name=python3',
                     '--to', 'notebook', '--execute', nb_built])
         self._delete_built(base, self.built_exts)
