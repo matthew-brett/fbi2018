@@ -23,7 +23,7 @@
 
 
 
-  <meta property="article:published_time" content="2018-11-06T00:25:37+00:00">
+  <meta property="article:published_time" content="2018-11-06T00:36:01+00:00">
 
 
 
@@ -437,13 +437,10 @@
 
 <div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Get mean over volume, for all volumes</span>
 <span class="n">means</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">bold_data</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">means</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">means</span><span class="p">);</span>
 </code></pre></div></div>
 
-<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[&lt;matplotlib.lines.Line2D at 0x11233f668&gt;]
-</code></pre></div></div>
-
-<p><img src="../../images/chapters/03/slice_timing_11_1.png" alt="png" /></p>
+<p><img src="../../images/chapters/03/slice_timing_11_0.png" alt="png" /></p>
 
 <p>We drop the first volume:</p>
 
@@ -456,13 +453,10 @@
 
 <div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Get mean over volume, for all volumes, now we dropped the first</span>
 <span class="n">means</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">bold_data</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">means</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">means</span><span class="p">);</span>
 </code></pre></div></div>
 
-<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[&lt;matplotlib.lines.Line2D at 0x1123cc630&gt;]
-</code></pre></div></div>
-
-<p><img src="../../images/chapters/03/slice_timing_14_1.png" alt="png" /></p>
+<p><img src="../../images/chapters/03/slice_timing_14_0.png" alt="png" /></p>
 
 <p>The scanner acquired these data with interleaved slices in time.  That means that the scanner first acquired slice 0, then slice 2 up to slice 29, and then returned to acquire slice 1, slice 3 up to slice 29.  This type of acquisition is often called “ascending interleaved”.</p>
 
@@ -500,13 +494,10 @@
 </code></pre></div></div>
 
 <div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Plot the time course from the voxel from slice 0</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time_course_slice_0</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time_course_slice_0</span><span class="p">);</span>
 </code></pre></div></div>
 
-<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[&lt;matplotlib.lines.Line2D at 0x11242ff28&gt;]
-</code></pre></div></div>
-
-<p><img src="../../images/chapters/03/slice_timing_24_1.png" alt="png" /></p>
+<p><img src="../../images/chapters/03/slice_timing_24_0.png" alt="png" /></p>
 
 <p>Note that the x axis is in scans.  To convert to seconds, we need to get the times for the start of each TR:</p>
 
@@ -514,48 +505,36 @@
 <span class="n">T</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">time_course_slice_0</span><span class="p">)</span> <span class="c"># number of scans</span>
 <span class="n">times_slice_0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">T</span><span class="p">)</span> <span class="o">*</span> <span class="n">TR</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">times_slice_0</span><span class="p">,</span> <span class="n">time_course_slice_0</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">'Time (seconds)'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">'Time (seconds)'</span><span class="p">);</span>
 </code></pre></div></div>
 
-<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Text(0.5,0,'Time (seconds)')
-</code></pre></div></div>
-
-<p><img src="../../images/chapters/03/slice_timing_26_1.png" alt="png" /></p>
+<p><img src="../../images/chapters/03/slice_timing_26_0.png" alt="png" /></p>
 
 <p>We can also get a time course for the equivalent voxel, but one slice up:</p>
 
 <div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">time_course_slice_1</span> <span class="o">=</span> <span class="n">bold_data</span><span class="p">[</span><span class="mi">43</span><span class="p">,</span> <span class="mi">38</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">:]</span> <span class="c"># same voxel, slice 1</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time_course_slice_1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time_course_slice_1</span><span class="p">);</span>
 </code></pre></div></div>
 
-<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[&lt;matplotlib.lines.Line2D at 0x11259a978&gt;]
-</code></pre></div></div>
-
-<p><img src="../../images/chapters/03/slice_timing_28_1.png" alt="png" /></p>
+<p><img src="../../images/chapters/03/slice_timing_28_0.png" alt="png" /></p>
 
 <p>Notice our x axis is still in TRs (scans).  What times were these slice 1 values acquired?  They were acquired half way through the TR, after the scanner had finished acquiring all the even slices (slice 0, slice 2, ….).  So the times in seconds for these values are:</p>
 
 <div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">times_slice_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">T</span><span class="p">)</span> <span class="o">*</span> <span class="n">TR</span> <span class="o">+</span> <span class="n">TR</span> <span class="o">/</span> <span class="mf">2.</span> <span class="c"># Add time offset for this slice</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">times_slice_1</span><span class="p">,</span> <span class="n">time_course_slice_1</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">'Time (seconds)'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">'Time (seconds)'</span><span class="p">);</span>
 </code></pre></div></div>
 
-<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Text(0.5,0,'Time (seconds)')
-</code></pre></div></div>
-
-<p><img src="../../images/chapters/03/slice_timing_30_1.png" alt="png" /></p>
+<p><img src="../../images/chapters/03/slice_timing_30_0.png" alt="png" /></p>
 
 <p>At the moment we can’t see the offset in time between these slices; let’s plot only the first eight values:</p>
 
 <div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">times_slice_0</span><span class="p">[:</span><span class="mi">8</span><span class="p">],</span> <span class="n">time_course_slice_0</span><span class="p">[:</span><span class="mi">8</span><span class="p">],</span> <span class="s">'x:'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">times_slice_1</span><span class="p">[:</span><span class="mi">8</span><span class="p">],</span> <span class="n">time_course_slice_1</span><span class="p">[:</span><span class="mi">8</span><span class="p">],</span> <span class="s">'rx:'</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">'Time (seconds)'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">'Time (seconds)'</span><span class="p">);</span>
 </code></pre></div></div>
 
-<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Text(0.5,0,'Time (seconds)')
-</code></pre></div></div>
-
-<p><img src="../../images/chapters/03/slice_timing_32_1.png" alt="png" /></p>
+<p><img src="../../images/chapters/03/slice_timing_32_0.png" alt="png" /></p>
 
 <p>The job of slice timing, is to find new values for the red line, which correspond to the times of acquisition of the blue line (the blue crosses).  In order to do this, we can use linear interpolation.  You can think of this as drawing a vertical line at $x=t$ where $t$ is the time of acqusition of the first slice.  We then take the value from the red line where this $x=t$ line crosses the red line:</p>
 
@@ -566,13 +545,10 @@
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">8</span><span class="p">):</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">times_slice_0</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="p">],</span> <span class="p">[</span><span class="n">min_y</span><span class="p">,</span> <span class="n">max_y</span><span class="p">],</span> <span class="s">'k:'</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">'Time (seconds)'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">'Time (seconds)'</span><span class="p">);</span>
 </code></pre></div></div>
 
-<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Text(0.5,0,'Time (seconds)')
-</code></pre></div></div>
-
-<p><img src="../../images/chapters/03/slice_timing_34_1.png" alt="png" /></p>
+<p><img src="../../images/chapters/03/slice_timing_34_0.png" alt="png" /></p>
 
 <p>The value at $x$ for the straight line between any two of the points $(x_0, y_0)$ and $(x_1, y_1)$ on the red line is given by:</p>
 
@@ -595,13 +571,10 @@ paper, and working out the slope and intercept.  For more information, see
     <span class="n">y1</span> <span class="o">=</span> <span class="n">time_course_slice_1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
     <span class="n">y</span> <span class="o">=</span> <span class="n">y0</span> <span class="o">+</span> <span class="p">(</span><span class="n">y1</span> <span class="o">-</span> <span class="n">y0</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">x1</span> <span class="o">-</span> <span class="n">x</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">x1</span> <span class="o">-</span> <span class="n">x0</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s">'kx'</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">'Time (seconds)'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">'Time (seconds)'</span><span class="p">);</span>
 </code></pre></div></div>
 
-<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Text(0.5,0,'Time (seconds)')
-</code></pre></div></div>
-
-<p><img src="../../images/chapters/03/slice_timing_36_1.png" alt="png" /></p>
+<p><img src="../../images/chapters/03/slice_timing_36_0.png" alt="png" /></p>
 
 <p>So now we can just replace the original values from the red line (values for slice 1) with our best guess values if the slice had been taken at the same times as slice 0 (the beginning of the volume):</p>
 
@@ -620,13 +593,10 @@ paper, and working out the slope and intercept.  For more information, see
 
 <div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">times_slice_0</span><span class="p">[:</span><span class="mi">8</span><span class="p">],</span> <span class="n">time_course_slice_0</span><span class="p">[:</span><span class="mi">8</span><span class="p">],</span> <span class="s">'x:'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">times_slice_0</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">8</span><span class="p">],</span> <span class="n">est_time_course_slice_1</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">8</span><span class="p">],</span> <span class="s">'rx:'</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">'Time (seconds)'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">'Time (seconds)'</span><span class="p">);</span>
 </code></pre></div></div>
 
-<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Text(0.5,0,'Time (seconds)')
-</code></pre></div></div>
-
-<p><img src="../../images/chapters/03/slice_timing_39_1.png" alt="png" /></p>
+<p><img src="../../images/chapters/03/slice_timing_39_0.png" alt="png" /></p>
 
 <p>We do this for every slice except the first, and then make a new dataset containing the interpolated time courses for all slices.  Now we have done slice timing correction.</p>
 

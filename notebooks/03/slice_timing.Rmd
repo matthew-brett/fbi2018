@@ -226,7 +226,7 @@ Remember that the first image was very different from the rest:
 ```{python}
 # Get mean over volume, for all volumes
 means = np.mean(bold_data, axis=(0, 1, 2))
-plt.plot(means)
+plt.plot(means);
 ```
 
 We drop the first volume:
@@ -239,7 +239,7 @@ bold_data.shape
 ```{python}
 # Get mean over volume, for all volumes, now we dropped the first
 means = np.mean(bold_data, axis=(0, 1, 2))
-plt.plot(means)
+plt.plot(means);
 ```
 
 The scanner acquired these data with interleaved slices in time.  That means that the scanner first acquired slice 0, then slice 2 up to slice 29, and then returned to acquire slice 1, slice 3 up to slice 29.  This type of acquisition is often called "ascending interleaved".
@@ -272,7 +272,7 @@ time_course_slice_0[:2]
 
 ```{python}
 # Plot the time course from the voxel from slice 0
-plt.plot(time_course_slice_0)
+plt.plot(time_course_slice_0);
 ```
 
 Note that the x axis is in scans.  To convert to seconds, we need to get the times for the start of each TR:
@@ -282,14 +282,14 @@ TR = 2.5 # time to acquire one scan
 T = len(time_course_slice_0) # number of scans
 times_slice_0 = np.arange(T) * TR
 plt.plot(times_slice_0, time_course_slice_0)
-plt.xlabel('Time (seconds)')
+plt.xlabel('Time (seconds)');
 ```
 
 We can also get a time course for the equivalent voxel, but one slice up:
 
 ```{python}
 time_course_slice_1 = bold_data[43, 38, 1, :] # same voxel, slice 1
-plt.plot(time_course_slice_1)
+plt.plot(time_course_slice_1);
 ```
 
 Notice our x axis is still in TRs (scans).  What times were these slice 1 values acquired?  They were acquired half way through the TR, after the scanner had finished acquiring all the even slices (slice 0, slice 2, ....).  So the times in seconds for these values are:
@@ -297,7 +297,7 @@ Notice our x axis is still in TRs (scans).  What times were these slice 1 values
 ```{python}
 times_slice_1 = np.arange(T) * TR + TR / 2. # Add time offset for this slice
 plt.plot(times_slice_1, time_course_slice_1)
-plt.xlabel('Time (seconds)')
+plt.xlabel('Time (seconds)');
 ```
 
 At the moment we can't see the offset in time between these slices; let's plot only the first eight values:
@@ -305,7 +305,7 @@ At the moment we can't see the offset in time between these slices; let's plot o
 ```{python}
 plt.plot(times_slice_0[:8], time_course_slice_0[:8], 'x:')
 plt.plot(times_slice_1[:8], time_course_slice_1[:8], 'rx:')
-plt.xlabel('Time (seconds)')
+plt.xlabel('Time (seconds)');
 ```
 
 The job of slice timing, is to find new values for the red line, which correspond to the times of acquisition of the blue line (the blue crosses).  In order to do this, we can use linear interpolation.  You can think of this as drawing a vertical line at $x=t$ where $t$ is the time of acqusition of the first slice.  We then take the value from the red line where this $x=t$ line crosses the red line:
@@ -318,7 +318,7 @@ min_y, max_y= ax.get_ylim()
 for i in range(1, 8):
     x = times_slice_0[i]
     plt.plot([x, x], [min_y, max_y], 'k:')
-plt.xlabel('Time (seconds)')
+plt.xlabel('Time (seconds)');
 ```
 
 The value at $x$ for the straight line between any two of the points $(x_0, y_0)$ and $(x_1, y_1)$ on the red line is given by:
@@ -345,7 +345,7 @@ for i in range(1, 8):
     y1 = time_course_slice_1[i]
     y = y0 + (y1 - y0) * (x1 - x) / (x1 - x0)
     plt.plot(x, y, 'kx')
-plt.xlabel('Time (seconds)')
+plt.xlabel('Time (seconds)');
 ```
 
 So now we can just replace the original values from the red line (values for slice 1) with our best guess values if the slice had been taken at the same times as slice 0 (the beginning of the volume):
@@ -367,7 +367,7 @@ est_time_course_slice_1[0] = est_time_course_slice_1[1]
 ```{python}
 plt.plot(times_slice_0[:8], time_course_slice_0[:8], 'x:')
 plt.plot(times_slice_0[1:8], est_time_course_slice_1[1:8], 'rx:')
-plt.xlabel('Time (seconds)')
+plt.xlabel('Time (seconds)');
 ```
 
 We do this for every slice except the first, and then make a new dataset containing the interpolated time courses for all slices.  Now we have done slice timing correction.
