@@ -52,7 +52,10 @@ The first step is detecting, and then inflating the cortical surface:
 
 <iframe src="https://player.vimeo.com/video/299292912" width="640" height="469" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
 
-Freesurfer keeps the curvature information with the surface positions, after inflating to a sphere.  Convex areas are gyri, convex areas are sulci.
+Freesurfer keeps the curvature information with the surface positions, after
+inflating to a sphere.  In the graphics here, convex areas are in blue.  As you
+see, these are the tops of gyri.  Convex areas are in red, and these are
+characteristic of the bottom of sulci.
 
 It then matches the individual curvature pattern to a template of averaged
 curvature patterns.
