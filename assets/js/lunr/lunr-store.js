@@ -44,18 +44,13 @@ var store = [{
         "tags": [],
         "url": "https://matthew-brett.github.io/fbi2018/chapters/02/what_is_an_image",
         "teaser":null},{
-        "title": "Anterior cingulate",
-        "excerpt":"See (Vogt, Nimchinsky, Vogt, &amp; Hof, 1995) Most brain hemispheres (65%) have a single cingulate gyrus delimited bya cingulate sulcus above it: The rest have two cingulate sulci, with an extra superior cingulate sulcusand superior cingulate gyrus: The cytoarchitectonic regions appear to correspond to the sulcal anatomy: References Vogt, B....","categories": [],
-        "tags": [],
-        "url": "https://matthew-brett.github.io/fbi2018/chapters/03/anterior_cingulate",
-        "teaser":null},{
         "title": "Mutual information as an image matching metric",
         "excerpt":"In which we look at the mutual information measure for comparing images. For this notebook you will need: MNI T1 image MNI T2 image# - import common modulesimport numpy as np # the Python array packageimport matplotlib.pyplot as plt # the Python plotting package# - set gray colormap by defaultplt.rcParams['image.cmap']...","categories": [],
         "tags": [],
         "url": "https://matthew-brett.github.io/fbi2018/chapters/03/mutual_information",
         "teaser":null},{
         "title": "Introduction to normalization",
-        "excerpt":"See: PDF of presentation ","categories": [],
+        "excerpt":"The problem What are we trying to match? Anatomical variation Even identical twins have different sulcal anatomy (Klein &amp; Tourville, 2012). There are renderings of the left hemisphere of two identical twins. Anterior cingulate See (Vogt, Nimchinsky, Vogt, &amp; Hof, 1995) Most brain hemispheres (65%) have a single cingulate gyrus...","categories": [],
         "tags": [],
         "url": "https://matthew-brett.github.io/fbi2018/chapters/03/normalization",
         "teaser":null},{

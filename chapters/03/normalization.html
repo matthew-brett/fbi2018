@@ -23,7 +23,7 @@
 
 
 
-  <meta property="article:published_time" content="2018-11-06T00:36:01+00:00">
+  <meta property="article:published_time" content="2018-11-06T19:50:39+00:00">
 
 
 
@@ -304,17 +304,7 @@
 
             
 
-            <li><a href="/fbi2018/chapters/03/anterior_cingulate" class="level_1">3.5 anterior cingulate</a></li>
-          
-            
-            
-
-            
-            
-
-            
-
-            <li><a href="/fbi2018/chapters/03/smoothing_intro" class="level_1">3.6 smoothing</a></li>
+            <li><a href="/fbi2018/chapters/03/smoothing_intro" class="level_1">3.5 smoothing</a></li>
           
         </ul>
         
@@ -375,13 +365,126 @@
 <!-- TOC will only show up if it has at least one item -->
 
 
+  <aside class="sidebar__right">
+    <nav class="toc">
+      <header><h4 class="nav__title"><i class="fas fa-list-ul"></i>   On this page</h4></header>
+      <ul class="toc__menu">
+  <li><a href="#the-problem">The problem</a>
+    <ul>
+      <li><a href="#anatomical-variation">Anatomical variation</a></li>
+      <li><a href="#anterior-cingulate">Anterior cingulate</a></li>
+      <li><a href="#matching-to-a-not-individual-template">Matching to a not-individual template</a></li>
+    </ul>
+  </li>
+  <li><a href="#sulcal-matching">Sulcal matching</a></li>
+  <li><a href="#see-also">See also</a></li>
+  <li><a href="#references">References</a></li>
+</ul>
+    </nav>
+  </aside>
+
 
           
           <!-- INTERACT LINKS -->
 
 
           
-<p>See: <a href="https://matthew-brett.github.io/fbi2018/introduction_to_normalization.pdf">PDF of presentation</a></p>
+<h2 id="the-problem">The problem</h2>
+
+<p>What are we trying to match?</p>
+
+<h3 id="anatomical-variation">Anatomical variation</h3>
+
+<p>Even identical twins have different sulcal anatomy <a href="#klein2012101">(Klein &amp; Tourville, 2012)</a>.  There are renderings of the left hemisphere of two identical twins.</p>
+
+<p><img src="https://matthew-brett.github.io/fbi2018/images/klein_2012_twin1.png" alt="Twin 1" /></p>
+
+<p><img src="https://matthew-brett.github.io/fbi2018/images/klein_2012_twin1.png" alt="Twin 2" /></p>
+
+<h3 id="anterior-cingulate">Anterior cingulate</h3>
+
+<p>See <a href="#vogt1995human">(Vogt, Nimchinsky, Vogt, &amp; Hof, 1995)</a></p>
+
+<p>Most brain hemispheres (65%) have a single <em>cingulate gyrus</em> delimited by
+a <em>cingulate sulcus</em> above it:</p>
+
+<p><img src="https://matthew-brett.github.io/fbi2018/images/vogt_1995_single_cs.png" alt="Single CS" /></p>
+
+<p>The rest have two cingulate sulci, with an extra <em>superior cingulate sulcus</em>
+and <em>superior cingulate gyrus</em>:</p>
+
+<p><img src="https://matthew-brett.github.io/fbi2018/images/vogt_1995_alternatives.png" alt="Alternative CS" /></p>
+
+<p>The cytoarchitectonic regions appear to correspond to the sulcal anatomy:</p>
+
+<p><img src="https://matthew-brett.github.io/fbi2018/images/vogt_1995_cytoarchitecture.png" alt="CS Cytoarchitecture" /></p>
+
+<h3 id="matching-to-a-not-individual-template">Matching to a not-individual template</h3>
+
+<p>Our problem is often worse than that.  We are often matching to a template brain that is the average of lots of brains, and has therefore lost much of its anatomical detail.</p>
+
+<p><img src="https://matthew-brett.github.io/fbi2018/images/brain_individual.png" alt="Individual" /></p>
+
+<p><strong>Individual brain</strong></p>
+
+<p><img src="https://matthew-brett.github.io/fbi2018/images/brain_template.png" alt="Template" /></p>
+
+<p><strong>Template brain</strong></p>
+
+<h2 id="sulcal-matching">Sulcal matching</h2>
+
+<p>Material from the following slides kindly provided by <a href="http://www.cns.nyu.edu/~mwaskom">Michael Waskom</a>.</p>
+
+<p>Freesurfer software tries to match brains using their sulci and gyri.</p>
+
+<p>The first step is detecting, and then inflating the cortical surface:</p>
+
+<iframe src="https://player.vimeo.com/video/299292912" width="640" height="469" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>
+
+<p>Freesurfer keeps the curvature information with the surface positions, after inflating to a sphere.  Convex areas are gyri, convex areas are sulci.</p>
+
+<p>It then matches the individual curvature pattern to a template of averaged
+curvature patterns.</p>
+
+<p><img src="https://matthew-brett.github.io/fbi2018/images/curvature_registration.jpg" alt="Curvature based" /></p>
+
+<p>This is an animation of the distortion process resulting from matching to the template:</p>
+
+<iframe src="https://player.vimeo.com/video/299294520" width="640" height="316" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>
+
+<p>The registration aligns sulcal patterns:</p>
+
+<p><img src="https://matthew-brett.github.io/fbi2018/images/align_sulcal_patterns.jpg" alt="Sulcal patterns" /></p>
+
+<p>Here are some graphics from <a href="#fischl1999high">(Fischl, Sereno, Tootell, &amp; Dale, 1999)</a>, showing the difference
+between standard greyscale matching of the image volumes (“Talairach” matching)
+and sulcal matching (with Freesurfer).</p>
+
+<p><img src="https://matthew-brett.github.io/fbi2018/images/fischl_free_tal.png" alt="Surface motor" /></p>
+
+<p><strong>Freesurfer / Talairach comparison, motor cortex</strong></p>
+
+<p><img src="https://matthew-brett.github.io/fbi2018/images/fischl_sulcal_blurring.png" alt="Blurring" /></p>
+
+<p><strong>Sulcal blurring with motor cortex</strong></p>
+
+<p><img src="https://matthew-brett.github.io/fbi2018/images/fischl_viz.png" alt="Surface visual" /></p>
+
+<p><strong>Freesurfer / Talairach, visual cortex</strong></p>
+
+<p><img src="https://matthew-brett.github.io/fbi2018/images/fischl_vis_bar.png" alt="Blurring" /></p>
+
+<p><strong>Sulcal blurring with visual cortex</strong></p>
+
+<h2 id="see-also">See also</h2>
+
+<p><a href="https://matthew-brett.github.io/fbi2018/introduction_to_normalization.pdf">PDF of slide deck</a></p>
+
+<h2 id="references">References</h2>
+
+<ol class="bibliography"><li><span id="klein2012101">Klein, A., &amp; Tourville, J. (2012). 101 labeled brain images and a consistent human cortical labeling protocol. <i>Frontiers in Neuroscience</i>, <i>6</i>, 171.</span></li>
+<li><span id="vogt1995human">Vogt, B. A., Nimchinsky, E. A., Vogt, L. J., &amp; Hof, P. R. (1995). Human cingulate cortex: surface features, flat maps, and cytoarchitecture. <i>Journal of Comparative Neurology</i>, <i>359</i>(3), 490–506.</span></li>
+<li><span id="fischl1999high">Fischl, B., Sereno, M. I., Tootell, R. B. H., &amp; Dale, A. M. (1999). High-resolution intersubject averaging and a coordinate system for the cortical surface. <i>Human Brain Mapping</i>, <i>8</i>(4), 272–284.</span></li></ol>
 
           
         </section>
@@ -402,7 +505,7 @@
 ">Previous</a>
     
     
-      <a href="/fbi2018/chapters/03/anterior_cingulate" class="pagination--pager" title="3.5 anterior cingulate
+      <a href="/fbi2018/chapters/03/smoothing_intro" class="pagination--pager" title="3.5 smoothing
 ">Next</a>
     
   </nav>
