@@ -56,7 +56,7 @@ image.
 n_points = 40
 x_vals = np.arange(n_points)
 y_vals = np.random.normal(size=n_points)
-plt.bar(x_vals, y_vals)
+plt.bar(x_vals, y_vals);
 ```
 
 # The Gaussian kernel
@@ -70,7 +70,7 @@ standard deviation) of 1.
 ```{python}
 x = np.arange(-6, 6, 0.1) # x from -6 to 6 in steps of 0.1
 y = 1 / np.sqrt(2 * np.pi) * np.exp(-x ** 2 / 2.)
-plt.plot(x, y)
+plt.plot(x, y);
 ```
 
 In the standard statistical way, we have defined the width of the Gaussian
@@ -124,7 +124,7 @@ sigma = fwhm2sigma(FWHM)
 x_position = 13 # 14th point
 kernel_at_pos = np.exp(-(x_vals - x_position) ** 2 / (2 * sigma ** 2))
 kernel_at_pos = kernel_at_pos / sum(kernel_at_pos)
-plt.bar(x_vals, kernel_at_pos)
+plt.bar(x_vals, kernel_at_pos);
 ```
 
 In fact the Gaussian values for the 12th through 16th data points are:
@@ -159,7 +159,7 @@ for x_position in x_vals:
     kernel = np.exp(-(x_vals - x_position) ** 2 / (2 * sigma ** 2))
     kernel = kernel / sum(kernel)
     smoothed_vals[x_position] = sum(y_vals * kernel)
-plt.bar(x_vals, smoothed_vals)
+plt.bar(x_vals, smoothed_vals);
 ```
 
 # Other kernels
