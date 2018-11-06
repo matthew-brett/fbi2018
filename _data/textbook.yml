@@ -46,10 +46,7 @@ chapters:
     title: 3.4 normalization
     url: chapters/03/normalization
   - class: level_1
-    title: 3.5 anterior cingulate
-    url: chapters/03/anterior_cingulate
-  - class: level_1
-    title: 3.6 smoothing
+    title: 3.5 smoothing
     url: chapters/03/smoothing_intro
   class: level_0
   title: 3. FMRI pre-processing
