@@ -14,24 +14,37 @@ the CC-BY 4.0 license, available at
 
 Please check carefully whether the licenses below may apply.
 
-## Berkeley Foundations of Data Science license
+## Brain images
 
-Various elements of this course are derived from the
-[excellent textbook](https://www.inferentialthinking.com) for UC Berkeley's course
-[Foundations of Data Science](http://data8.org).
+The individual brain image data come from two OpenFMRI datasets:
 
-Specifically, the versions of the Berkeley pages that I am using here come
-from last commit in that repository that is licensed with a Creative Commons
-CC-BY-NC license \-
-[64b20f0](https://github.com/data-8/textbook/commit/64b20f0).  The subsequent
-commit \- [710ed4e](https://github.com/data-8/textbook/commit/710ed4e) \-
-relicensed the work with a CC-BY-NC-ND license, forbidding derivative works.
+* [dataset ds107](https://openfmri.org/dataset/ds000107)
+* [dataset ds114](https://openfmri.org/dataset/ds000114)
 
-I've indicated every page derived from the Berkeley course, at the top of the
-page.  These pages follow the same CC-BY-NC license as the original - see [the
-README
-for commit
-64b20f0](https://github.com/data-8/textbook/blob/64b20f0452a31545d9fbc8f34a9e86035cd56e45/README.md).
+The files from the ``ds107`` and ``ds114`` datasets are covered by a Public
+Domain Dedication and License (PDDL) version 1.0 at
+<http://opendatacommons.org/licenses/pddl/1.0/> . We release all derivative
+images in this repository under the same license.
+
+The brain image template with names starting `mni_icbm152` are contained in, or
+derived from the MNI non-linear templates archive
+`mni_icbm152_t1_tal_nlin_asym_09a` last found at
+<http://www.bic.mni.mcgill.ca/~vfonov/icbm/2009/mni_icbm152_nlin_asym_09a_nifti.zip>
+via <http://www.bic.mni.mcgill.ca/ServicesAtlases/ICBM152NLin2009>.  The
+original images have the following license (where 'software' refers to the
+image):
+
+    Copyright (C) 1993-2004 Louis Collins, McConnell Brain Imaging Centre,
+    Montreal Neurological Institute, McGill University.
+
+    Permission to use, copy, modify, and distribute this software and its
+    documentation for any purpose and without fee is hereby granted, provided
+    that the above copyright notice appear in all copies.  The authors and
+    McGill University make no representations about the suitability of this
+    software for any purpose.  It is provided "as is" without express or
+    implied warranty.  The authors are not responsible for any data loss,
+    equipment damage, property loss, or injury to subjects or patients
+    resulting from the use or misuse of this software package.
 
 ## Website machinery
 

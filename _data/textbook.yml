@@ -27,10 +27,7 @@ chapters:
     title: 2.4 4D images
     url: chapters/02/images_4d
   - class: level_1
-    title: 2.5 First activation
-    url: chapters/02/first_activation
-  - class: level_1
-    title: 2.6 Voxel time courses
+    title: 2.5 Voxel time courses
     url: chapters/02/voxel_time_courses
   class: level_0
   title: 2. FMRI data
@@ -42,7 +39,23 @@ chapters:
   - class: level_1
     title: 3.2 optimizing space
     url: chapters/03/optimizing_space
+  - class: level_1
+    title: 3.3 mutual information
+    url: chapters/03/mutual_information
+  - class: level_1
+    title: 3.4 normalization
+    url: chapters/03/normalization
+  - class: level_1
+    title: 3.5 anterior cingulate
+    url: chapters/03/anterior_cingulate
   class: level_0
   title: 3. FMRI pre-processing
   url: chapters/03/preprocessing
+- children:
+  - class: level_1
+    title: 4.1 First activation
+    url: chapters/04/first_activation
+  class: level_0
+  title: 4. A6tivation
+  url: chapters/04/activation
 first_chapter_url: chapters/01/intro
