@@ -1,0 +1,869 @@
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Slice timing correction - FBI 2018</title>
+<meta name="description" content="Slice timing correction">
+
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_UK">
+<meta property="og:site_name" content="FBI 2018">
+<meta property="og:title" content="Slice timing correction">
+<meta property="og:url" content="https://matthew-brett.github.io/fbi2018/chapters/03/slice_timing">
+
+
+  <meta property="og:description" content="Slice timing correction">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2018-11-06T00:25:37+00:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://matthew-brett.github.io/fbi2018/chapters/03/slice_timing">
+
+
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Person",
+      "name": "Matthew Brett",
+      "url": "https://matthew-brett.github.io/fbi2018",
+      "sameAs": null
+    }
+  </script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/fbi2018/feed.xml" type="application/atom+xml" rel="alternate" title="FBI 2018 Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/fbi2018/assets/css/main.css">
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+    <!-- start custom head snippets -->
+
+
+<!-- end custom head snippets -->
+
+    <link rel="stylesheet" href="/fbi2018/assets/css/notebook-markdown.css">
+    <link rel="stylesheet" href="/fbi2018/assets/css/custom.css">
+    <link rel="shortcut icon" type="image/png" href="/fbi2018/favicon.png">
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.1/anchor.min.js"></script>
+  </head>
+
+  <body class="layout--textbook">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" class="textbook" role="main">
+  <div id="textbook_wrapper">
+    
+  <div class="sidebar sticky textbook">
+  
+  
+    <img src="/fbi2018/images/fbi2018.png" class="textbook_logo" />
+    
+
+    
+      
+
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">Toggle Menu</label>
+  <ul class="nav__items">
+    
+      <li>
+        
+          
+          
+
+          <a href="/fbi2018/"><span class="nav__sub-title">Home</span></a>
+        
+
+        
+      </li>
+    
+      <li>
+        
+          
+          
+
+          <a href="/fbi2018/chapters/01/intro"><span class="nav__sub-title">1. Introduction to MRI data</span></a>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/01/error" class="level_1">1.1 Why worry?</a></li>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/01/why_python" class="level_1">1.2 Why Python?</a></li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          
+          
+
+          <a href="/fbi2018/chapters/02/fmri_data"><span class="nav__sub-title">2. FMRI data</span></a>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/02/what_is_an_image" class="level_1">2.1 A brain image</a></li>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/02/arrays_and_images" class="level_1">2.2 Arrays and images</a></li>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/02/images_3d" class="level_1">2.3 3D images</a></li>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/02/images_4d" class="level_1">2.4 4D images</a></li>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/02/voxel_time_courses" class="level_1">2.5 Voxel time courses</a></li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          
+          
+
+          <a href="/fbi2018/chapters/03/preprocessing"><span class="nav__sub-title">3. FMRI pre-processing</span></a>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/03/slice_timing" class="level_1">3.1 slice timing</a></li>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/03/optimizing_space" class="level_1">3.2 optimizing space</a></li>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/03/mutual_information" class="level_1">3.3 mutual information</a></li>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/03/normalization" class="level_1">3.4 normalization</a></li>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/03/anterior_cingulate" class="level_1">3.5 anterior cingulate</a></li>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/03/smoothing_intro" class="level_1">3.6 smoothing</a></li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          
+          
+
+          <a href="/fbi2018/chapters/04/activation"><span class="nav__sub-title">4. A6tivation</span></a>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/04/first_activation" class="level_1">4.1 First activation</a></li>
+          
+        </ul>
+        
+      </li>
+    
+  </ul>
+</nav>
+
+    
+
+  
+  </div>
+
+
+    <article class="page textbook" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="headline" content="Slice timing correction">
+      <meta itemprop="description" content="Slice timing correction">
+      <meta itemprop="datePublished" content="November 06, 2018">
+      
+
+      <div class="page__inner-wrap">
+        
+          <header>
+            <h1 id="page-title" class="page__title" itemprop="headline">Slice timing correction
+</h1>
+          </header>
+        
+
+        <section class="page__content" itemprop="text">
+          
+            
+
+<!-- TOC will only show up if it has at least one item -->
+
+
+
+          
+          <!-- INTERACT LINKS -->
+
+    
+    
+    <a class="notebook-link" href="https://matthew-brett.github.io/fbi2018/notebooks/03/slice_timing.ipynb">Download notebook</a>
+    <a class="interact-button" href="https://mybinder.org/v2/gh/matthew-brett/fbi2018/master?filepath=notebooks%2F03%2Fslice_timing.ipynb">Interact</a>
+
+
+          
+<p>For this notebook you will need:</p>
+
+<ul>
+  <li><a href="https://matthew-brett.github.io/fbi2018/data/ds114_sub009_t2r1.nii">ds114 FMRI image</a>.</li>
+</ul>
+
+<p>The scanner collected each volume slice by slice.  That means that each slice corresponds to a different time.</p>
+
+<p>We are going to create a new BOLD time series where we have corrected the data for this effect, so the data for each slice corresponds to our best guess at what the data would have looked like, if we had acquired all the data at the beginning of the volume.</p>
+
+<p>This will involve <em>interpolating</em> in time.</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+</code></pre></div></div>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="c"># Set some plot defaults</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s">'image.cmap'</span><span class="p">]</span> <span class="o">=</span> <span class="s">'gray'</span>
+</code></pre></div></div>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">nibabel</span> <span class="k">as</span> <span class="n">nib</span>
+</code></pre></div></div>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Load the image</span>
+<span class="n">bold_fname</span> <span class="o">=</span> <span class="s">'ds114_sub009_t2r1.nii'</span>
+<span class="n">bold_img</span> <span class="o">=</span> <span class="n">nib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">bold_fname</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Get the image data as an array</span>
+<span class="n">bold_data</span> <span class="o">=</span> <span class="n">bold_img</span><span class="o">.</span><span class="n">get_fdata</span><span class="p">()</span>
+</code></pre></div></div>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">bold_data</span><span class="o">.</span><span class="n">shape</span>
+</code></pre></div></div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(64, 64, 30, 173)
+</code></pre></div></div>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">n_vols</span> <span class="o">=</span> <span class="n">bold_img</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">n_vols</span>
+</code></pre></div></div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>173
+</code></pre></div></div>
+
+<p>Remember that the first image was very different from the rest:</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Get mean over volume, for all volumes</span>
+<span class="n">means</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">bold_data</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">means</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[&lt;matplotlib.lines.Line2D at 0x11233f668&gt;]
+</code></pre></div></div>
+
+<p><img src="../../images/chapters/03/slice_timing_11_1.png" alt="png" /></p>
+
+<p>We drop the first volume:</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">bold_data</span> <span class="o">=</span> <span class="n">bold_data</span><span class="p">[:,</span> <span class="p">:,</span> <span class="p">:,</span> <span class="mi">1</span><span class="p">:]</span>
+<span class="n">bold_data</span><span class="o">.</span><span class="n">shape</span>
+</code></pre></div></div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(64, 64, 30, 172)
+</code></pre></div></div>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Get mean over volume, for all volumes, now we dropped the first</span>
+<span class="n">means</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">bold_data</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">means</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[&lt;matplotlib.lines.Line2D at 0x1123cc630&gt;]
+</code></pre></div></div>
+
+<p><img src="../../images/chapters/03/slice_timing_14_1.png" alt="png" /></p>
+
+<p>The scanner acquired these data with interleaved slices in time.  That means that the scanner first acquired slice 0, then slice 2 up to slice 29, and then returned to acquire slice 1, slice 3 up to slice 29.  This type of acquisition is often called “ascending interleaved”.</p>
+
+<p>Let’s get the data for the voxel at coordinate 43, 38, 0.  The last 0 tells us this data is from the first (bottom) slice.  Here is the voxel value at that coordinate, for the first volume (volume 0):</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">bold_data</span><span class="p">[</span><span class="mi">43</span><span class="p">,</span> <span class="mi">38</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+</code></pre></div></div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>196.0
+</code></pre></div></div>
+
+<p>Here is the voxel value for the same coordinate in the second volume:</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">bold_data</span><span class="p">[</span><span class="mi">43</span><span class="p">,</span> <span class="mi">38</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+</code></pre></div></div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>210.0
+</code></pre></div></div>
+
+<p>This is the voxel value for all volumes:</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">time_course_slice_0</span> <span class="o">=</span> <span class="n">bold_data</span><span class="p">[</span><span class="mi">43</span><span class="p">,</span> <span class="mi">38</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="p">:]</span>
+<span class="n">time_course_slice_0</span><span class="o">.</span><span class="n">shape</span>
+</code></pre></div></div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(172,)
+</code></pre></div></div>
+
+<p>Of course the first two values are the values we have already seen:</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">time_course_slice_0</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>
+</code></pre></div></div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>array([ 196.,  210.])
+</code></pre></div></div>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Plot the time course from the voxel from slice 0</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time_course_slice_0</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[&lt;matplotlib.lines.Line2D at 0x11242ff28&gt;]
+</code></pre></div></div>
+
+<p><img src="../../images/chapters/03/slice_timing_24_1.png" alt="png" /></p>
+
+<p>Note that the x axis is in scans.  To convert to seconds, we need to get the times for the start of each TR:</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">TR</span> <span class="o">=</span> <span class="mf">2.5</span> <span class="c"># time to acquire one scan</span>
+<span class="n">T</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">time_course_slice_0</span><span class="p">)</span> <span class="c"># number of scans</span>
+<span class="n">times_slice_0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">T</span><span class="p">)</span> <span class="o">*</span> <span class="n">TR</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">times_slice_0</span><span class="p">,</span> <span class="n">time_course_slice_0</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">'Time (seconds)'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Text(0.5,0,'Time (seconds)')
+</code></pre></div></div>
+
+<p><img src="../../images/chapters/03/slice_timing_26_1.png" alt="png" /></p>
+
+<p>We can also get a time course for the equivalent voxel, but one slice up:</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">time_course_slice_1</span> <span class="o">=</span> <span class="n">bold_data</span><span class="p">[</span><span class="mi">43</span><span class="p">,</span> <span class="mi">38</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">:]</span> <span class="c"># same voxel, slice 1</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time_course_slice_1</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[&lt;matplotlib.lines.Line2D at 0x11259a978&gt;]
+</code></pre></div></div>
+
+<p><img src="../../images/chapters/03/slice_timing_28_1.png" alt="png" /></p>
+
+<p>Notice our x axis is still in TRs (scans).  What times were these slice 1 values acquired?  They were acquired half way through the TR, after the scanner had finished acquiring all the even slices (slice 0, slice 2, ….).  So the times in seconds for these values are:</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">times_slice_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">T</span><span class="p">)</span> <span class="o">*</span> <span class="n">TR</span> <span class="o">+</span> <span class="n">TR</span> <span class="o">/</span> <span class="mf">2.</span> <span class="c"># Add time offset for this slice</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">times_slice_1</span><span class="p">,</span> <span class="n">time_course_slice_1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">'Time (seconds)'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Text(0.5,0,'Time (seconds)')
+</code></pre></div></div>
+
+<p><img src="../../images/chapters/03/slice_timing_30_1.png" alt="png" /></p>
+
+<p>At the moment we can’t see the offset in time between these slices; let’s plot only the first eight values:</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">times_slice_0</span><span class="p">[:</span><span class="mi">8</span><span class="p">],</span> <span class="n">time_course_slice_0</span><span class="p">[:</span><span class="mi">8</span><span class="p">],</span> <span class="s">'x:'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">times_slice_1</span><span class="p">[:</span><span class="mi">8</span><span class="p">],</span> <span class="n">time_course_slice_1</span><span class="p">[:</span><span class="mi">8</span><span class="p">],</span> <span class="s">'rx:'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">'Time (seconds)'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Text(0.5,0,'Time (seconds)')
+</code></pre></div></div>
+
+<p><img src="../../images/chapters/03/slice_timing_32_1.png" alt="png" /></p>
+
+<p>The job of slice timing, is to find new values for the red line, which correspond to the times of acquisition of the blue line (the blue crosses).  In order to do this, we can use linear interpolation.  You can think of this as drawing a vertical line at $x=t$ where $t$ is the time of acqusition of the first slice.  We then take the value from the red line where this $x=t$ line crosses the red line:</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">times_slice_0</span><span class="p">[:</span><span class="mi">8</span><span class="p">],</span> <span class="n">time_course_slice_0</span><span class="p">[:</span><span class="mi">8</span><span class="p">],</span> <span class="s">'x:'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">times_slice_1</span><span class="p">[:</span><span class="mi">8</span><span class="p">],</span> <span class="n">time_course_slice_1</span><span class="p">[:</span><span class="mi">8</span><span class="p">],</span> <span class="s">'rx:'</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+<span class="n">min_y</span><span class="p">,</span> <span class="n">max_y</span><span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_ylim</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">8</span><span class="p">):</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">times_slice_0</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="p">],</span> <span class="p">[</span><span class="n">min_y</span><span class="p">,</span> <span class="n">max_y</span><span class="p">],</span> <span class="s">'k:'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">'Time (seconds)'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Text(0.5,0,'Time (seconds)')
+</code></pre></div></div>
+
+<p><img src="../../images/chapters/03/slice_timing_34_1.png" alt="png" /></p>
+
+<p>The value at $x$ for the straight line between any two of the points $(x_0, y_0)$ and $(x_1, y_1)$ on the red line is given by:</p>
+
+<script type="math/tex; mode=display">y = y_0 + (y_1 - y_0) \frac{x_1 - x}{x_1 - x_0}</script>
+
+<p>You can probably convince yourself of this by drawing the line on a piece of
+paper, and working out the slope and intercept.  For more information, see
+<a href="http://en.wikipedia.org/wiki/Linear_interpolation">http://en.wikipedia.org/wiki/Linear_interpolation</a>.</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">times_slice_0</span><span class="p">[:</span><span class="mi">8</span><span class="p">],</span> <span class="n">time_course_slice_0</span><span class="p">[:</span><span class="mi">8</span><span class="p">],</span> <span class="s">'x:'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">times_slice_1</span><span class="p">[:</span><span class="mi">8</span><span class="p">],</span> <span class="n">time_course_slice_1</span><span class="p">[:</span><span class="mi">8</span><span class="p">],</span> <span class="s">'rx:'</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+<span class="n">min_y</span><span class="p">,</span> <span class="n">max_y</span><span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_ylim</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">8</span><span class="p">):</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">times_slice_0</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="p">],</span> <span class="p">[</span><span class="n">min_y</span><span class="p">,</span> <span class="n">max_y</span><span class="p">],</span> <span class="s">'k:'</span><span class="p">)</span>
+    <span class="n">x0</span> <span class="o">=</span> <span class="n">times_slice_1</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">x1</span> <span class="o">=</span> <span class="n">times_slice_1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">y0</span> <span class="o">=</span> <span class="n">time_course_slice_1</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">y1</span> <span class="o">=</span> <span class="n">time_course_slice_1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">y0</span> <span class="o">+</span> <span class="p">(</span><span class="n">y1</span> <span class="o">-</span> <span class="n">y0</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">x1</span> <span class="o">-</span> <span class="n">x</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">x1</span> <span class="o">-</span> <span class="n">x0</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s">'kx'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">'Time (seconds)'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Text(0.5,0,'Time (seconds)')
+</code></pre></div></div>
+
+<p><img src="../../images/chapters/03/slice_timing_36_1.png" alt="png" /></p>
+
+<p>So now we can just replace the original values from the red line (values for slice 1) with our best guess values if the slice had been taken at the same times as slice 0 (the beginning of the volume):</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">est_time_course_slice_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">T</span><span class="p">):</span> <span class="c"># Don't interpolate for first value</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">times_slice_0</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">x0</span> <span class="o">=</span> <span class="n">times_slice_1</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">x1</span> <span class="o">=</span> <span class="n">times_slice_1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">y0</span> <span class="o">=</span> <span class="n">time_course_slice_1</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">y1</span> <span class="o">=</span> <span class="n">time_course_slice_1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">y0</span> <span class="o">+</span> <span class="p">(</span><span class="n">y1</span> <span class="o">-</span> <span class="n">y0</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">x1</span> <span class="o">-</span> <span class="n">x</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">x1</span> <span class="o">-</span> <span class="n">x0</span><span class="p">)</span>
+    <span class="n">est_time_course_slice_1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">y</span>
+<span class="c"># Fill in the first value with something</span>
+<span class="n">est_time_course_slice_1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">est_time_course_slice_1</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</code></pre></div></div>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">times_slice_0</span><span class="p">[:</span><span class="mi">8</span><span class="p">],</span> <span class="n">time_course_slice_0</span><span class="p">[:</span><span class="mi">8</span><span class="p">],</span> <span class="s">'x:'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">times_slice_0</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">8</span><span class="p">],</span> <span class="n">est_time_course_slice_1</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">8</span><span class="p">],</span> <span class="s">'rx:'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">'Time (seconds)'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Text(0.5,0,'Time (seconds)')
+</code></pre></div></div>
+
+<p><img src="../../images/chapters/03/slice_timing_39_1.png" alt="png" /></p>
+
+<p>We do this for every slice except the first, and then make a new dataset containing the interpolated time courses for all slices.  Now we have done slice timing correction.</p>
+
+          
+        </section>
+
+        <footer class="page__meta">
+          
+          
+
+
+        </footer>
+
+        
+
+        
+  <nav class="pagination">
+    
+      <a href="/fbi2018/chapters/03/preprocessing" class="pagination--pager" title="
+  FMRI pre-processing
+
+">Previous</a>
+    
+    
+      <a href="/fbi2018/chapters/03/optimizing_space" class="pagination--pager" title="3.2 optimizing space
+">Next</a>
+    
+  </nav>
+
+
+      </div>
+
+      
+    </article>
+  </div>
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><input type="text" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+    <div id="results" class="results"></div></div>
+      </div>
+    
+
+    
+
+    
+  <script src="/fbi2018/assets/js/main.min.js"></script>
+  <script src="https://use.fontawesome.com/releases/v5.0.12/js/all.js"></script>
+
+
+
+
+<script src="/fbi2018/assets/js/lunr/lunr.min.js"></script>
+<script src="/fbi2018/assets/js/lunr/lunr-store.js"></script>
+<script src="/fbi2018/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+    <!-- Custom scripts to load after site JS is loaded -->
+
+    <!-- Custom HTML used for the textbooks -->
+<!-- Configure, then load MathJax -->
+<script type="text/javascript">
+  window.MathJax = {
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      processEnvironments: true
+    }
+  };
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML-full,Safe" type="text/javascript"></script>
+
+
+<script type="text/javascript">
+// --- To auto-embed hub URLs in interact links if given in a RESTful fashion ---
+function getJsonFromUrl(url) {
+  var query = url.split('?');
+  if (query.length < 2) {
+    // No queries so just return false
+    return false;
+  }
+  query = query[1];
+  // Collect REST params into a dictionary
+  var result = {};
+  query.split("&").forEach(function(part) {
+    var item = part.split("=");
+    result[item[0]] = decodeURIComponent(item[1]);
+  });
+  return result;
+}
+
+// Parse a Binder URL, converting it to the string needed for JupyterHub
+function binder2Jupyterhub(url) {
+  newUrl = {};
+  parts = url.split('v2/gh/')[1];
+  // Grab the base repo information
+  repoinfo = parts.split('?')[0];
+  var [org, repo, ref] = repoinfo.split('/');
+  newUrl['repo'] = ['https://github.com', org, repo].join('/');
+  newUrl['branch'] = ref
+  // Grab extra parameters passed
+  params = getJsonFromUrl(url);
+  if (params['filepath'] !== undefined) {
+    newUrl['subPath'] = params['filepath']
+  }
+  return jQuery.param(newUrl);
+}
+
+// Filter out potentially unsafe characters to prevent xss
+function safeUrl(url)
+{
+   return String(encodeURIComponent(url))
+            .replace(/&/g, '&amp;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#39;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;');
+}
+
+function addParamToInternalLinks(hub) {
+  var links = $("a").each(function() {
+    var href = this.href;
+    // If the link is an internal link...
+    if (href.search("https://matthew-brett.github.io") !== -1 || href.startsWith('/') || href.search("127.0.0.1:") !== -1) {
+      // Assume we're an internal link, add the hub param to it
+      var params = getJsonFromUrl(href);
+      if (params !== false) {
+        // We have REST params, so append a new one
+        params['hub'] = hub;
+      } else {
+        // Create the REST params
+        params = {'hub': hub};
+      }
+      // Update the link
+      var newHref = href.split('?')[0] + '?' + jQuery.param(params);
+      this.setAttribute('href', decodeURIComponent(newHref));
+    }
+  });
+  return false;
+}
+
+  // Update interact links
+function updateInteractLink() {
+    // hack to make this work since it expects a ? in the URL
+    rest = getJsonFromUrl("?" + location.search.substr(1));
+    hubUrl = rest['hub'];
+    if (hubUrl !== undefined) {
+      // Sanitize the hubUrl
+      hubUrl = safeUrl(hubUrl);
+      // Add HTTP text if omitted
+      if (hubUrl.indexOf('http') < 0) {hubUrl = 'http://' + hubUrl;}
+      link = $("a.interact-button")[0];
+      if (link !== undefined) {
+          // Update the interact link URL
+          var href = link.getAttribute('href');
+          if ('binder' == 'binder') {
+            // If binder links exist, we need to re-work them for jupyterhub
+            first = [hubUrl, 'hub', 'user-redirect', 'git-sync'].join('/')
+            href = first + '?' + binder2Jupyterhub(href);
+          } else {
+            // If JupyterHub links, we only need to replace the hub url
+            href = href.replace("https://mybinder.org", hubUrl);
+          }
+          link.setAttribute('href', decodeURIComponent(href));
+
+          // Add text after interact link saying where we're launching
+          hubUrlNoHttp = decodeURIComponent(hubUrl).replace('http://', '').replace('https://', '');
+          $("a.interact-button").after($('<div class="interact-context">on ' + hubUrlNoHttp + '</div>'));
+
+      }
+      // Update internal links so we retain the hub url
+      addParamToInternalLinks(hubUrl);
+    }
+}
+
+// --- Highlight the part of sidebar for current page ---
+
+// helper to replace trailing slash
+function replaceSlash(string)
+{
+    return string.replace(/\/$/, "");
+}
+
+// Add a class to the current page in the sidebar
+function highlightSidebarCurrentPage()
+{
+  var currentpage = location.href;
+  var links = $('.sidebar .nav__items a');
+  var ii = 0;
+  for(ii; ii < links.length; ii++) {
+    var link = links[ii];
+    if(replaceSlash(link.href) == replaceSlash(currentpage)) {
+      // Add CSS for styling
+      link.classList.add("current");
+      // Scroll to this element
+      $('div.sidebar').scrollTop(link.offsetTop - 300);
+    }
+  }
+}
+
+// --- Set up copy/paste for code blocks ---
+function addCopyButtonToCode(){
+  // get all <code> elements
+  var allCodeBlocksElements = $( "div.input_area code, div.highlighter-rouge code" );
+
+  allCodeBlocksElements.each(function(ii) {
+   	// add different id for each code block
+
+  	// target
+    var currentId = "codeblock" + (ii + 1);
+    $(this).attr('id', currentId);
+
+    //trigger
+    var clipButton = '<button class="btn copybtn" data-clipboard-target="#' + currentId + '"><img src="https://clipboardjs.com/assets/images/clippy.svg" width="13" alt="Copy to clipboard"></button>';
+       $(this).after(clipButton);
+    });
+
+    new Clipboard('.btn');
+}
+
+// Run scripts when page is loaded
+$(document).ready(function () {
+  // Add anchors to H1 etc links
+  anchors.add();
+  // Highlight current page in sidebar
+  highlightSidebarCurrentPage();
+  // Add copy button to code blocks
+  addCopyButtonToCode();
+  // Update the Interact link if a REST param given
+  updateInteractLink();
+});
+</script>
+
+  </body>
+</html>

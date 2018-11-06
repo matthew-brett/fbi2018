@@ -1,0 +1,902 @@
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>An introduction to smoothing - FBI 2018</title>
+<meta name="description" content="An introduction to smoothing">
+
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_UK">
+<meta property="og:site_name" content="FBI 2018">
+<meta property="og:title" content="An introduction to smoothing">
+<meta property="og:url" content="https://matthew-brett.github.io/fbi2018/chapters/03/smoothing_intro">
+
+
+  <meta property="og:description" content="An introduction to smoothing">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2018-11-06T00:25:37+00:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://matthew-brett.github.io/fbi2018/chapters/03/smoothing_intro">
+
+
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Person",
+      "name": "Matthew Brett",
+      "url": "https://matthew-brett.github.io/fbi2018",
+      "sameAs": null
+    }
+  </script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/fbi2018/feed.xml" type="application/atom+xml" rel="alternate" title="FBI 2018 Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/fbi2018/assets/css/main.css">
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+    <!-- start custom head snippets -->
+
+
+<!-- end custom head snippets -->
+
+    <link rel="stylesheet" href="/fbi2018/assets/css/notebook-markdown.css">
+    <link rel="stylesheet" href="/fbi2018/assets/css/custom.css">
+    <link rel="shortcut icon" type="image/png" href="/fbi2018/favicon.png">
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.1/anchor.min.js"></script>
+  </head>
+
+  <body class="layout--textbook">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" class="textbook" role="main">
+  <div id="textbook_wrapper">
+    
+  <div class="sidebar sticky textbook">
+  
+  
+    <img src="/fbi2018/images/fbi2018.png" class="textbook_logo" />
+    
+
+    
+      
+
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">Toggle Menu</label>
+  <ul class="nav__items">
+    
+      <li>
+        
+          
+          
+
+          <a href="/fbi2018/"><span class="nav__sub-title">Home</span></a>
+        
+
+        
+      </li>
+    
+      <li>
+        
+          
+          
+
+          <a href="/fbi2018/chapters/01/intro"><span class="nav__sub-title">1. Introduction to MRI data</span></a>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/01/error" class="level_1">1.1 Why worry?</a></li>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/01/why_python" class="level_1">1.2 Why Python?</a></li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          
+          
+
+          <a href="/fbi2018/chapters/02/fmri_data"><span class="nav__sub-title">2. FMRI data</span></a>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/02/what_is_an_image" class="level_1">2.1 A brain image</a></li>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/02/arrays_and_images" class="level_1">2.2 Arrays and images</a></li>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/02/images_3d" class="level_1">2.3 3D images</a></li>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/02/images_4d" class="level_1">2.4 4D images</a></li>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/02/voxel_time_courses" class="level_1">2.5 Voxel time courses</a></li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          
+          
+
+          <a href="/fbi2018/chapters/03/preprocessing"><span class="nav__sub-title">3. FMRI pre-processing</span></a>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/03/slice_timing" class="level_1">3.1 slice timing</a></li>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/03/optimizing_space" class="level_1">3.2 optimizing space</a></li>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/03/mutual_information" class="level_1">3.3 mutual information</a></li>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/03/normalization" class="level_1">3.4 normalization</a></li>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/03/anterior_cingulate" class="level_1">3.5 anterior cingulate</a></li>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/03/smoothing_intro" class="level_1">3.6 smoothing</a></li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          
+          
+
+          <a href="/fbi2018/chapters/04/activation"><span class="nav__sub-title">4. A6tivation</span></a>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/04/first_activation" class="level_1">4.1 First activation</a></li>
+          
+        </ul>
+        
+      </li>
+    
+  </ul>
+</nav>
+
+    
+
+  
+  </div>
+
+
+    <article class="page textbook" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="headline" content="An introduction to smoothing">
+      <meta itemprop="description" content="An introduction to smoothing">
+      <meta itemprop="datePublished" content="November 06, 2018">
+      
+
+      <div class="page__inner-wrap">
+        
+          <header>
+            <h1 id="page-title" class="page__title" itemprop="headline">An introduction to smoothing
+</h1>
+          </header>
+        
+
+        <section class="page__content" itemprop="text">
+          
+            
+
+<!-- TOC will only show up if it has at least one item -->
+
+
+  <aside class="sidebar__right">
+    <nav class="toc">
+      <header><h4 class="nav__title"><i class="fas fa-list-ul"></i>   On this page</h4></header>
+      <ul class="toc__menu">
+  <li><a href="#some-example-data-for-smoothing">Some example data for smoothing</a></li>
+</ul>
+    </nav>
+  </aside>
+
+
+          
+          <!-- INTERACT LINKS -->
+
+    
+    
+    <a class="notebook-link" href="https://matthew-brett.github.io/fbi2018/notebooks/03/smoothing_intro.ipynb">Download notebook</a>
+    <a class="interact-button" href="https://mybinder.org/v2/gh/matthew-brett/fbi2018/master?filepath=notebooks%2F03%2Fsmoothing_intro.ipynb">Interact</a>
+
+
+          
+<p>Smoothing is a process by which data points are averaged with their neighbors
+in a series, such as a time series, or image. This (usually) has the effect of
+blurring the sharp edges in the smoothed data.  Smoothing is sometimes
+referred to as filtering, because smoothing has the effect of suppressing high
+frequency signal and enhancing low frequency signal. There are many different
+methods of smoothing, but here we discuss smoothing with a Gaussian kernel. We
+hope we will succeed in explaining this phrase in the explanation below.</p>
+
+<h3 id="some-example-data-for-smoothing">Some example data for smoothing</h3>
+
+<p>First we load and configure the libraries we need:</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="c"># Make numpy print 4 significant digits for prettiness</span>
+<span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">suppress</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="c"># To get predictable random numbers</span>
+</code></pre></div></div>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+</code></pre></div></div>
+
+<p>Here is a set of data, made out of random numbers, that we will use as a
+pretend time series, or a single line of data from one plane of an
+image.</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">n_points</span> <span class="o">=</span> <span class="mi">40</span>
+<span class="n">x_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n_points</span><span class="p">)</span>
+<span class="n">y_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">n_points</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">x_vals</span><span class="p">,</span> <span class="n">y_vals</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p><img src="../../images/chapters/03/smoothing_intro_4_0.png" alt="png" /></p>
+
+<h1 id="the-gaussian-kernel">The Gaussian kernel</h1>
+
+<p>The ‘kernel’ for smoothing, defines the shape of the function that is
+used to take the average of the neighboring points. A Gaussian kernel
+is a kernel with the shape of a Gaussian (normal distribution) curve.
+Here is a standard Gaussian, with a mean of 0 and a $\sigma$ (=population
+standard deviation) of 1.</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span> <span class="c"># x from -6 to 6 in steps of 0.1</span>
+<span class="n">y</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">/</span> <span class="mf">2.</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p><img src="../../images/chapters/03/smoothing_intro_6_0.png" alt="png" /></p>
+
+<p>In the standard statistical way, we have defined the width of the Gaussian
+shape in terms of $\sigma$. However, when the Gaussian is used for smoothing,
+it is common for imagers to describe the width of the Gaussian with another
+related measure, the Full Width at Half Maximum (FWHM).</p>
+
+<p>The FWHM is the width of the kernel, at half of the maximum of the
+height of the Gaussian. Thus, for the standard Gaussian above, the
+maximum height is ~0.4.  The width of the kernel at 0.2 (on the Y axis) is the
+FWHM. As x = -1.175 and 1.175 when y = 0.2, the FWHM is roughly 2.35.</p>
+
+<p>The FWHM is related to sigma by the following formulae (in Python):</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">sigma2fwhm</span><span class="p">(</span><span class="n">sigma</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">sigma</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">8</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+</code></pre></div></div>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">fwhm2sigma</span><span class="p">(</span><span class="n">fwhm</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">fwhm</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">8</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+</code></pre></div></div>
+
+<p>In our case:</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">sigma2fwhm</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>2.3548200450309493
+</code></pre></div></div>
+
+<h1 id="smoothing-with-the-kernel">Smoothing with the kernel</h1>
+
+<p>The basic process of smoothing is very simple. We proceed through the
+data point by point. For each data point we generate a new value that is
+some function of the original value at that point and the surrounding
+data points.With Gaussian smoothing, the function that is used is our
+Gaussian curve..</p>
+
+<p>So, let us say that we are generating the new, smoothed value for the
+14th value in our example data set. We are using a Gaussian with FWHM of
+4 units on the x axis. To generate the Gaussian kernel average for this
+14th data point, we first move the Gaussian shape to have its center at
+13 on the x axis (13 is the 14th value because the first value is 0). In order
+to make sure that we don’t do an overall scaling of the values after
+smoothing, we divide the values in the Gaussian curve by the total area under
+the curve, so that the values add up to one:</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">FWHM</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">sigma</span> <span class="o">=</span> <span class="n">fwhm2sigma</span><span class="p">(</span><span class="n">FWHM</span><span class="p">)</span>
+<span class="n">x_position</span> <span class="o">=</span> <span class="mi">13</span> <span class="c"># 14th point</span>
+<span class="n">kernel_at_pos</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">x_vals</span> <span class="o">-</span> <span class="n">x_position</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">sigma</span> <span class="o">**</span> <span class="mi">2</span><span class="p">))</span>
+<span class="n">kernel_at_pos</span> <span class="o">=</span> <span class="n">kernel_at_pos</span> <span class="o">/</span> <span class="nb">sum</span><span class="p">(</span><span class="n">kernel_at_pos</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">x_vals</span><span class="p">,</span> <span class="n">kernel_at_pos</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p><img src="../../images/chapters/03/smoothing_intro_13_0.png" alt="png" /></p>
+
+<p>In fact the Gaussian values for the 12th through 16th data points are:</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">kernel_at_pos</span><span class="p">[</span><span class="mi">11</span><span class="p">:</span><span class="mi">16</span><span class="p">]</span>
+</code></pre></div></div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>array([ 0.1174,  0.1975,  0.2349,  0.1975,  0.1174])
+</code></pre></div></div>
+
+<p>and the data values for the same points are:</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">y_vals</span><span class="p">[</span><span class="mi">11</span><span class="p">:</span><span class="mi">16</span><span class="p">]</span>
+</code></pre></div></div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>array([-0.2049, -0.3588,  0.6035, -1.6648, -0.7002])
+</code></pre></div></div>
+
+<p>We then multiply the Gaussian kernel (weight) values by the values of our
+data, and sum the results to get the new smoothed value for point 13:</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">y_by_weight</span> <span class="o">=</span> <span class="n">y_vals</span> <span class="o">*</span> <span class="n">kernel_at_pos</span> <span class="c"># element-wise multiplication</span>
+<span class="n">new_val</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">y_by_weight</span><span class="p">)</span>
+<span class="n">new_val</span>
+</code></pre></div></div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>-0.34796859011845732
+</code></pre></div></div>
+
+<p>We store this new smoothed value for future use, and move on, to x = 14,
+and repeat the process, with the Gaussian kernel now centered over 14.  If we
+do this for each point, we eventually get the smoothed version of our original
+data. Here is a very inefficient but simple way of doing this:</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">smoothed_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">y_vals</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">x_position</span> <span class="ow">in</span> <span class="n">x_vals</span><span class="p">:</span>
+    <span class="n">kernel</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">x_vals</span> <span class="o">-</span> <span class="n">x_position</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">sigma</span> <span class="o">**</span> <span class="mi">2</span><span class="p">))</span>
+    <span class="n">kernel</span> <span class="o">=</span> <span class="n">kernel</span> <span class="o">/</span> <span class="nb">sum</span><span class="p">(</span><span class="n">kernel</span><span class="p">)</span>
+    <span class="n">smoothed_vals</span><span class="p">[</span><span class="n">x_position</span><span class="p">]</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">y_vals</span> <span class="o">*</span> <span class="n">kernel</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">x_vals</span><span class="p">,</span> <span class="n">smoothed_vals</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p><img src="../../images/chapters/03/smoothing_intro_21_0.png" alt="png" /></p>
+
+<h1 id="other-kernels">Other kernels</h1>
+
+<p>Of course, we could have used any shape for the kernel - such as a
+square wave. A square wave kernel with sum set to one would would have the
+effect of replacing each data point with the mean of itself and the
+neighboring points.</p>
+
+<h1 id="smoothing-as-convolution">Smoothing as convolution</h1>
+
+<p>Smoothing can also be implemented and understood as <em>convolution</em> - see
+<a href="https://matthew-brett.github.io/teaching/smoothing_as_convolution.html">Smoothing as convolution</a> for an explanation.</p>
+
+<h1 id="smoothing-in-2d">Smoothing in 2D</h1>
+
+<p>Smoothing in two dimensions follows simply from smoothing in one
+dimension. This time the Gaussian kernel is not a curve, but a cone:</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">mpl_toolkits.mplot3d</span> <span class="kn">import</span> <span class="n">Axes3D</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="s">'3d'</span><span class="p">)</span>
+<span class="n">dx</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">dy</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="n">dx</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="n">dy</span><span class="p">)</span>
+<span class="n">x2d</span><span class="p">,</span> <span class="n">y2d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">kernel_2d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">x2d</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">y2d</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">sigma</span> <span class="o">**</span> <span class="mi">2</span><span class="p">))</span>
+<span class="n">kernel_2d</span> <span class="o">=</span> <span class="n">kernel_2d</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">sigma</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="c"># unit integral</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot_surface</span><span class="p">(</span><span class="n">x2d</span><span class="p">,</span> <span class="n">y2d</span><span class="p">,</span> <span class="n">kernel_2d</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p><img src="../../images/chapters/03/smoothing_intro_23_0.png" alt="png" /></p>
+
+<p>As for the 1D case, we can center this kernel to any point in a 2D plane, and
+get the equivalent kernel values for each point on the plane.  Here is a 2D
+Gaussian kernel centered at point (10, 10) on a size (20, 20) plane.  See the
+page source for the code to make the figure:</p>
+
+<p>We then proceed as before, multiplying the values of the kernel (as shown in
+the figure above) by the data in the image, to get the smoothed value for that
+point, and doing the same for every point on the image.</p>
+
+<p>The procedure is the same for 3D data, except the kernel is rather more
+difficult to visualize, being something like a sphere with edges that fade
+out, as the cone fades out at the edges in the 2D case.</p>
+
+<p>In fact, it turns out that we don’t have to generate these 2D and 3D versions
+of the kernel for the computations, because we can get the same result from
+applying a one dimensional smooth sequentially in the 2 or 3 dimensions. Thus,
+for 2 dimensions, we could first smooth in the x direction, and then smooth
+the x-smoothed data, in the y direction, This gives the same output as
+applying the 2D kernel.</p>
+
+<h1 id="why-smooth">Why smooth?</h1>
+
+<p>The primary reason for smoothing is to increase signal to noise.  Smoothing
+increases signal to noise by the matched filter theorem. This theorem states
+that the filter that will give optimum resolution of signal from noise is a
+filter that is matched to the signal. In the case of smoothing, the filter is
+the Gaussian kernel. Therefore, if we are expecting signal in our images that
+is of Gaussian shape, and of FWHM of say 10mm, then this signal will best be
+detected after we have smoothed our images with a 10mm FWHM Gaussian
+filter.The next few images show the matched filter theorem in action. First we
+can generate a simulated signal in a one dimensional set of data, by creating
+a Gaussian with FWHM 8 pixels, centered over the 14th data point:</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">FWHM</span> <span class="o">=</span> <span class="mi">8</span>
+<span class="n">sigma</span> <span class="o">=</span> <span class="n">fwhm2sigma</span><span class="p">(</span><span class="n">FWHM</span><span class="p">)</span>
+<span class="n">x_position</span> <span class="o">=</span> <span class="mi">13</span> <span class="c"># 14th point</span>
+<span class="n">sim_signal</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">x_vals</span> <span class="o">-</span> <span class="n">x_position</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">sigma</span> <span class="o">**</span> <span class="mi">2</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">x_vals</span><span class="p">,</span> <span class="n">sim_signal</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p><img src="../../images/chapters/03/smoothing_intro_25_0.png" alt="png" /></p>
+
+<p>Next, we add some random noise to this signal:</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">noise</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">n_points</span><span class="p">)</span>
+<span class="n">sim_data</span> <span class="o">=</span> <span class="n">sim_signal</span> <span class="o">+</span> <span class="n">noise</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">x_vals</span><span class="p">,</span> <span class="n">sim_data</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p><img src="../../images/chapters/03/smoothing_intro_27_0.png" alt="png" /></p>
+
+<p>We then smooth with a matching 8 pixel FWHM filter:</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">smoothed_sim_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">y_vals</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">x_position</span> <span class="ow">in</span> <span class="n">x_vals</span><span class="p">:</span>
+    <span class="n">kernel</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">x_vals</span> <span class="o">-</span> <span class="n">x_position</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">sigma</span> <span class="o">**</span> <span class="mi">2</span><span class="p">))</span>
+    <span class="n">kernel</span> <span class="o">=</span> <span class="n">kernel</span> <span class="o">/</span> <span class="nb">sum</span><span class="p">(</span><span class="n">kernel</span><span class="p">)</span>
+    <span class="n">smoothed_sim_data</span><span class="p">[</span><span class="n">x_position</span><span class="p">]</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">sim_data</span> <span class="o">*</span> <span class="n">kernel</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">x_vals</span><span class="p">,</span> <span class="n">smoothed_sim_data</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p><img src="../../images/chapters/03/smoothing_intro_29_0.png" alt="png" /></p>
+
+<p>and recover our signal well from the noisy data.</p>
+
+<p>Thus, we smooth with a filter that is of matched size to the activation we
+wish to detect. This is of particular relevance when comparing activation
+across subjects. Here, the anatomical variability between subjects will mean
+that the signal across subjects may be expected to be rather widely
+distributed over the cortical surface. In such a case it may be wiser to use a
+wide smoothing to detect this signal. In contrast, for a single subject
+experiment, where you want to detect (for example) a thalamic signal, which
+may be in the order of a few mm across, it would be wiser to use a very narrow
+smoothing, or even no smoothing.</p>
+
+<h1 id="finding-the-signal-for-any-smoothing-level">Finding the signal for any smoothing level</h1>
+
+<p>Sometimes you do not know the size or the shape of the signal change
+that you are expecting. In these cases, it is difficult to choose a
+smoothing level, because the smoothing may reduce signal that is not of
+the same size and shape as the smoothing kernel. There are ways of
+detecting signal at different smoothing level, that allow appropriate
+corrections for multiple corrections, and levels of smoothing. This
+Worsley 1996 paper describes such an approach: <a href="http://www.math.mcgill.ca/~keith/scale/scale.abstract.html">Worsley KJ, Marret S,
+Neelin P, Evans AC (1996) Searching scale space for activation in PET
+images. Human Brain Mapping
+4:74-90</a></p>
+
+<p>Matthew Brett (FB) 19/8/99, updated 26 October 2014</p>
+
+          
+        </section>
+
+        <footer class="page__meta">
+          
+          
+
+
+        </footer>
+
+        
+
+        
+  <nav class="pagination">
+    
+      <a href="/fbi2018/chapters/03/anterior_cingulate" class="pagination--pager" title="3.5 anterior cingulate
+">Previous</a>
+    
+    
+      <a href="/fbi2018/chapters/04/activation" class="pagination--pager" title="
+  A6tivation
+
+">Next</a>
+    
+  </nav>
+
+
+      </div>
+
+      
+    </article>
+  </div>
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><input type="text" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+    <div id="results" class="results"></div></div>
+      </div>
+    
+
+    
+
+    
+  <script src="/fbi2018/assets/js/main.min.js"></script>
+  <script src="https://use.fontawesome.com/releases/v5.0.12/js/all.js"></script>
+
+
+
+
+<script src="/fbi2018/assets/js/lunr/lunr.min.js"></script>
+<script src="/fbi2018/assets/js/lunr/lunr-store.js"></script>
+<script src="/fbi2018/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+    <!-- Custom scripts to load after site JS is loaded -->
+
+    <!-- Custom HTML used for the textbooks -->
+<!-- Configure, then load MathJax -->
+<script type="text/javascript">
+  window.MathJax = {
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      processEnvironments: true
+    }
+  };
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML-full,Safe" type="text/javascript"></script>
+
+
+<script type="text/javascript">
+// --- To auto-embed hub URLs in interact links if given in a RESTful fashion ---
+function getJsonFromUrl(url) {
+  var query = url.split('?');
+  if (query.length < 2) {
+    // No queries so just return false
+    return false;
+  }
+  query = query[1];
+  // Collect REST params into a dictionary
+  var result = {};
+  query.split("&").forEach(function(part) {
+    var item = part.split("=");
+    result[item[0]] = decodeURIComponent(item[1]);
+  });
+  return result;
+}
+
+// Parse a Binder URL, converting it to the string needed for JupyterHub
+function binder2Jupyterhub(url) {
+  newUrl = {};
+  parts = url.split('v2/gh/')[1];
+  // Grab the base repo information
+  repoinfo = parts.split('?')[0];
+  var [org, repo, ref] = repoinfo.split('/');
+  newUrl['repo'] = ['https://github.com', org, repo].join('/');
+  newUrl['branch'] = ref
+  // Grab extra parameters passed
+  params = getJsonFromUrl(url);
+  if (params['filepath'] !== undefined) {
+    newUrl['subPath'] = params['filepath']
+  }
+  return jQuery.param(newUrl);
+}
+
+// Filter out potentially unsafe characters to prevent xss
+function safeUrl(url)
+{
+   return String(encodeURIComponent(url))
+            .replace(/&/g, '&amp;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#39;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;');
+}
+
+function addParamToInternalLinks(hub) {
+  var links = $("a").each(function() {
+    var href = this.href;
+    // If the link is an internal link...
+    if (href.search("https://matthew-brett.github.io") !== -1 || href.startsWith('/') || href.search("127.0.0.1:") !== -1) {
+      // Assume we're an internal link, add the hub param to it
+      var params = getJsonFromUrl(href);
+      if (params !== false) {
+        // We have REST params, so append a new one
+        params['hub'] = hub;
+      } else {
+        // Create the REST params
+        params = {'hub': hub};
+      }
+      // Update the link
+      var newHref = href.split('?')[0] + '?' + jQuery.param(params);
+      this.setAttribute('href', decodeURIComponent(newHref));
+    }
+  });
+  return false;
+}
+
+  // Update interact links
+function updateInteractLink() {
+    // hack to make this work since it expects a ? in the URL
+    rest = getJsonFromUrl("?" + location.search.substr(1));
+    hubUrl = rest['hub'];
+    if (hubUrl !== undefined) {
+      // Sanitize the hubUrl
+      hubUrl = safeUrl(hubUrl);
+      // Add HTTP text if omitted
+      if (hubUrl.indexOf('http') < 0) {hubUrl = 'http://' + hubUrl;}
+      link = $("a.interact-button")[0];
+      if (link !== undefined) {
+          // Update the interact link URL
+          var href = link.getAttribute('href');
+          if ('binder' == 'binder') {
+            // If binder links exist, we need to re-work them for jupyterhub
+            first = [hubUrl, 'hub', 'user-redirect', 'git-sync'].join('/')
+            href = first + '?' + binder2Jupyterhub(href);
+          } else {
+            // If JupyterHub links, we only need to replace the hub url
+            href = href.replace("https://mybinder.org", hubUrl);
+          }
+          link.setAttribute('href', decodeURIComponent(href));
+
+          // Add text after interact link saying where we're launching
+          hubUrlNoHttp = decodeURIComponent(hubUrl).replace('http://', '').replace('https://', '');
+          $("a.interact-button").after($('<div class="interact-context">on ' + hubUrlNoHttp + '</div>'));
+
+      }
+      // Update internal links so we retain the hub url
+      addParamToInternalLinks(hubUrl);
+    }
+}
+
+// --- Highlight the part of sidebar for current page ---
+
+// helper to replace trailing slash
+function replaceSlash(string)
+{
+    return string.replace(/\/$/, "");
+}
+
+// Add a class to the current page in the sidebar
+function highlightSidebarCurrentPage()
+{
+  var currentpage = location.href;
+  var links = $('.sidebar .nav__items a');
+  var ii = 0;
+  for(ii; ii < links.length; ii++) {
+    var link = links[ii];
+    if(replaceSlash(link.href) == replaceSlash(currentpage)) {
+      // Add CSS for styling
+      link.classList.add("current");
+      // Scroll to this element
+      $('div.sidebar').scrollTop(link.offsetTop - 300);
+    }
+  }
+}
+
+// --- Set up copy/paste for code blocks ---
+function addCopyButtonToCode(){
+  // get all <code> elements
+  var allCodeBlocksElements = $( "div.input_area code, div.highlighter-rouge code" );
+
+  allCodeBlocksElements.each(function(ii) {
+   	// add different id for each code block
+
+  	// target
+    var currentId = "codeblock" + (ii + 1);
+    $(this).attr('id', currentId);
+
+    //trigger
+    var clipButton = '<button class="btn copybtn" data-clipboard-target="#' + currentId + '"><img src="https://clipboardjs.com/assets/images/clippy.svg" width="13" alt="Copy to clipboard"></button>';
+       $(this).after(clipButton);
+    });
+
+    new Clipboard('.btn');
+}
+
+// Run scripts when page is loaded
+$(document).ready(function () {
+  // Add anchors to H1 etc links
+  anchors.add();
+  // Highlight current page in sidebar
+  highlightSidebarCurrentPage();
+  // Add copy button to code blocks
+  addCopyButtonToCode();
+  // Update the Interact link if a REST param given
+  updateInteractLink();
+});
+</script>
+
+  </body>
+</html>

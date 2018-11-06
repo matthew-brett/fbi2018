@@ -23,7 +23,7 @@
 
 
 
-  <meta property="article:published_time" content="2018-10-23T18:59:56+01:00">
+  <meta property="article:published_time" content="2018-11-06T00:25:37+00:00">
 
 
 
@@ -239,7 +239,22 @@
 
             
 
-            <li><a href="/fbi2018/chapters/02/first_activation" class="level_1">2.5 First activation</a></li>
+            <li><a href="/fbi2018/chapters/02/voxel_time_courses" class="level_1">2.5 Voxel time courses</a></li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          
+          
+
+          <a href="/fbi2018/chapters/03/preprocessing"><span class="nav__sub-title">3. FMRI pre-processing</span></a>
+        
+
+        
+        <ul>
           
             
             
@@ -249,7 +264,82 @@
 
             
 
-            <li><a href="/fbi2018/chapters/02/voxel_time_courses" class="level_1">2.6 Voxel time courses</a></li>
+            <li><a href="/fbi2018/chapters/03/slice_timing" class="level_1">3.1 slice timing</a></li>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/03/optimizing_space" class="level_1">3.2 optimizing space</a></li>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/03/mutual_information" class="level_1">3.3 mutual information</a></li>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/03/normalization" class="level_1">3.4 normalization</a></li>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/03/anterior_cingulate" class="level_1">3.5 anterior cingulate</a></li>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/03/smoothing_intro" class="level_1">3.6 smoothing</a></li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          
+          
+
+          <a href="/fbi2018/chapters/04/activation"><span class="nav__sub-title">4. A6tivation</span></a>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/04/first_activation" class="level_1">4.1 First activation</a></li>
           
         </ul>
         
@@ -267,7 +357,7 @@
     <article class="page textbook" itemscope itemtype="http://schema.org/CreativeWork">
       <meta itemprop="headline" content="Four dimensional images">
       <meta itemprop="description" content="Four dimensional images">
-      <meta itemprop="datePublished" content="October 23, 2018">
+      <meta itemprop="datePublished" content="November 06, 2018">
       
 
       <div class="page__inner-wrap">
@@ -363,7 +453,7 @@ four-dimensional image:</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">first_vol</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">14</span><span class="p">])</span>
 </code></pre></div></div>
 
-<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;matplotlib.image.AxesImage at 0x11327f4e0&gt;
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;matplotlib.image.AxesImage at 0x1100864e0&gt;
 </code></pre></div></div>
 
 <p><img src="../../images/chapters/02/images_4d_12_1.png" alt="png" /></p>
@@ -383,7 +473,7 @@ each 3D scan:</p>
 <div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">means</span><span class="p">)</span>
 </code></pre></div></div>
 
-<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[&lt;matplotlib.lines.Line2D at 0x1133caa20&gt;]
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[&lt;matplotlib.lines.Line2D at 0x1101d3a20&gt;]
 </code></pre></div></div>
 
 <p><img src="../../images/chapters/02/images_4d_15_1.png" alt="png" /></p>
@@ -393,7 +483,7 @@ each 3D scan:</p>
 <div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">first_vol</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">14</span><span class="p">])</span>
 </code></pre></div></div>
 
-<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;matplotlib.image.AxesImage at 0x113432898&gt;
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;matplotlib.image.AxesImage at 0x11023a860&gt;
 </code></pre></div></div>
 
 <p><img src="../../images/chapters/02/images_4d_17_1.png" alt="png" /></p>
@@ -402,7 +492,7 @@ each 3D scan:</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">second_vol</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">14</span><span class="p">])</span>
 </code></pre></div></div>
 
-<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;matplotlib.image.AxesImage at 0x1134f14a8&gt;
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;matplotlib.image.AxesImage at 0x1102f94a8&gt;
 </code></pre></div></div>
 
 <p><img src="../../images/chapters/02/images_4d_18_1.png" alt="png" /></p>
@@ -411,7 +501,7 @@ each 3D scan:</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">vol_diff</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">14</span><span class="p">])</span>
 </code></pre></div></div>
 
-<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;matplotlib.image.AxesImage at 0x1135a4cf8&gt;
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;matplotlib.image.AxesImage at 0x1103aeda0&gt;
 </code></pre></div></div>
 
 <p><img src="../../images/chapters/02/images_4d_19_1.png" alt="png" /></p>
@@ -436,7 +526,7 @@ each 3D scan:</p>
 ">Previous</a>
     
     
-      <a href="/fbi2018/chapters/02/first_activation" class="pagination--pager" title="2.5 First activation
+      <a href="/fbi2018/chapters/02/voxel_time_courses" class="pagination--pager" title="2.5 Voxel time courses
 ">Next</a>
     
   </nav>

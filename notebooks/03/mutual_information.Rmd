@@ -1,0 +1,621 @@
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>FBI 2018</title>
+<meta name="description" content="">
+
+
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="en_UK">
+<meta property="og:site_name" content="FBI 2018">
+<meta property="og:title" content="FBI 2018">
+<meta property="og:url" content="https://matthew-brett.github.io/fbi2018/notebooks/03/mutual_information.Rmd">
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://matthew-brett.github.io/fbi2018/notebooks/03/mutual_information.Rmd">
+
+
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Person",
+      "name": "Matthew Brett",
+      "url": "https://matthew-brett.github.io/fbi2018",
+      "sameAs": null
+    }
+  </script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/fbi2018/feed.xml" type="application/atom+xml" rel="alternate" title="FBI 2018 Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/fbi2018/assets/css/main.css">
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+    <!-- start custom head snippets -->
+
+
+<!-- end custom head snippets -->
+
+    <link rel="stylesheet" href="/fbi2018/assets/css/notebook-markdown.css">
+    <link rel="stylesheet" href="/fbi2018/assets/css/custom.css">
+    <link rel="shortcut icon" type="image/png" href="/fbi2018/favicon.png">
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.1/anchor.min.js"></script>
+  </head>
+
+  <body class="layout--single">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+    <div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        <a class="site-title" href="/fbi2018/">
+          <img src="/fbi2018/images/fbi2018.png" class="masthead_logo" />
+          FBI 2018
+        </a>
+        <ul class="visible-links">
+          
+            
+            <li class="masthead__menu-item">
+              <a href="https://matthew-brett.github.io/fbi2018/about" >About</a>
+            </li>
+          
+          
+            <li class="masthead__menu-item">
+              <a href="/fbi2018/chapters/01/intro">Textbook</a>
+            </li>
+          
+          
+        </ul>
+        
+        <button class="search__toggle" type="button">
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle Menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+    
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    
+    
+    
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <!--  -->
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        # Mutual information as an image matching metric
+
+In which we look at the mutual information measure for comparing images.
+
+
+For this notebook you will need:
+
+* [MNI T1 image](https://matthew-brett.github.io/fbi2018/data/mni_icbm152_t1_tal_nlin_asym_09a.nii)
+* [MNI T2 image](https://matthew-brett.github.io/fbi2018/data/mni_icbm152_t2_tal_nlin_asym_09a.nii)
+
+```{python}
+# - import common modules
+import numpy as np  # the Python array package
+import matplotlib.pyplot as plt  # the Python plotting package
+```
+
+```{python}
+# - set gray colormap by default
+plt.rcParams['image.cmap'] = 'gray'
+```
+
+```{python}
+# %matplotlib inline
+```
+
+When the images to match are the same modality and are well aligned, the
+signal should be similar in corresponding voxels. In that case, a metric like
+correlation is useful as a measure of how well the images are matched.
+
+If images are of different modalities, they may well have different signal
+intensities for the same tissue.
+
+For example, T1-weighted MRI images have low signal in the cerebro-spinal
+fluid (CSF), but T2-weighted images have high signal in the CSF.
+
+When the T1 and T2 images are well aligned, the voxels containing CSF will
+correspond spatially, but they will have very different signal. In that case a
+simple measure like correlation will not capture how well the two images are
+matched.
+
+Mutual information is a measure of image matching, that does not require the
+signal to be the same in the two images. It is a measure of how well you can
+predict the signal in the second image, given the signal intensity in the
+first.
+
+First let us look at a T1 and T2 image. In fact these images are from the
+Montreal Neurological Institute (MNI) standard brain atlas :
+[http://www.bic.mni.mcgill.ca/ServicesAtlases/ICBM152NLin2009](http://www.bic.mni.mcgill.ca/ServicesAtlases/ICBM152NLin2009). See the
+[LICENSE](https://matthew-brett.github.io/fbi2018/license) file for copyright and usage of these images.
+
+```{python}
+import nibabel as nib
+t1_img = nib.load('mni_icbm152_t1_tal_nlin_asym_09a.nii')
+t1_data = t1_img.get_data()
+t2_img = nib.load('mni_icbm152_t2_tal_nlin_asym_09a.nii')
+t2_data = t2_img.get_data()
+```
+
+```{python}
+# Show the images by stacking them left-right with hstack
+t1_slice = t1_data[:, :, 94]
+t2_slice = t2_data[:, :, 94]
+plt.imshow(np.hstack((t1_slice, t2_slice)))
+```
+
+The one-dimensional histograms of the example slices:
+
+```{python}
+fig, axes = plt.subplots(1, 2)
+axes[0].hist(t1_slice.ravel(), bins=20)
+axes[0].set_title('T1 slice histogram')
+axes[1].hist(t2_slice.ravel(), bins=20)
+axes[1].set_title('T2 slice histogram')
+```
+
+Plotting the signal in the T1 slice against the signal in the T2 slice:
+
+```{python}
+plt.plot(t1_slice.ravel(), t2_slice.ravel(), '.')
+plt.xlabel('T1 signal')
+plt.ylabel('T2 signal')
+plt.title('T1 vs T2 signal')
+np.corrcoef(t1_slice.ravel(), t2_slice.ravel())[0, 1]
+```
+
+Notice that we can predict the T2 signal given the T1 signal, but it is not a
+linear relationship. For example, for T1 signal between 20 and 30, most
+corresponding T2 signal is low, but there is some T2 signal that is high. This
+pairing of high T2 signal with low T1 signal is from the CSF, which is dark
+(low signal) in the T1, and bright in the T2.
+
+```{python}
+# Array that is True if T1 signal >= 20, <= 30, False otherwise
+t1_20_30 = (t1_slice >= 20) & (t1_slice <= 30)
+# Show T1 slice, mask for T1 between 20 and 30, T2 slice
+fig, axes = plt.subplots(1, 3, figsize=(8, 3))
+axes[0].imshow(t1_slice)
+axes[0].set_title('T1 slice')
+axes[1].imshow(t1_20_30)
+axes[1].set_title('20<=T1<=30')
+axes[2].imshow(t2_slice)
+axes[2].set_title('T2 slice')
+```
+
+We can capture this more complicated relationship by doing a 2D histogram.
+This is a histogram that divides the scatterplot into squares, and counts the
+number of observations inside each square.
+
+Look again at the [scatterplot for the T1 and T2 values](https://matthew-brett.github.io/teaching/mutual_information.html#t1-t2-scatter).
+We get the 1D histogram for T1 values by splitting the x axis into bins, and
+taking the number of observations contained in each column defined by the
+bins.  The T2 histogram comes from splitting the y axis into bins and taking
+the number of observations contained in each row defined by the bins.  The 2D
+histogram comes from dividing both the x and the y axis into bins and taking
+the number of observations in each square defined by the intersection of the
+rows and columns:
+
+Numpy has a function for doing the 2D histogram calculation:
+
+```{python}
+hist_2d, x_edges, y_edges = np.histogram2d(
+    t1_slice.ravel(),
+    t2_slice.ravel(),
+    bins=20)
+# Plot as image, arranging axes as for scatterplot
+# We transpose to put the T1 bins on the horizontal axis
+# and use 'lower' to put 0, 0 at the bottom of the plot
+plt.imshow(hist_2d.T, origin='lower')
+plt.xlabel('T1 signal bin')
+plt.ylabel('T2 signal bin')
+```
+
+The histogram is easier to see if we show the log values to reduce the effect
+of the bins with a very large number of values:
+
+```{python}
+# Show log histogram, avoiding divide by 0
+hist_2d_log = np.zeros(hist_2d.shape)
+non_zeros = hist_2d != 0
+hist_2d_log[non_zeros] = np.log(hist_2d[non_zeros])
+plt.imshow(hist_2d_log.T, origin='lower')
+plt.xlabel('T1 signal bin')
+plt.ylabel('T2 signal bin')
+```
+
+Mutual information is a metric from the joint (2D) histogram. The metric is
+high when the signal is highly concentrated in few bins (squares), and low
+when the signal is spread across many bins (squares).
+
+Mutual information is defined as:
+
+$$
+I(X;Y) = \sum_{y \in Y} \sum_{x \in X}
+                 p(x,y) \log{ \left(\frac{p(x,y)}{p(x)\,p(y)}
+                              \right) }
+$$
+
+See [http://en.wikipedia.org/wiki/Mutual_information](http://en.wikipedia.org/wiki/Mutual_information)
+
+```{python}
+def mutual_information(hgram):
+    """ Mutual information for joint histogram
+    """
+    # Convert bins counts to probability values
+    pxy = hgram / float(np.sum(hgram))
+    px = np.sum(pxy, axis=1) # marginal for x over y
+    py = np.sum(pxy, axis=0) # marginal for y over x
+    px_py = px[:, None] * py[None, :] # Broadcast to multiply marginals
+    # Now we can do the calculation using the pxy, px_py 2D arrays
+    nzs = pxy > 0 # Only non-zero pxy values contribute to the sum
+    return np.sum(pxy[nzs] * np.log(pxy[nzs] / px_py[nzs]))
+```
+
+```{python}
+mutual_information(hist_2d)
+```
+
+If we move the T2 image 15 pixels down, we make the images less well
+registered.
+
+```{python}
+t2_slice_moved = np.zeros(t2_slice.shape)
+t2_slice_moved[15:, :] = t2_slice[:-15, :]
+plt.imshow(np.hstack((t1_slice, t2_slice_moved)))
+```
+
+Now the scatterplot is a lot more diffuse:
+
+```{python}
+plt.plot(t1_slice.ravel(), t2_slice_moved.ravel(), '.')
+plt.xlabel('T1 signal')
+plt.ylabel('T2 (moved) signal')
+plt.title('T1 vs T2 signal after moving T2 image')
+```
+
+The joint (2D) histogram shows the same thing:
+
+```{python}
+hist_2d_moved, x_edges, y_edges = np.histogram2d(
+    t1_slice.ravel(),
+    t2_slice_moved.ravel(),
+    bins=20)
+```
+
+```{python}
+# Show log histogram, avoiding divide by 0
+hist_2d_moved_log = np.zeros(hist_2d_moved.shape)
+non_zeros = hist_2d_moved != 0
+hist_2d_moved_log[non_zeros] = np.log(hist_2d_moved[non_zeros])
+plt.imshow(hist_2d_moved_log.T, origin='lower')
+plt.xlabel('T1 signal bin')
+plt.ylabel('T2 signal bin')
+```
+
+Because the signal is less concentrated into a small number of bins, the
+mutual information has dropped:
+
+```{python}
+mutual_information(hist_2d_moved)
+```
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+        
+      </footer>
+
+      
+
+      
+
+    </div>
+
+    
+  </article>
+
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><input type="text" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+    <div id="results" class="results"></div></div>
+      </div>
+    
+
+    
+
+    
+  <script src="/fbi2018/assets/js/main.min.js"></script>
+  <script src="https://use.fontawesome.com/releases/v5.0.12/js/all.js"></script>
+
+
+
+
+<script src="/fbi2018/assets/js/lunr/lunr.min.js"></script>
+<script src="/fbi2018/assets/js/lunr/lunr-store.js"></script>
+<script src="/fbi2018/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+    <!-- Custom scripts to load after site JS is loaded -->
+
+    <!-- Custom HTML used for the textbooks -->
+<!-- Configure, then load MathJax -->
+<script type="text/javascript">
+  window.MathJax = {
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      processEnvironments: true
+    }
+  };
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML-full,Safe" type="text/javascript"></script>
+
+
+<script type="text/javascript">
+// --- To auto-embed hub URLs in interact links if given in a RESTful fashion ---
+function getJsonFromUrl(url) {
+  var query = url.split('?');
+  if (query.length < 2) {
+    // No queries so just return false
+    return false;
+  }
+  query = query[1];
+  // Collect REST params into a dictionary
+  var result = {};
+  query.split("&").forEach(function(part) {
+    var item = part.split("=");
+    result[item[0]] = decodeURIComponent(item[1]);
+  });
+  return result;
+}
+
+// Parse a Binder URL, converting it to the string needed for JupyterHub
+function binder2Jupyterhub(url) {
+  newUrl = {};
+  parts = url.split('v2/gh/')[1];
+  // Grab the base repo information
+  repoinfo = parts.split('?')[0];
+  var [org, repo, ref] = repoinfo.split('/');
+  newUrl['repo'] = ['https://github.com', org, repo].join('/');
+  newUrl['branch'] = ref
+  // Grab extra parameters passed
+  params = getJsonFromUrl(url);
+  if (params['filepath'] !== undefined) {
+    newUrl['subPath'] = params['filepath']
+  }
+  return jQuery.param(newUrl);
+}
+
+// Filter out potentially unsafe characters to prevent xss
+function safeUrl(url)
+{
+   return String(encodeURIComponent(url))
+            .replace(/&/g, '&amp;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#39;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;');
+}
+
+function addParamToInternalLinks(hub) {
+  var links = $("a").each(function() {
+    var href = this.href;
+    // If the link is an internal link...
+    if (href.search("https://matthew-brett.github.io") !== -1 || href.startsWith('/') || href.search("127.0.0.1:") !== -1) {
+      // Assume we're an internal link, add the hub param to it
+      var params = getJsonFromUrl(href);
+      if (params !== false) {
+        // We have REST params, so append a new one
+        params['hub'] = hub;
+      } else {
+        // Create the REST params
+        params = {'hub': hub};
+      }
+      // Update the link
+      var newHref = href.split('?')[0] + '?' + jQuery.param(params);
+      this.setAttribute('href', decodeURIComponent(newHref));
+    }
+  });
+  return false;
+}
+
+  // Update interact links
+function updateInteractLink() {
+    // hack to make this work since it expects a ? in the URL
+    rest = getJsonFromUrl("?" + location.search.substr(1));
+    hubUrl = rest['hub'];
+    if (hubUrl !== undefined) {
+      // Sanitize the hubUrl
+      hubUrl = safeUrl(hubUrl);
+      // Add HTTP text if omitted
+      if (hubUrl.indexOf('http') < 0) {hubUrl = 'http://' + hubUrl;}
+      link = $("a.interact-button")[0];
+      if (link !== undefined) {
+          // Update the interact link URL
+          var href = link.getAttribute('href');
+          if ('binder' == 'binder') {
+            // If binder links exist, we need to re-work them for jupyterhub
+            first = [hubUrl, 'hub', 'user-redirect', 'git-sync'].join('/')
+            href = first + '?' + binder2Jupyterhub(href);
+          } else {
+            // If JupyterHub links, we only need to replace the hub url
+            href = href.replace("https://mybinder.org", hubUrl);
+          }
+          link.setAttribute('href', decodeURIComponent(href));
+
+          // Add text after interact link saying where we're launching
+          hubUrlNoHttp = decodeURIComponent(hubUrl).replace('http://', '').replace('https://', '');
+          $("a.interact-button").after($('<div class="interact-context">on ' + hubUrlNoHttp + '</div>'));
+
+      }
+      // Update internal links so we retain the hub url
+      addParamToInternalLinks(hubUrl);
+    }
+}
+
+// --- Highlight the part of sidebar for current page ---
+
+// helper to replace trailing slash
+function replaceSlash(string)
+{
+    return string.replace(/\/$/, "");
+}
+
+// Add a class to the current page in the sidebar
+function highlightSidebarCurrentPage()
+{
+  var currentpage = location.href;
+  var links = $('.sidebar .nav__items a');
+  var ii = 0;
+  for(ii; ii < links.length; ii++) {
+    var link = links[ii];
+    if(replaceSlash(link.href) == replaceSlash(currentpage)) {
+      // Add CSS for styling
+      link.classList.add("current");
+      // Scroll to this element
+      $('div.sidebar').scrollTop(link.offsetTop - 300);
+    }
+  }
+}
+
+// --- Set up copy/paste for code blocks ---
+function addCopyButtonToCode(){
+  // get all <code> elements
+  var allCodeBlocksElements = $( "div.input_area code, div.highlighter-rouge code" );
+
+  allCodeBlocksElements.each(function(ii) {
+   	// add different id for each code block
+
+  	// target
+    var currentId = "codeblock" + (ii + 1);
+    $(this).attr('id', currentId);
+
+    //trigger
+    var clipButton = '<button class="btn copybtn" data-clipboard-target="#' + currentId + '"><img src="https://clipboardjs.com/assets/images/clippy.svg" width="13" alt="Copy to clipboard"></button>';
+       $(this).after(clipButton);
+    });
+
+    new Clipboard('.btn');
+}
+
+// Run scripts when page is loaded
+$(document).ready(function () {
+  // Add anchors to H1 etc links
+  anchors.add();
+  // Highlight current page in sidebar
+  highlightSidebarCurrentPage();
+  // Add copy button to code blocks
+  addCopyButtonToCode();
+  // Update the Interact link if a REST param given
+  updateInteractLink();
+});
+</script>
+
+  </body>
+</html>

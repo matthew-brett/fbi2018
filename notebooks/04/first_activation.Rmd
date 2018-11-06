@@ -1,0 +1,618 @@
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>FBI 2018</title>
+<meta name="description" content="">
+
+
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="en_UK">
+<meta property="og:site_name" content="FBI 2018">
+<meta property="og:title" content="FBI 2018">
+<meta property="og:url" content="https://matthew-brett.github.io/fbi2018/notebooks/04/first_activation.Rmd">
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://matthew-brett.github.io/fbi2018/notebooks/04/first_activation.Rmd">
+
+
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Person",
+      "name": "Matthew Brett",
+      "url": "https://matthew-brett.github.io/fbi2018",
+      "sameAs": null
+    }
+  </script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/fbi2018/feed.xml" type="application/atom+xml" rel="alternate" title="FBI 2018 Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/fbi2018/assets/css/main.css">
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+    <!-- start custom head snippets -->
+
+
+<!-- end custom head snippets -->
+
+    <link rel="stylesheet" href="/fbi2018/assets/css/notebook-markdown.css">
+    <link rel="stylesheet" href="/fbi2018/assets/css/custom.css">
+    <link rel="shortcut icon" type="image/png" href="/fbi2018/favicon.png">
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.1/anchor.min.js"></script>
+  </head>
+
+  <body class="layout--single">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+    <div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        <a class="site-title" href="/fbi2018/">
+          <img src="/fbi2018/images/fbi2018.png" class="masthead_logo" />
+          FBI 2018
+        </a>
+        <ul class="visible-links">
+          
+            
+            <li class="masthead__menu-item">
+              <a href="https://matthew-brett.github.io/fbi2018/about" >About</a>
+            </li>
+          
+          
+            <li class="masthead__menu-item">
+              <a href="/fbi2018/chapters/01/intro">Textbook</a>
+            </li>
+          
+          
+        </ul>
+        
+        <button class="search__toggle" type="button">
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle Menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+    
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    
+    
+    
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <!--  -->
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        # First go at brain activation
+
+For this notebook you will need:
+
+* [ds114 FMRI image](https://matthew-brett.github.io/fbi2018/data/ds114_sub009_t2r1.nii).
+* [ds114 stimulus file](https://matthew-brett.github.io/fbi2018/data/ds114_sub009_t2r1_cond.txt).
+
+```{python}
+# Our usual set-up
+import numpy as np
+import matplotlib.pyplot as plt
+%matplotlib inline
+# Set 'gray' as the default colormap
+plt.rcParams['image.cmap'] = 'gray'
+# Display array values to 4 digits of precision
+np.set_printoptions(precision=4, suppress=True)
+```
+
+## The task time-course
+
+We have previously had a look at the file `ds114_sub009_t2r1.nii`.  This is a
+4D FMRI image.
+
+Now we want to see whether we can detect any signal in that image relating to
+the task.
+
+The task was a block design with 10 seconds rest followed by 7 repeats of (30
+seconds when the subject thought of verbs followed by 30 seconds rest). This
+is called a “covert” task, because the subjects were thinking of verbs instead
+of saying them.
+
+We will use the [OpenFMRI](https://openfmri.org) task definition file
+`ds114_sub009_t2r1_cond.txt`. It comes from subject 9 task 2 and run 1 of the
+[ds114 dataset](https://openfmri.org/dataset/ds000114).
+
+The file has one line of text per “on” block, giving the onset time of the
+block (in seconds), the duration of the block (in seconds) and the amplitude
+(expected amount of activation for this block - not used in this case).
+
+Here are the first four lines:
+
+```
+10  30.000000   1
+70  30.000000   1
+130 30.000000   1
+190 30.000000   1
+```
+
+We read the file into a (number of blocks by 3) array called `task`.
+
+```{python}
+#- Read the file into an array called "task".
+#- "task" should have 3 columns (onset, duration, amplitude)
+task = np.loadtxt('ds114_sub009_t2r1_cond.txt')
+task.shape
+```
+
+The repetition time (time to repeat, TR) for this FMRI run was 2.5 seconds. We
+need to convert the onsets and durations to TRs - so for example the first
+onset was at 10 seconds, which was the start of TR 4 (10 / 2.5).
+
+Select out the first two columns of task, and divide by the TR to convert the
+onset and duration times to be in terms of TRs instead of seconds:
+
+```{python}
+#- Select first two columns and divide by TR
+ons_durs = task[:, :2] / 2.5
+ons_durs
+```
+
+Our next step is to make an on-off vector that is 0 when the subject is doing
+nothing and 1 when the subject is doing the covert verb task.
+
+The vector will have one value (either 0 or 1) for each TR.
+
+First use nibabel to load the image `ds114_sub009_t2r1.nii`. Check the image
+shape to find the number of TRs.
+
+```{python}
+#- Load the image and check the image shape to get the number of TRs
+import nibabel as nib
+img = nib.load('ds114_sub009_t2r1.nii')
+img.shape
+```
+
+Next make a new vector called `time_course` with one entry per TR, with all
+elements in the vector being zero:
+
+```{python}
+#- Make new zero vector
+time_course = np.zeros(img.shape[-1])
+```
+
+Loop over the rows in the onsets / durations array to give you an onset /
+duration pair. For each of these pairs, set the matching positions in the
+`time_course` vector to 1. For example, the first pair will be `4, 12`.  That
+means the task started at the beginning of scan index 4, and lasted for 12
+scans. That means there should be 12 consecutive 1 values in `time_course`,
+starting at index 4. That means that index 4 + 12 = 16 should be zero again,
+because there are 12 values starting at (including 4) going up to (but *not*
+including) 16.
+
+```{python}
+#: try running this if you don't believe me
+len(range(4, 16))
+```
+
+So, for the first row, you will want to set `time_course[4]` through
+`time_course[15]` equal to 1.
+
+```{python}
+#- Fill in values of 1 for positions of on blocks in time course
+# Convert onsets, durations to integers first
+ons_durs = np.round(ons_durs).astype(int)
+for onset, duration in ons_durs:
+    time_course[onset:onset + duration] = 1
+```
+
+Plot the time course:
+
+```{python}
+#- Plot the time course
+plt.plot(time_course)
+```
+
+# Comparing task to rest
+
+Make a boolean array `is_task_tr` which is True when `time_course` is 1
+and False otherwise.
+
+Make another array `is_rest_tr` that is the opposite - True when
+`time_course` is 0 and False otherwise.
+
+```{python}
+#- Make two boolean arrays encoding task, rest
+is_task_tr = (time_course == 1)
+is_rest_tr = (time_course == 0)
+```
+
+Read the image data into an array:
+
+```{python}
+# Read the image data into an array.
+data = img.get_data()
+```
+
+Remember that the 4D array consists of one volume (3D array) per TR.
+
+We want to select the volumes where the time course is 1 (task volumes).  Do
+this by slicing, using the boolean array you just made.
+
+```{python}
+#- Create a new 4D array only containing the task volumes
+on_volumes = data[..., is_task_tr]
+```
+
+Select the volumes where the time course is 0 (rest volumes):
+
+```{python}
+#- Create a new 4D array only containing the rest volumes
+off_volumes = data[..., is_rest_tr]
+```
+
+We want to know whether there is a difference in signal in the task volumes
+compared to the rest volumes. Take the mean over the task volumes and mean
+over the rest volumes. You should end up with two 3D volumes.
+
+```{python}
+#- Create the mean volume across all the task volumes.
+#- Then create the mean volume across all the rest volumes
+on_mean = on_volumes.mean(axis=-1)
+off_mean = off_volumes.mean(axis=-1)
+```
+
+Now subtract the rest mean from the task mean to get a difference volume.
+
+```{python}
+#- Create a difference volume
+difference = on_mean - off_mean
+```
+
+Show a slice over the third dimension of the difference volume, from somewhere
+around the center of the third axis:
+
+```{python}
+#- Show a slice over the third dimension
+plt.imshow(difference[:, :, 14])
+```
+
+This is the difference between activation and rest. It looks a little strange.
+
+This is the T1 artefact we saw in the previous notebook.  We should drop the first scan:
+
+```{python}
+#- Use slicing to remove outlier volume from rest volumes
+off_volumes_fixed = off_volumes[..., 1:]
+```
+
+Make a new mean for the rest volumes, and subtract this mean from the mean for
+the task volumes to make a new difference image.
+
+Give the new difference image a new name, so we can compare to the old
+difference image later.
+
+```{python}
+#- Make new mean for rest volumes, subtract from task mean
+off_mean_fixed = off_volumes_fixed.mean(axis=-1)
+difference_fixed = on_mean - off_mean_fixed
+```
+
+Show an example slice from the new difference volume. Show the same slice from
+the old difference volume, using matplotlib.
+
+```{python}
+#- show same slice from old and new difference volume
+plt.imshow(difference_fixed[:, :, 14], cmap='gray')
+```
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+        
+      </footer>
+
+      
+
+      
+
+    </div>
+
+    
+  </article>
+
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><input type="text" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+    <div id="results" class="results"></div></div>
+      </div>
+    
+
+    
+
+    
+  <script src="/fbi2018/assets/js/main.min.js"></script>
+  <script src="https://use.fontawesome.com/releases/v5.0.12/js/all.js"></script>
+
+
+
+
+<script src="/fbi2018/assets/js/lunr/lunr.min.js"></script>
+<script src="/fbi2018/assets/js/lunr/lunr-store.js"></script>
+<script src="/fbi2018/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+    <!-- Custom scripts to load after site JS is loaded -->
+
+    <!-- Custom HTML used for the textbooks -->
+<!-- Configure, then load MathJax -->
+<script type="text/javascript">
+  window.MathJax = {
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      processEnvironments: true
+    }
+  };
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML-full,Safe" type="text/javascript"></script>
+
+
+<script type="text/javascript">
+// --- To auto-embed hub URLs in interact links if given in a RESTful fashion ---
+function getJsonFromUrl(url) {
+  var query = url.split('?');
+  if (query.length < 2) {
+    // No queries so just return false
+    return false;
+  }
+  query = query[1];
+  // Collect REST params into a dictionary
+  var result = {};
+  query.split("&").forEach(function(part) {
+    var item = part.split("=");
+    result[item[0]] = decodeURIComponent(item[1]);
+  });
+  return result;
+}
+
+// Parse a Binder URL, converting it to the string needed for JupyterHub
+function binder2Jupyterhub(url) {
+  newUrl = {};
+  parts = url.split('v2/gh/')[1];
+  // Grab the base repo information
+  repoinfo = parts.split('?')[0];
+  var [org, repo, ref] = repoinfo.split('/');
+  newUrl['repo'] = ['https://github.com', org, repo].join('/');
+  newUrl['branch'] = ref
+  // Grab extra parameters passed
+  params = getJsonFromUrl(url);
+  if (params['filepath'] !== undefined) {
+    newUrl['subPath'] = params['filepath']
+  }
+  return jQuery.param(newUrl);
+}
+
+// Filter out potentially unsafe characters to prevent xss
+function safeUrl(url)
+{
+   return String(encodeURIComponent(url))
+            .replace(/&/g, '&amp;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#39;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;');
+}
+
+function addParamToInternalLinks(hub) {
+  var links = $("a").each(function() {
+    var href = this.href;
+    // If the link is an internal link...
+    if (href.search("https://matthew-brett.github.io") !== -1 || href.startsWith('/') || href.search("127.0.0.1:") !== -1) {
+      // Assume we're an internal link, add the hub param to it
+      var params = getJsonFromUrl(href);
+      if (params !== false) {
+        // We have REST params, so append a new one
+        params['hub'] = hub;
+      } else {
+        // Create the REST params
+        params = {'hub': hub};
+      }
+      // Update the link
+      var newHref = href.split('?')[0] + '?' + jQuery.param(params);
+      this.setAttribute('href', decodeURIComponent(newHref));
+    }
+  });
+  return false;
+}
+
+  // Update interact links
+function updateInteractLink() {
+    // hack to make this work since it expects a ? in the URL
+    rest = getJsonFromUrl("?" + location.search.substr(1));
+    hubUrl = rest['hub'];
+    if (hubUrl !== undefined) {
+      // Sanitize the hubUrl
+      hubUrl = safeUrl(hubUrl);
+      // Add HTTP text if omitted
+      if (hubUrl.indexOf('http') < 0) {hubUrl = 'http://' + hubUrl;}
+      link = $("a.interact-button")[0];
+      if (link !== undefined) {
+          // Update the interact link URL
+          var href = link.getAttribute('href');
+          if ('binder' == 'binder') {
+            // If binder links exist, we need to re-work them for jupyterhub
+            first = [hubUrl, 'hub', 'user-redirect', 'git-sync'].join('/')
+            href = first + '?' + binder2Jupyterhub(href);
+          } else {
+            // If JupyterHub links, we only need to replace the hub url
+            href = href.replace("https://mybinder.org", hubUrl);
+          }
+          link.setAttribute('href', decodeURIComponent(href));
+
+          // Add text after interact link saying where we're launching
+          hubUrlNoHttp = decodeURIComponent(hubUrl).replace('http://', '').replace('https://', '');
+          $("a.interact-button").after($('<div class="interact-context">on ' + hubUrlNoHttp + '</div>'));
+
+      }
+      // Update internal links so we retain the hub url
+      addParamToInternalLinks(hubUrl);
+    }
+}
+
+// --- Highlight the part of sidebar for current page ---
+
+// helper to replace trailing slash
+function replaceSlash(string)
+{
+    return string.replace(/\/$/, "");
+}
+
+// Add a class to the current page in the sidebar
+function highlightSidebarCurrentPage()
+{
+  var currentpage = location.href;
+  var links = $('.sidebar .nav__items a');
+  var ii = 0;
+  for(ii; ii < links.length; ii++) {
+    var link = links[ii];
+    if(replaceSlash(link.href) == replaceSlash(currentpage)) {
+      // Add CSS for styling
+      link.classList.add("current");
+      // Scroll to this element
+      $('div.sidebar').scrollTop(link.offsetTop - 300);
+    }
+  }
+}
+
+// --- Set up copy/paste for code blocks ---
+function addCopyButtonToCode(){
+  // get all <code> elements
+  var allCodeBlocksElements = $( "div.input_area code, div.highlighter-rouge code" );
+
+  allCodeBlocksElements.each(function(ii) {
+   	// add different id for each code block
+
+  	// target
+    var currentId = "codeblock" + (ii + 1);
+    $(this).attr('id', currentId);
+
+    //trigger
+    var clipButton = '<button class="btn copybtn" data-clipboard-target="#' + currentId + '"><img src="https://clipboardjs.com/assets/images/clippy.svg" width="13" alt="Copy to clipboard"></button>';
+       $(this).after(clipButton);
+    });
+
+    new Clipboard('.btn');
+}
+
+// Run scripts when page is loaded
+$(document).ready(function () {
+  // Add anchors to H1 etc links
+  anchors.add();
+  // Highlight current page in sidebar
+  highlightSidebarCurrentPage();
+  // Add copy button to code blocks
+  addCopyButtonToCode();
+  // Update the Interact link if a REST param given
+  updateInteractLink();
+});
+</script>
+
+  </body>
+</html>

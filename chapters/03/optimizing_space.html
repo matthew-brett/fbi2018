@@ -1,0 +1,1430 @@
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Calculating transformations between images - FBI 2018</title>
+<meta name="description" content="Calculating transformations between images">
+
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_UK">
+<meta property="og:site_name" content="FBI 2018">
+<meta property="og:title" content="Calculating transformations between images">
+<meta property="og:url" content="https://matthew-brett.github.io/fbi2018/chapters/03/optimizing_space">
+
+
+  <meta property="og:description" content="Calculating transformations between images">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2018-11-06T00:25:37+00:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://matthew-brett.github.io/fbi2018/chapters/03/optimizing_space">
+
+
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Person",
+      "name": "Matthew Brett",
+      "url": "https://matthew-brett.github.io/fbi2018",
+      "sameAs": null
+    }
+  </script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/fbi2018/feed.xml" type="application/atom+xml" rel="alternate" title="FBI 2018 Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/fbi2018/assets/css/main.css">
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+    <!-- start custom head snippets -->
+
+
+<!-- end custom head snippets -->
+
+    <link rel="stylesheet" href="/fbi2018/assets/css/notebook-markdown.css">
+    <link rel="stylesheet" href="/fbi2018/assets/css/custom.css">
+    <link rel="shortcut icon" type="image/png" href="/fbi2018/favicon.png">
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.1/anchor.min.js"></script>
+  </head>
+
+  <body class="layout--textbook">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" class="textbook" role="main">
+  <div id="textbook_wrapper">
+    
+  <div class="sidebar sticky textbook">
+  
+  
+    <img src="/fbi2018/images/fbi2018.png" class="textbook_logo" />
+    
+
+    
+      
+
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">Toggle Menu</label>
+  <ul class="nav__items">
+    
+      <li>
+        
+          
+          
+
+          <a href="/fbi2018/"><span class="nav__sub-title">Home</span></a>
+        
+
+        
+      </li>
+    
+      <li>
+        
+          
+          
+
+          <a href="/fbi2018/chapters/01/intro"><span class="nav__sub-title">1. Introduction to MRI data</span></a>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/01/error" class="level_1">1.1 Why worry?</a></li>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/01/why_python" class="level_1">1.2 Why Python?</a></li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          
+          
+
+          <a href="/fbi2018/chapters/02/fmri_data"><span class="nav__sub-title">2. FMRI data</span></a>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/02/what_is_an_image" class="level_1">2.1 A brain image</a></li>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/02/arrays_and_images" class="level_1">2.2 Arrays and images</a></li>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/02/images_3d" class="level_1">2.3 3D images</a></li>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/02/images_4d" class="level_1">2.4 4D images</a></li>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/02/voxel_time_courses" class="level_1">2.5 Voxel time courses</a></li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          
+          
+
+          <a href="/fbi2018/chapters/03/preprocessing"><span class="nav__sub-title">3. FMRI pre-processing</span></a>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/03/slice_timing" class="level_1">3.1 slice timing</a></li>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/03/optimizing_space" class="level_1">3.2 optimizing space</a></li>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/03/mutual_information" class="level_1">3.3 mutual information</a></li>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/03/normalization" class="level_1">3.4 normalization</a></li>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/03/anterior_cingulate" class="level_1">3.5 anterior cingulate</a></li>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/03/smoothing_intro" class="level_1">3.6 smoothing</a></li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          
+          
+
+          <a href="/fbi2018/chapters/04/activation"><span class="nav__sub-title">4. A6tivation</span></a>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/04/first_activation" class="level_1">4.1 First activation</a></li>
+          
+        </ul>
+        
+      </li>
+    
+  </ul>
+</nav>
+
+    
+
+  
+  </div>
+
+
+    <article class="page textbook" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="headline" content="Calculating transformations between images">
+      <meta itemprop="description" content="Calculating transformations between images">
+      <meta itemprop="datePublished" content="November 06, 2018">
+      
+
+      <div class="page__inner-wrap">
+        
+          <header>
+            <h1 id="page-title" class="page__title" itemprop="headline">Calculating transformations between images
+</h1>
+          </header>
+        
+
+        <section class="page__content" itemprop="text">
+          
+            
+
+<!-- TOC will only show up if it has at least one item -->
+
+
+  <aside class="sidebar__right">
+    <nav class="toc">
+      <header><h4 class="nav__title"><i class="fas fa-list-ul"></i>   On this page</h4></header>
+      <ul class="toc__menu">
+  <li><a href="#resampling-in-2d">Resampling in 2D</a></li>
+  <li><a href="#optimization">Optimization</a></li>
+  <li><a href="#more-than-one-parameter">More than one parameter</a></li>
+  <li><a href="#full-3d-estimate">Full 3D estimate</a></li>
+</ul>
+    </nav>
+  </aside>
+
+
+          
+          <!-- INTERACT LINKS -->
+
+    
+    
+    <a class="notebook-link" href="https://matthew-brett.github.io/fbi2018/notebooks/03/optimizing_space.ipynb">Download notebook</a>
+    <a class="interact-button" href="https://mybinder.org/v2/gh/matthew-brett/fbi2018/master?filepath=notebooks%2F03%2Foptimizing_space.ipynb">Interact</a>
+
+
+          
+<p>In which we discover optimization and cost functions and how to use them.</p>
+
+<p>For this notebook you will need:</p>
+
+<ul>
+  <li><a href="https://matthew-brett.github.io/fbi2018/data/ds114_sub009_t2r1.nii">ds114 FMRI image</a></li>
+</ul>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+</code></pre></div></div>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="c"># Print numbers to 4 digits precision</span>
+<span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">suppress</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="c"># Set some plot defaults</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s">'image.cmap'</span><span class="p">]</span> <span class="o">=</span> <span class="s">'gray'</span>
+</code></pre></div></div>
+
+<p>We start with a single slice from the EPI</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">nibabel</span> <span class="k">as</span> <span class="n">nib</span>
+</code></pre></div></div>
+
+<p>We load the data and drop the first volume (we found earlier that it is bad):</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Load the image</span>
+<span class="n">bold_fname</span> <span class="o">=</span> <span class="s">'ds114_sub009_t2r1.nii'</span>
+<span class="n">bold_img</span> <span class="o">=</span> <span class="n">nib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">bold_fname</span><span class="p">)</span>
+<span class="c"># Load the data as a 4D array</span>
+<span class="n">bold_data</span> <span class="o">=</span> <span class="n">bold_img</span><span class="o">.</span><span class="n">get_fdata</span><span class="p">()</span>
+<span class="n">bold_data</span><span class="o">.</span><span class="n">shape</span>
+</code></pre></div></div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(64, 64, 30, 173)
+</code></pre></div></div>
+
+<p>Drop the first volume:</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">bold_data</span> <span class="o">=</span> <span class="n">bold_data</span><span class="p">[:,</span> <span class="p">:,</span> <span class="p">:,</span> <span class="mi">1</span><span class="p">:]</span>
+<span class="n">bold_data</span><span class="o">.</span><span class="n">shape</span>
+</code></pre></div></div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(64, 64, 30, 172)
+</code></pre></div></div>
+
+<p>Now we get our slices.  Here I am getting slice 17 from the first volume:</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">mid_vol0</span> <span class="o">=</span> <span class="n">bold_data</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">mid_vol0</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;matplotlib.image.AxesImage at 0x10ebe8518&gt;
+</code></pre></div></div>
+
+<p><img src="../../images/chapters/03/optimizing_space_12_1.png" alt="png" /></p>
+
+<p>Let’s pretend we are doing motion correction.  We want to match this slice in volume 0 to the same slice in volume 1.</p>
+
+<p>Here is the matching slice from the second volume:</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">mid_vol1</span> <span class="o">=</span> <span class="n">bold_data</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">mid_vol1</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;matplotlib.image.AxesImage at 0x10edebbe0&gt;
+</code></pre></div></div>
+
+<p><img src="../../images/chapters/03/optimizing_space_14_1.png" alt="png" /></p>
+
+<p>At the moment it is rather hard to see any difference between these two.  That is still true even if we put the slices side by side:</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">mid_vol0</span><span class="p">,</span> <span class="n">mid_vol1</span><span class="p">)))</span>
+</code></pre></div></div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;matplotlib.image.AxesImage at 0x10ee4eda0&gt;
+</code></pre></div></div>
+
+<p><img src="../../images/chapters/03/optimizing_space_16_1.png" alt="png" /></p>
+
+<p>The volumes are very similar, because the movement between them is very small - usually considerably less than a single voxel.  So, in order to find the movement between them, we will have to do an automated calculation.</p>
+
+<p>To see how an automated calculation might work, let’s push <code class="highlighter-rouge">mid_vol1</code> 10 voxels down, and then try and match this version to <code class="highlighter-rouge">mid_vol0</code>:</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">moved_mid_vol1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">mid_vol1</span><span class="p">)</span>
+<span class="n">moved_mid_vol1</span><span class="o">.</span><span class="n">shape</span>
+</code></pre></div></div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(64, 64)
+</code></pre></div></div>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">moved_mid_vol1</span><span class="p">[</span><span class="mi">10</span><span class="p">:,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">mid_vol1</span><span class="p">[:</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="p">:]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">moved_mid_vol1</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;matplotlib.image.AxesImage at 0x10f0c59e8&gt;
+</code></pre></div></div>
+
+<p><img src="../../images/chapters/03/optimizing_space_20_1.png" alt="png" /></p>
+
+<p>Let’s say you didn’t know how many voxels the image was translated.  You might want a good way to find out. How are we going to do that?</p>
+
+<p>We need to try moving one image (<code class="highlighter-rouge">moved_mid_vol1</code>) to match our first image.  Then we need some way of knowing if our moved image is close to our first image or not.</p>
+
+<p>Don’t worry about the details of this function, but it moves the image up and down by a given number of voxels, in the same way we did this above:</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">x_trans_slice</span><span class="p">(</span><span class="n">img_slice</span><span class="p">,</span> <span class="n">x_vox_trans</span><span class="p">):</span>
+    <span class="s">""" Make a new copy of `img_slice` translated by `x_vox_trans` voxels
+    
+    `x_vox_trans` can be positive or negative
+    """</span>
+    <span class="n">trans_slice</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">img_slice</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">x_vox_trans</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">trans_slice</span><span class="p">[:</span><span class="n">x_vox_trans</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">img_slice</span><span class="p">[</span><span class="o">-</span><span class="n">x_vox_trans</span><span class="p">:,</span> <span class="p">:]</span>
+    <span class="k">elif</span> <span class="n">x_vox_trans</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">trans_slice</span><span class="p">[:,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">img_slice</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">trans_slice</span><span class="p">[</span><span class="n">x_vox_trans</span><span class="p">:,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">img_slice</span><span class="p">[:</span><span class="o">-</span><span class="n">x_vox_trans</span><span class="p">,</span> <span class="p">:]</span>
+    <span class="k">return</span> <span class="n">trans_slice</span>
+</code></pre></div></div>
+
+<p>Now we need some measure of whether the images are the same or different.  This is called a <em>cost function</em>.  The measure is high when the images are different, and low when they are similar.</p>
+
+<p>How about subtracting the images?</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">mid_vol0</span> <span class="o">-</span> <span class="n">moved_mid_vol1</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;matplotlib.image.AxesImage at 0x10f187278&gt;
+</code></pre></div></div>
+
+<p><img src="../../images/chapters/03/optimizing_space_24_1.png" alt="png" /></p>
+
+<p>Can we take the sum of this difference?</p>
+
+<p>No, because the negative numbers (black) will cancel out the positive numbers (white).  We need something better:</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">mean_abs_cost</span><span class="p">(</span><span class="n">slice0</span><span class="p">,</span> <span class="n">slice1</span><span class="p">):</span>
+    <span class="s">""" Calculate a measure of similarity between two image slices
+    """</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="nb">abs</span><span class="p">(</span><span class="n">slice0</span> <span class="o">-</span> <span class="n">slice1</span><span class="p">))</span>
+</code></pre></div></div>
+
+<p>Now we can check different values of translation with our cost function.  We move the image up and down and recalculate the cost function for every candidate translation in x.</p>
+
+<p>This is what makes it a <em>cost function</em>.  The cost function gives us the cost <em>as a function of</em> some transformation, here a translation in x:</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">costs</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">translations</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">25</span><span class="p">,</span> <span class="mi">15</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">translations</span><span class="p">:</span>
+    <span class="n">unmoved</span> <span class="o">=</span> <span class="n">x_trans_slice</span><span class="p">(</span><span class="n">moved_mid_vol1</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
+    <span class="n">cost</span> <span class="o">=</span> <span class="n">mean_abs_cost</span><span class="p">(</span><span class="n">unmoved</span><span class="p">,</span> <span class="n">mid_vol0</span><span class="p">)</span>
+    <span class="n">costs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cost</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">translations</span><span class="p">,</span> <span class="n">costs</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[&lt;matplotlib.lines.Line2D at 0x10f20ccc0&gt;]
+</code></pre></div></div>
+
+<p><img src="../../images/chapters/03/optimizing_space_29_1.png" alt="png" /></p>
+
+<p>We can try other cost functions.  Another measure of how well the images match might be the correlation of the voxel values at each voxel:</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">n_voxels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span><span class="n">mid_vol1</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">mid_vol0_as_1d</span> <span class="o">=</span> <span class="n">mid_vol0</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">n_voxels</span><span class="p">)</span>
+<span class="n">mid_vol1_as_1d</span> <span class="o">=</span> <span class="n">mid_vol1</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">n_voxels</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">mid_vol1_as_1d</span><span class="p">,</span> <span class="n">mid_vol0_as_1d</span><span class="p">,</span> <span class="s">'.'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[&lt;matplotlib.lines.Line2D at 0x10f27a898&gt;]
+</code></pre></div></div>
+
+<p><img src="../../images/chapters/03/optimizing_space_31_1.png" alt="png" /></p>
+
+<p>We expect that the correlation will be high and positive when the images are well matched.  Our cost function should be low when the images are well-matched, so we can take the negative correlation:</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">correl_cost</span><span class="p">(</span><span class="n">slice0</span><span class="p">,</span> <span class="n">slice1</span><span class="p">):</span>
+    <span class="s">""" Negative correlation between the two images, flattened to 1D """</span>
+    <span class="n">correl</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">corrcoef</span><span class="p">(</span><span class="n">slice0</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">slice1</span><span class="o">.</span><span class="n">ravel</span><span class="p">())[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="k">return</span> <span class="o">-</span><span class="n">correl</span>
+</code></pre></div></div>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">correl_costs</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">translations</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">25</span><span class="p">,</span> <span class="mi">15</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">translations</span><span class="p">:</span>
+    <span class="n">unmoved</span> <span class="o">=</span> <span class="n">x_trans_slice</span><span class="p">(</span><span class="n">moved_mid_vol1</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
+    <span class="n">cost</span> <span class="o">=</span> <span class="n">correl_cost</span><span class="p">(</span><span class="n">unmoved</span><span class="p">,</span> <span class="n">mid_vol0</span><span class="p">)</span>
+    <span class="n">correl_costs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cost</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">translations</span><span class="p">,</span> <span class="n">costs</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[&lt;matplotlib.lines.Line2D at 0x10f2d6cf8&gt;]
+</code></pre></div></div>
+
+<p><img src="../../images/chapters/03/optimizing_space_35_1.png" alt="png" /></p>
+
+<p>So far we have only tried translations by exactly one voxel.</p>
+
+<p>How about non-integer translations?  Will these work?</p>
+
+<p>To do a non-integer translation, we have to think more generally about how to make an image that matches another image, after a transformation.</p>
+
+<h2 id="resampling-in-2d">Resampling in 2D</h2>
+
+<p>We need a more general reampling algorithm.  This is like the interpolation we do for slice timing, but in two dimensions.</p>
+
+<p>Let’s say we want to do a voxel translation of 0.5 voxels in X.  The way we might go about this is the following.</p>
+
+<p>To start, here are some names:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">img0</code> is the image we are trying to match to (in our case <code class="highlighter-rouge">mid_vol0</code>);</li>
+  <li><code class="highlighter-rouge">img1</code> is the image we are trying to match by moving (in our case <code class="highlighter-rouge">moved_mid_vol1</code>);</li>
+  <li><code class="highlighter-rouge">trans</code> the transformation from pixel coordinates in <code class="highlighter-rouge">img1</code> to pixel coordinates in <code class="highlighter-rouge">img0</code> (in our case adding 0.5 to the first coordinate value, so that [0, 0] becomes [0.5, 0]);</li>
+  <li><code class="highlighter-rouge">itrans</code> is the inverse of <code class="highlighter-rouge">trans</code>, and gives the transformation to go from pixel coordinates in <code class="highlighter-rouge">img0</code> to pixel coordinates in <code class="highlighter-rouge">img1</code>.  In our case this is subtracting 0.5 from the first coordinate value.</li>
+</ul>
+
+<p>The procedure for resampling is:</p>
+
+<ul>
+  <li>Make a 2D image the same shape as the image we want to match to (<code class="highlighter-rouge">img0</code>) - call this <code class="highlighter-rouge">new_img0</code>;</li>
+  <li>For each pixel in <code class="highlighter-rouge">new_img0</code>;
+    <ul>
+      <li>We will name the pixel coordinate for this pixel <code class="highlighter-rouge">coord_for_img0</code>;</li>
+      <li>transform <code class="highlighter-rouge">coord_for_img0</code> using <code class="highlighter-rouge">itrans</code>.  In our case this would be to subtract 0.5 from the first coordinate value ([0, 0] becomes [-0.5, 0]).  Call the transformed coordinate <code class="highlighter-rouge">coord_for_img1</code>;</li>
+      <li>Estimate the pixel value in <code class="highlighter-rouge">img1</code> at coordinate <code class="highlighter-rouge">coord_for_img1</code>. Call this value <code class="highlighter-rouge">img1_value_estimate</code>;</li>
+      <li>Insert <code class="highlighter-rouge">img1_value</code> into <code class="highlighter-rouge">new_img0</code> at coordinate <code class="highlighter-rouge">coord_for_img0</code>.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>The “Estimate pixel value” step is called <em>resampling</em>.  As you can see this is the same general idea as interpolating in one dimension, as for slice timing.  There are various ways of interpolating in two or three dimensions, but one of the most obvious is the simple extension of linear interpolation to two (or more) dimensions - <a href="http://en.wikipedia.org/wiki/Bilinear_interpolation">bilinear interpolation</a>.</p>
+
+<p>The <code class="highlighter-rouge">scipy.ndimage</code> library has routines for resampling in 2 or 3 dimensions:</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">scipy.ndimage</span> <span class="k">as</span> <span class="n">snd</span>
+</code></pre></div></div>
+
+<p>In fact the <code class="highlighter-rouge">affine_transform</code> function from <code class="highlighter-rouge">scipy.ndimage</code> will do the whole process for us:</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">fancy_x_trans_slice</span><span class="p">(</span><span class="n">img_slice</span><span class="p">,</span> <span class="n">x_vox_trans</span><span class="p">):</span>
+    <span class="s">""" Make a new copy of `img_slice` translated by `x_vox_trans` voxels
+    
+    `x_vox_trans` can be positive or negative, and can be a float.
+    """</span>
+    <span class="n">trans_slice</span> <span class="o">=</span> <span class="n">snd</span><span class="o">.</span><span class="n">affine_transform</span><span class="p">(</span><span class="n">img_slice</span><span class="p">,</span> 
+                                       <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span>  <span class="c"># identity rotation, zooms</span>
+                                       <span class="p">[</span><span class="o">-</span><span class="n">x_vox_trans</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">trans_slice</span>
+</code></pre></div></div>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">fine_costs</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">fine_translations</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">25</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">fine_translations</span><span class="p">:</span>
+    <span class="n">unmoved</span> <span class="o">=</span> <span class="n">fancy_x_trans_slice</span><span class="p">(</span><span class="n">moved_mid_vol1</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
+    <span class="n">cost</span> <span class="o">=</span> <span class="n">correl_cost</span><span class="p">(</span><span class="n">unmoved</span><span class="p">,</span> <span class="n">mid_vol0</span><span class="p">)</span>
+    <span class="n">fine_costs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cost</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">fine_translations</span><span class="p">,</span> <span class="n">fine_costs</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[&lt;matplotlib.lines.Line2D at 0x11b73f898&gt;]
+</code></pre></div></div>
+
+<p><img src="../../images/chapters/03/optimizing_space_44_1.png" alt="png" /></p>
+
+<p>We are looking for the best x translation.  At the moment we have to sample lots of x translations and then choose the best.  Is there a better way?</p>
+
+<h2 id="optimization">Optimization</h2>
+
+<p><em>Optimization</em> is a field of mathematics / computer science that solves this exact problem:</p>
+
+<p>http://en.wikipedia.org/wiki/Mathematical_optimization</p>
+
+<p>There are many optimization routines in Python, MATLAB and other languages.  These routines typically allow you to pass some function, and the routine returns the parameters of the function that give the lowest value.</p>
+
+<p>In our case, we will need to feed the program the cost function, which accepts one parameter (the x translation value), and which returns our cost function value for that translation.</p>
+
+<p>The optimization works by running the function at different values of the parameter (in our case, x translation), and using an algorithm to choose the next value of the parameter to try.  When it finds a parameter value for which very small changes up or down only increase the function value, the routine stops and returns the parameter value.</p>
+
+<p>We’ll use the fact that Python functions pick up variables defined in the global scope:</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">cost_function</span><span class="p">(</span><span class="n">x_trans</span><span class="p">):</span>
+    <span class="c"># Function can see and use the image slices defined </span>
+    <span class="c"># in the global (notebook) scope</span>
+    <span class="n">unmoved</span> <span class="o">=</span> <span class="n">fancy_x_trans_slice</span><span class="p">(</span><span class="n">moved_mid_vol1</span><span class="p">,</span> <span class="n">x_trans</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">correl_cost</span><span class="p">(</span><span class="n">unmoved</span><span class="p">,</span> <span class="n">mid_vol0</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># value of the negative correlation for no translatino</span>
+<span class="n">cost_function</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>-0.46640063188471781
+</code></pre></div></div>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># value of the negative correlation for translation of -10 voxels</span>
+<span class="n">cost_function</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>-0.99967828767663958
+</code></pre></div></div>
+
+<p>Now we get a general optimizing routine from the <code class="highlighter-rouge">scipy</code> Python library.  <code class="highlighter-rouge">fmin</code> finds the minimum of a function:</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">fmin</span>
+</code></pre></div></div>
+
+<p>We pass the <code class="highlighter-rouge">fmin</code> routine our Python function, and a starting value of zero for the translation:</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">fmin</span><span class="p">(</span><span class="n">cost_function</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</code></pre></div></div>
+
+<div class="output_stream highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Optimization terminated successfully.
+         Current function value: -0.999681
+         Iterations: 31
+         Function evaluations: 62
+
+</code></pre></div></div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>array([-9.9923])
+</code></pre></div></div>
+
+<p>The function ran, and found that a translation of very nearly -10 gave the smallest value for our cost function.</p>
+
+<p>What actually happened there?  Let’s track the progress using a callback function:</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">my_callback</span><span class="p">(</span><span class="n">params</span><span class="p">):</span>
+   <span class="k">print</span><span class="p">(</span><span class="s">"Trying parameters "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">params</span><span class="p">))</span>
+</code></pre></div></div>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">fmin</span><span class="p">(</span><span class="n">cost_function</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">callback</span><span class="o">=</span><span class="n">my_callback</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="output_stream highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Trying parameters [-0.0005]
+Trying parameters [-0.0015]
+Trying parameters [-0.0035]
+Trying parameters [-0.0075]
+Trying parameters [-0.0155]
+Trying parameters [-0.0315]
+Trying parameters [-0.0635]
+Trying parameters [-0.1275]
+Trying parameters [-0.2555]
+Trying parameters [-0.5115]
+Trying parameters [-1.0235]
+Trying parameters [-2.0475]
+Trying parameters [-4.0955]
+Trying parameters [-8.1915]
+Trying parameters [-10.2395]
+Trying parameters [-10.2395]
+Trying parameters [-10.2395]
+Trying parameters [-9.9835]
+Trying parameters [-9.9835]
+Trying parameters [-9.9835]
+Trying parameters [-9.9835]
+Trying parameters [-9.9995]
+Trying parameters [-9.9915]
+Trying parameters [-9.9915]
+Trying parameters [-9.9915]
+Trying parameters [-9.9925]
+Trying parameters [-9.9925]
+Trying parameters [-9.9923]
+Trying parameters [-9.9924]
+Trying parameters [-9.9923]
+Optimization terminated successfully.
+         Current function value: -0.999681
+         Iterations: 31
+         Function evaluations: 62
+
+</code></pre></div></div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>array([-9.9923])
+</code></pre></div></div>
+
+<p>The optimization routine <code class="highlighter-rouge">fmin</code> is trying various different translations, starting at 0, then going past -10, finally coming back to the optimimum (minimum) translation of very nearly -10.</p>
+
+<h2 id="more-than-one-parameter">More than one parameter</h2>
+
+<p>How about adding y translation as well?</p>
+
+<p>Our optimization routine can deal with this in a very simple way.  It does this:</p>
+
+<ul>
+  <li>Adjusts the x translation until it has reached a minimum, then;</li>
+  <li>Adjusts the y translation until it has reached a minimum, then;</li>
+  <li>Repeat x, y minimization until the minimum for both is stable.</li>
+</ul>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">fancy_xy_trans_slice</span><span class="p">(</span><span class="n">img_slice</span><span class="p">,</span> <span class="n">x_y_trans</span><span class="p">):</span>
+    <span class="s">""" Make a new copy of `img_slice` translated by `x_y_trans` voxels
+    
+    x_y_trans is a sequence or array length 2, containing the (x, y) translations in voxels.
+    
+    Values in `x_y_trans` can be positive or negative, and can be floats.
+    """</span>
+    <span class="n">x_y_trans</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">x_y_trans</span><span class="p">)</span>
+    <span class="n">trans_slice</span> <span class="o">=</span> <span class="n">snd</span><span class="o">.</span><span class="n">affine_transform</span><span class="p">(</span><span class="n">img_slice</span><span class="p">,</span>
+                                       <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span>
+                                       <span class="o">-</span><span class="n">x_y_trans</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">trans_slice</span>
+</code></pre></div></div>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">fancy_cost_at_xy</span><span class="p">(</span><span class="n">x_y_trans</span><span class="p">):</span>
+    <span class="s">""" Give cost function at xy translation values `x_y_trans`
+    """</span>
+    <span class="n">unmoved</span> <span class="o">=</span> <span class="n">fancy_xy_trans_slice</span><span class="p">(</span><span class="n">moved_mid_vol1</span><span class="p">,</span> <span class="n">x_y_trans</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">correl_cost</span><span class="p">(</span><span class="n">unmoved</span><span class="p">,</span> <span class="n">mid_vol0</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">fmin</span><span class="p">(</span><span class="n">fancy_cost_at_xy</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">callback</span><span class="o">=</span><span class="n">my_callback</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="output_stream highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Trying parameters [-0.0005  0.0004]
+Trying parameters [-0.0008  0.0001]
+Trying parameters [-0.0019  0.0007]
+Trying parameters [-0.0029  0.0003]
+Trying parameters [-0.0057  0.0014]
+Trying parameters [-0.0092  0.0012]
+Trying parameters [-0.0166  0.0032]
+Trying parameters [-0.0272  0.0039]
+Trying parameters [-0.0472  0.0082]
+Trying parameters [-0.0786  0.0117]
+Trying parameters [-0.1343  0.0221]
+Trying parameters [-0.2249  0.0344]
+Trying parameters [-0.3815  0.0612]
+Trying parameters [-0.6409  0.0992]
+Trying parameters [-1.0839  0.172 ]
+Trying parameters [-1.8243  0.2843]
+Trying parameters [-3.0804  0.486 ]
+Trying parameters [-5.1894  0.8116]
+Trying parameters [-8.7561  1.3777]
+Trying parameters [-10.865    1.7032]
+Trying parameters [-10.865    1.7032]
+Trying parameters [-10.865    1.7032]
+Trying parameters [-9.8357  1.5453]
+Trying parameters [-9.8357  1.5453]
+Trying parameters [-9.8357  1.5453]
+Trying parameters [-9.8357  1.5453]
+Trying parameters [-9.9203  1.5566]
+Trying parameters [-9.8065  1.5384]
+Trying parameters [-9.9186  1.5518]
+Trying parameters [-9.8048  1.5337]
+Trying parameters [-9.9722  1.5514]
+Trying parameters [-9.8283  1.5239]
+Trying parameters [-10.0912   1.5456]
+Trying parameters [-9.9347  1.5015]
+Trying parameters [-9.9347  1.5015]
+Trying parameters [-10.0161   1.4459]
+Trying parameters [-10.0161   1.4459]
+Trying parameters [-9.7847  1.3022]
+Trying parameters [-10.1947   1.2736]
+Trying parameters [-9.9369  0.9719]
+Trying parameters [-9.9369  0.9719]
+Trying parameters [-10.0362   0.3257]
+Trying parameters [-10.0362   0.3257]
+Trying parameters [-10.0362   0.3257]
+Trying parameters [-10.0362   0.3257]
+Trying parameters [-9.9056 -0.1448]
+Trying parameters [-10.0532  -0.1151]
+Trying parameters [-10.0078   0.0979]
+Trying parameters [-9.9681 -0.0767]
+Trying parameters [-10.0206  -0.0522]
+Trying parameters [-10.0011   0.0167]
+Trying parameters [-10.0011   0.0167]
+Trying parameters [-10.0011   0.0167]
+Trying parameters [-10.0011   0.0167]
+Trying parameters [-9.9821  0.0115]
+Trying parameters [-9.9895  0.0001]
+Trying parameters [-9.9934  0.0113]
+Trying parameters [-9.9934  0.0113]
+Trying parameters [-9.9934  0.0113]
+Trying parameters [-9.994   0.0079]
+Trying parameters [-9.9918  0.0073]
+Trying parameters [-9.9918  0.0073]
+Trying parameters [-9.9933  0.0081]
+Trying parameters [-9.9928  0.0086]
+Trying parameters [-9.9924  0.0078]
+Trying parameters [-9.9924  0.0078]
+Trying parameters [-9.9926  0.0083]
+Trying parameters [-9.9926  0.0083]
+Trying parameters [-9.9925  0.008 ]
+Trying parameters [-9.9925  0.008 ]
+Trying parameters [-9.9926  0.0081]
+Trying parameters [-9.9925  0.0081]
+Trying parameters [-9.9925  0.008 ]
+Trying parameters [-9.9925  0.008 ]
+Optimization terminated successfully.
+         Current function value: -0.999682
+         Iterations: 75
+         Function evaluations: 142
+
+</code></pre></div></div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>array([-9.9925,  0.008 ])
+</code></pre></div></div>
+
+<h2 id="full-3d-estimate">Full 3D estimate</h2>
+
+<p>Now we know how to do two parameters, it’s easy to extend this to six parameters.</p>
+
+<p>The six parameters are:</p>
+
+<ul>
+  <li>x translation</li>
+  <li>y translation</li>
+  <li>z translation</li>
+  <li>rotation around x axis (pitch)</li>
+  <li>rotation around y axis (roll)</li>
+  <li>rotation around z axis (yaw)</li>
+</ul>
+
+<p>Any transformation with these parameters is called a <em>rigid body</em> transformation because the transformation cannot make the object change shape (the object is <em>rigid</em>).</p>
+
+<p>Implementing the rotations is just slightly out of scope for this tutorial (we would have to convert between angles and <a href="http://en.wikipedia.org/wiki/Rotation_matrix">rotation matrices</a>), so here is the 3D optimization with the three translation parameters:</p>
+
+<p>First we get our volumes to match:</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">vol0</span> <span class="o">=</span> <span class="n">bold_data</span><span class="p">[:,</span> <span class="p">:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="n">vol1</span> <span class="o">=</span> <span class="n">bold_data</span><span class="p">[:,</span> <span class="p">:,</span> <span class="p">:,</span> <span class="mi">1</span><span class="p">]</span>
+</code></pre></div></div>
+
+<p>To make it a bit more interesting, shift the second volume 10 voxels on the first axis, as we did for the 2D case:</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">shifted_vol1</span> <span class="o">=</span> <span class="n">vol1</span> <span class="o">*</span> <span class="mi">0</span>
+<span class="n">shifted_vol1</span><span class="p">[</span><span class="mi">10</span><span class="p">:,</span> <span class="p">:,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">vol1</span><span class="p">[:</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">shifted_vol1</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">17</span><span class="p">])</span>
+</code></pre></div></div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;matplotlib.image.AxesImage at 0x11b7ac240&gt;
+</code></pre></div></div>
+
+<p><img src="../../images/chapters/03/optimizing_space_70_1.png" alt="png" /></p>
+
+<p>We define resampling for any given x, y, z translation:</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">xyz_trans_vol</span><span class="p">(</span><span class="n">vol</span><span class="p">,</span> <span class="n">x_y_z_trans</span><span class="p">):</span>
+    <span class="s">""" Make a new copy of `vol` translated by `x_y_z_trans` voxels
+    
+    x_y_z_trans is a sequence or array length 3, containing the (x, y, z) translations in voxels.
+    
+    Values in `x_y_z_trans` can be positive or negative, and can be floats.
+    """</span>
+    <span class="n">x_y_z_trans</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">x_y_z_trans</span><span class="p">)</span>
+    <span class="c"># [1, 1, 1] says to do no zooming or rotation</span>
+    <span class="n">trans_vol</span> <span class="o">=</span> <span class="n">snd</span><span class="o">.</span><span class="n">affine_transform</span><span class="p">(</span><span class="n">vol</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="o">-</span><span class="n">x_y_z_trans</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">trans_vol</span>
+</code></pre></div></div>
+
+<p>Our cost function (picking up <code class="highlighter-rouge">vol0</code>, <code class="highlighter-rouge">shifted_vol1</code> from the global namespace):</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">cost_at_xyz</span><span class="p">(</span><span class="n">x_y_z_trans</span><span class="p">):</span>
+    <span class="s">""" Give cost function value at xyz translation values `x_y_z_trans`
+    """</span>
+    <span class="n">unmoved</span> <span class="o">=</span> <span class="n">xyz_trans_vol</span><span class="p">(</span><span class="n">shifted_vol1</span><span class="p">,</span> <span class="n">x_y_z_trans</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">correl_cost</span><span class="p">(</span><span class="n">unmoved</span><span class="p">,</span> <span class="n">vol0</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">fmin</span><span class="p">(</span><span class="n">cost_at_xyz</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">callback</span><span class="o">=</span><span class="n">my_callback</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="output_stream highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Trying parameters [ 0.0002  0.0002 -0.0003]
+Trying parameters [-0.0003  0.0004 -0.0003]
+Trying parameters [-0.0003  0.0004 -0.0003]
+Trying parameters [-0.0003  0.0004 -0.0003]
+Trying parameters [-0.001   0.0011 -0.0006]
+Trying parameters [-0.001   0.0011 -0.0006]
+Trying parameters [-0.0018  0.0014 -0.0004]
+Trying parameters [-0.003   0.0025 -0.0012]
+Trying parameters [-0.003   0.0025 -0.0012]
+Trying parameters [-0.0058  0.0041 -0.0012]
+Trying parameters [-0.0081  0.0064 -0.0024]
+Trying parameters [-0.011  0.008 -0.003]
+Trying parameters [-0.019   0.0135 -0.0042]
+Trying parameters [-0.0265  0.0197 -0.0072]
+Trying parameters [-0.0402  0.0284 -0.0097]
+Trying parameters [-0.0637  0.0456 -0.0151]
+Trying parameters [-0.0925  0.0666 -0.0236]
+Trying parameters [-0.1434  0.1011 -0.0339]
+Trying parameters [-0.2191  0.1566 -0.0533]
+Trying parameters [-0.3275  0.2332 -0.0806]
+Trying parameters [-0.5051  0.3577 -0.1205]
+Trying parameters [-0.765   0.5451 -0.1866]
+Trying parameters [-1.1594  0.8229 -0.2813]
+Trying parameters [-1.7744  1.2594 -0.4272]
+Trying parameters [-2.6886  1.912  -0.6541]
+Trying parameters [-4.0925  2.9039 -0.9893]
+Trying parameters [-6.2367  4.4296 -1.508 ]
+Trying parameters [-6.9041  4.9043 -1.6737]
+Trying parameters [-6.9041  4.9043 -1.6737]
+Trying parameters [-6.9041  4.9043 -1.6737]
+Trying parameters [-7.5408  5.3537 -1.8235]
+Trying parameters [-7.5408  5.3537 -1.8235]
+Trying parameters [-7.5408  5.3537 -1.8235]
+Trying parameters [-7.5408  5.3537 -1.8235]
+Trying parameters [-7.5408  5.3537 -1.8235]
+Trying parameters [-7.5408  5.3537 -1.8235]
+Trying parameters [-7.2738  5.1658 -1.7608]
+Trying parameters [-7.308   5.1899 -1.7685]
+Trying parameters [-7.308   5.1899 -1.7685]
+Trying parameters [-7.4113  5.2624 -1.7928]
+Trying parameters [-7.4353  5.278  -1.7967]
+Trying parameters [-7.4353  5.278  -1.7967]
+Trying parameters [-7.4353  5.278  -1.7967]
+Trying parameters [-7.4353  5.278  -1.7967]
+Trying parameters [-7.4477  5.2858 -1.7993]
+Trying parameters [-7.4203  5.2645 -1.7901]
+Trying parameters [-7.4203  5.2645 -1.7901]
+Trying parameters [-7.5063  5.3212 -1.807 ]
+Trying parameters [-7.5402  5.3407 -1.8096]
+Trying parameters [-7.449   5.2727 -1.7847]
+Trying parameters [-7.449   5.2727 -1.7847]
+Trying parameters [-7.5532  5.3297 -1.7911]
+Trying parameters [-7.4986  5.2797 -1.7673]
+Trying parameters [-7.4986  5.2797 -1.7673]
+Trying parameters [-7.5778  5.2935 -1.7404]
+Trying parameters [-7.3938  5.1432 -1.6769]
+Trying parameters [-7.6223  5.2573 -1.6819]
+Trying parameters [-7.5967  5.1346 -1.5645]
+Trying parameters [-7.4573  4.9482 -1.4426]
+Trying parameters [-7.8887  5.0537 -1.335 ]
+Trying parameters [-7.698   4.6218 -0.9783]
+Trying parameters [-7.8506  4.3546 -0.627 ]
+Trying parameters [-8.5227  4.1338 -0.0552]
+Trying parameters [-8.2939  3.0027  1.0096]
+Trying parameters [-8.7468  3.0389  1.1966]
+Trying parameters [-9.1916  2.429   2.0609]
+Trying parameters [-9.1916  2.429   2.0609]
+Trying parameters [-9.1916  2.429   2.0609]
+Trying parameters [-9.2706  3.0214  1.4802]
+Trying parameters [-9.2706  3.0214  1.4802]
+Trying parameters [-9.2706  3.0214  1.4802]
+Trying parameters [-9.1485  2.7192  1.7354]
+Trying parameters [-9.2209  2.5103  1.9876]
+Trying parameters [-9.4346  2.6866  1.9129]
+Trying parameters [-9.4346  2.6866  1.9129]
+Trying parameters [-9.468   2.632   1.9845]
+Trying parameters [-9.468   2.632   1.9845]
+Trying parameters [-9.468   2.632   1.9845]
+Trying parameters [-9.3638  2.6788  1.8843]
+Trying parameters [-9.3683  2.6303  1.937 ]
+Trying parameters [-9.3656  2.6076  1.9576]
+Trying parameters [-9.3656  2.6076  1.9576]
+Trying parameters [-9.3656  2.6076  1.9576]
+Trying parameters [-9.4196  2.634   1.9562]
+Trying parameters [-9.4277  2.5997  1.9957]
+Trying parameters [-9.3789  2.5703  1.9987]
+Trying parameters [-9.3789  2.5703  1.9987]
+Trying parameters [-9.3789  2.5703  1.9987]
+Trying parameters [-9.3789  2.5703  1.9987]
+Trying parameters [-9.3688  2.5661  1.9952]
+Trying parameters [-9.3688  2.5661  1.9952]
+Trying parameters [-9.3688  2.5661  1.9952]
+Trying parameters [-9.3688  2.5661  1.9952]
+Trying parameters [-9.3688  2.5661  1.9952]
+Trying parameters [-9.3688  2.5661  1.9952]
+Trying parameters [-9.3484  2.5595  1.9892]
+Trying parameters [-9.3422  2.5501  1.9917]
+Trying parameters [-9.3422  2.5501  1.9917]
+Trying parameters [-9.3422  2.5501  1.9917]
+Trying parameters [-9.3014  2.5225  1.9926]
+Trying parameters [-9.2788  2.5075  1.9881]
+Trying parameters [-9.2788  2.5075  1.9881]
+Trying parameters [-9.1789  2.4293  1.9968]
+Trying parameters [-9.1378  2.3913  1.9991]
+Trying parameters [-9.1378  2.3913  1.9991]
+Trying parameters [-9.1378  2.3913  1.9991]
+Trying parameters [-9.1051  2.3736  1.9871]
+Trying parameters [-9.1051  2.3736  1.9871]
+Trying parameters [-9.0418  2.3054  1.9986]
+Trying parameters [-9.0418  2.3054  1.9986]
+Trying parameters [-9.0715  2.3238  1.9874]
+Trying parameters [-9.0715  2.3238  1.9874]
+Trying parameters [-9.0715  2.3238  1.9874]
+Trying parameters [-8.9441  2.2158  1.9745]
+Trying parameters [-8.9703  2.2107  1.9764]
+Trying parameters [-9.0744  2.2991  1.9493]
+Trying parameters [-8.8458  2.078   1.9255]
+Trying parameters [-9.0023  2.1562  1.9024]
+Trying parameters [-8.9819  2.112   1.8244]
+Trying parameters [-8.6812  1.748   1.7536]
+Trying parameters [-8.9737  1.8601  1.6293]
+Trying parameters [-8.6323  1.4077  1.4025]
+Trying parameters [-8.3234  0.7919  1.1367]
+Trying parameters [-8.5671  0.5637  0.6613]
+Trying parameters [-8.5671  0.5637  0.6613]
+Trying parameters [-8.5671  0.5637  0.6613]
+Trying parameters [-8.5671  0.5637  0.6613]
+Trying parameters [-8.5481 -0.6884 -0.4864]
+Trying parameters [-9.2121  0.1352 -0.3612]
+Trying parameters [-9.2121  0.1352 -0.3612]
+Trying parameters [-9.2121  0.1352 -0.3612]
+Trying parameters [-9.2121  0.1352 -0.3612]
+Trying parameters [-9.6276  0.1161 -0.6679]
+Trying parameters [-9.8718  0.6829 -0.3512]
+Trying parameters [-9.5235  0.5452 -0.1565]
+Trying parameters [-9.9055  0.6045 -0.4072]
+Trying parameters [-9.6973  0.3635 -0.4864]
+Trying parameters [-9.5457  0.3259 -0.3488]
+Trying parameters [-9.5457  0.3259 -0.3488]
+Trying parameters [-9.7632  0.4985 -0.3903]
+Trying parameters [-9.6701  0.4005 -0.414 ]
+Trying parameters [-9.6995  0.3284 -0.4834]
+Trying parameters [-9.6283  0.3675 -0.389 ]
+Trying parameters [-9.6283  0.3675 -0.389 ]
+Trying parameters [-9.7022  0.3269 -0.4542]
+Trying parameters [-9.7022  0.3269 -0.4542]
+Trying parameters [-9.6151  0.3126 -0.387 ]
+Trying parameters [-9.7246  0.327  -0.4149]
+Trying parameters [-9.7246  0.327  -0.4149]
+Trying parameters [-9.6325  0.2076 -0.3792]
+Trying parameters [-9.8242  0.1312 -0.5057]
+Trying parameters [-9.7866  0.2222 -0.3285]
+Trying parameters [-9.7866  0.2222 -0.3285]
+Trying parameters [-9.7866  0.2222 -0.3285]
+Trying parameters [-9.8646  0.0663 -0.1508]
+Trying parameters [-9.8646  0.0663 -0.1508]
+Trying parameters [-9.8646  0.0663 -0.1508]
+Trying parameters [-9.8646  0.0663 -0.1508]
+Trying parameters [-9.8646  0.0663 -0.1508]
+Trying parameters [-9.8646  0.0663 -0.1508]
+Trying parameters [-9.8646  0.0663 -0.1508]
+Trying parameters [-9.8646  0.0663 -0.1508]
+Trying parameters [-9.9211  0.1365 -0.047 ]
+Trying parameters [-9.9211  0.1365 -0.047 ]
+Trying parameters [-9.8956  0.0003 -0.1161]
+Trying parameters [-9.9987  0.0678 -0.0581]
+Trying parameters [-9.9987  0.0678 -0.0581]
+Trying parameters [-9.9987  0.0678 -0.0581]
+Trying parameters [-9.9987  0.0678 -0.0581]
+Trying parameters [-9.9987  0.0678 -0.0581]
+Trying parameters [-9.9987  0.0678 -0.0581]
+Trying parameters [-10.0196  -0.0138  -0.0463]
+Trying parameters [-10.0196  -0.0138  -0.0463]
+Trying parameters [-10.0196  -0.0138  -0.0463]
+Trying parameters [-9.9831 -0.0135 -0.0305]
+Trying parameters [-9.9831 -0.0135 -0.0305]
+Trying parameters [-9.9831 -0.0135 -0.0305]
+Trying parameters [-9.9831 -0.0135 -0.0305]
+Trying parameters [-9.9991 -0.0155 -0.0181]
+Trying parameters [-9.978  -0.0006 -0.0109]
+Trying parameters [-9.978  -0.0006 -0.0109]
+Trying parameters [-9.978  -0.0006 -0.0109]
+Trying parameters [-9.978  -0.0006 -0.0109]
+Trying parameters [-9.9921  0.009  -0.0099]
+Trying parameters [-9.9904 -0.0131 -0.0063]
+Trying parameters [-9.9904 -0.0131 -0.0063]
+Trying parameters [-9.9904 -0.0131 -0.0063]
+Trying parameters [-9.9904 -0.0131 -0.0063]
+Trying parameters [-9.9904 -0.0131 -0.0063]
+Trying parameters [-9.9922 -0.0069 -0.0033]
+Trying parameters [-9.9922 -0.0069 -0.0033]
+Trying parameters [-9.9922 -0.0069 -0.0033]
+Trying parameters [-9.9922 -0.0069 -0.0033]
+Trying parameters [-9.9922 -0.0069 -0.0033]
+Trying parameters [-9.9922 -0.0069 -0.0033]
+Trying parameters [-9.9922 -0.0069 -0.0033]
+Trying parameters [-9.9922 -0.0069 -0.0033]
+Trying parameters [-9.9922 -0.0069 -0.0033]
+Trying parameters [-9.9922 -0.0069 -0.0033]
+Trying parameters [-9.9924 -0.0045 -0.003 ]
+Trying parameters [-9.9935 -0.0052 -0.0022]
+Trying parameters [-9.9917 -0.0057 -0.0022]
+Trying parameters [-9.9923 -0.006  -0.0029]
+Trying parameters [-9.9923 -0.006  -0.0029]
+Trying parameters [-9.9928 -0.0054 -0.0024]
+Trying parameters [-9.9928 -0.0054 -0.0024]
+Trying parameters [-9.9924 -0.0054 -0.0026]
+Trying parameters [-9.9924 -0.0057 -0.0027]
+Trying parameters [-9.9924 -0.0057 -0.0027]
+Trying parameters [-9.9926 -0.0055 -0.0025]
+Trying parameters [-9.9926 -0.0055 -0.0025]
+Trying parameters [-9.9926 -0.0055 -0.0025]
+Trying parameters [-9.9926 -0.0057 -0.0025]
+Trying parameters [-9.9926 -0.0057 -0.0025]
+Trying parameters [-9.9925 -0.0057 -0.0025]
+Trying parameters [-9.9926 -0.0056 -0.0025]
+Trying parameters [-9.9926 -0.0056 -0.0025]
+Trying parameters [-9.9925 -0.0056 -0.0025]
+Optimization terminated successfully.
+         Current function value: -0.999277
+         Iterations: 219
+         Function evaluations: 394
+
+</code></pre></div></div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>array([-9.9925, -0.0056, -0.0025])
+</code></pre></div></div>
+
+
+          
+        </section>
+
+        <footer class="page__meta">
+          
+          
+
+
+        </footer>
+
+        
+
+        
+  <nav class="pagination">
+    
+      <a href="/fbi2018/chapters/03/slice_timing" class="pagination--pager" title="3.1 slice timing
+">Previous</a>
+    
+    
+      <a href="/fbi2018/chapters/03/mutual_information" class="pagination--pager" title="3.3 mutual information
+">Next</a>
+    
+  </nav>
+
+
+      </div>
+
+      
+    </article>
+  </div>
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><input type="text" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+    <div id="results" class="results"></div></div>
+      </div>
+    
+
+    
+
+    
+  <script src="/fbi2018/assets/js/main.min.js"></script>
+  <script src="https://use.fontawesome.com/releases/v5.0.12/js/all.js"></script>
+
+
+
+
+<script src="/fbi2018/assets/js/lunr/lunr.min.js"></script>
+<script src="/fbi2018/assets/js/lunr/lunr-store.js"></script>
+<script src="/fbi2018/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+    <!-- Custom scripts to load after site JS is loaded -->
+
+    <!-- Custom HTML used for the textbooks -->
+<!-- Configure, then load MathJax -->
+<script type="text/javascript">
+  window.MathJax = {
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      processEnvironments: true
+    }
+  };
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML-full,Safe" type="text/javascript"></script>
+
+
+<script type="text/javascript">
+// --- To auto-embed hub URLs in interact links if given in a RESTful fashion ---
+function getJsonFromUrl(url) {
+  var query = url.split('?');
+  if (query.length < 2) {
+    // No queries so just return false
+    return false;
+  }
+  query = query[1];
+  // Collect REST params into a dictionary
+  var result = {};
+  query.split("&").forEach(function(part) {
+    var item = part.split("=");
+    result[item[0]] = decodeURIComponent(item[1]);
+  });
+  return result;
+}
+
+// Parse a Binder URL, converting it to the string needed for JupyterHub
+function binder2Jupyterhub(url) {
+  newUrl = {};
+  parts = url.split('v2/gh/')[1];
+  // Grab the base repo information
+  repoinfo = parts.split('?')[0];
+  var [org, repo, ref] = repoinfo.split('/');
+  newUrl['repo'] = ['https://github.com', org, repo].join('/');
+  newUrl['branch'] = ref
+  // Grab extra parameters passed
+  params = getJsonFromUrl(url);
+  if (params['filepath'] !== undefined) {
+    newUrl['subPath'] = params['filepath']
+  }
+  return jQuery.param(newUrl);
+}
+
+// Filter out potentially unsafe characters to prevent xss
+function safeUrl(url)
+{
+   return String(encodeURIComponent(url))
+            .replace(/&/g, '&amp;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#39;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;');
+}
+
+function addParamToInternalLinks(hub) {
+  var links = $("a").each(function() {
+    var href = this.href;
+    // If the link is an internal link...
+    if (href.search("https://matthew-brett.github.io") !== -1 || href.startsWith('/') || href.search("127.0.0.1:") !== -1) {
+      // Assume we're an internal link, add the hub param to it
+      var params = getJsonFromUrl(href);
+      if (params !== false) {
+        // We have REST params, so append a new one
+        params['hub'] = hub;
+      } else {
+        // Create the REST params
+        params = {'hub': hub};
+      }
+      // Update the link
+      var newHref = href.split('?')[0] + '?' + jQuery.param(params);
+      this.setAttribute('href', decodeURIComponent(newHref));
+    }
+  });
+  return false;
+}
+
+  // Update interact links
+function updateInteractLink() {
+    // hack to make this work since it expects a ? in the URL
+    rest = getJsonFromUrl("?" + location.search.substr(1));
+    hubUrl = rest['hub'];
+    if (hubUrl !== undefined) {
+      // Sanitize the hubUrl
+      hubUrl = safeUrl(hubUrl);
+      // Add HTTP text if omitted
+      if (hubUrl.indexOf('http') < 0) {hubUrl = 'http://' + hubUrl;}
+      link = $("a.interact-button")[0];
+      if (link !== undefined) {
+          // Update the interact link URL
+          var href = link.getAttribute('href');
+          if ('binder' == 'binder') {
+            // If binder links exist, we need to re-work them for jupyterhub
+            first = [hubUrl, 'hub', 'user-redirect', 'git-sync'].join('/')
+            href = first + '?' + binder2Jupyterhub(href);
+          } else {
+            // If JupyterHub links, we only need to replace the hub url
+            href = href.replace("https://mybinder.org", hubUrl);
+          }
+          link.setAttribute('href', decodeURIComponent(href));
+
+          // Add text after interact link saying where we're launching
+          hubUrlNoHttp = decodeURIComponent(hubUrl).replace('http://', '').replace('https://', '');
+          $("a.interact-button").after($('<div class="interact-context">on ' + hubUrlNoHttp + '</div>'));
+
+      }
+      // Update internal links so we retain the hub url
+      addParamToInternalLinks(hubUrl);
+    }
+}
+
+// --- Highlight the part of sidebar for current page ---
+
+// helper to replace trailing slash
+function replaceSlash(string)
+{
+    return string.replace(/\/$/, "");
+}
+
+// Add a class to the current page in the sidebar
+function highlightSidebarCurrentPage()
+{
+  var currentpage = location.href;
+  var links = $('.sidebar .nav__items a');
+  var ii = 0;
+  for(ii; ii < links.length; ii++) {
+    var link = links[ii];
+    if(replaceSlash(link.href) == replaceSlash(currentpage)) {
+      // Add CSS for styling
+      link.classList.add("current");
+      // Scroll to this element
+      $('div.sidebar').scrollTop(link.offsetTop - 300);
+    }
+  }
+}
+
+// --- Set up copy/paste for code blocks ---
+function addCopyButtonToCode(){
+  // get all <code> elements
+  var allCodeBlocksElements = $( "div.input_area code, div.highlighter-rouge code" );
+
+  allCodeBlocksElements.each(function(ii) {
+   	// add different id for each code block
+
+  	// target
+    var currentId = "codeblock" + (ii + 1);
+    $(this).attr('id', currentId);
+
+    //trigger
+    var clipButton = '<button class="btn copybtn" data-clipboard-target="#' + currentId + '"><img src="https://clipboardjs.com/assets/images/clippy.svg" width="13" alt="Copy to clipboard"></button>';
+       $(this).after(clipButton);
+    });
+
+    new Clipboard('.btn');
+}
+
+// Run scripts when page is loaded
+$(document).ready(function () {
+  // Add anchors to H1 etc links
+  anchors.add();
+  // Highlight current page in sidebar
+  highlightSidebarCurrentPage();
+  // Add copy button to code blocks
+  addCopyButtonToCode();
+  // Update the Interact link if a REST param given
+  updateInteractLink();
+});
+</script>
+
+  </body>
+</html>

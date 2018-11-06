@@ -1,4 +1,7 @@
-.PHONY: help textbook clean serve
+.PHONY: help textbook clean serve bibliography
+
+BIBLIOGRAPHIES= _data-science-bib/data_science.bib \
+				_bibliography/course.bib
 
 help:
 	@echo "Please use 'make <target>' where <target> is one of:"
@@ -23,14 +26,26 @@ check:
 rebuild-notebooks:
 	python scripts/rebuild_notebooks.py
 
-build: rebuild-notebooks
+bibliography: $(BIBLIOGRAPHIES)
+	cat $(BIBLIOGRAPHIES) > _bibliography/references.bib
+
+components: bibliography rebuild-notebooks textbook
+
+build: components
 	bundle exec jekyll build
 
-github: build
+kill-server:
+	bash scripts/kill_server.sh
+
+check-site:
+	bash scripts/check_site.sh
+
+github: kill-server build check-site
 	ghp-import -n _site -p -f
 
 clean:
 	python scripts/clean.py
+	rm _bibliography/references.bib
 
 ship: clean rebuild-notebooks textbook
 
@@ -40,5 +55,11 @@ ship: clean rebuild-notebooks textbook
 # bundle config build.nokogiri --use-system-libraries
 # bundle install
 
-serve:
+serve: components
 	bundle exec jekyll serve
+
+make continuous-build:
+	while true; do \
+		(make rebuild-notebooks || tput bel) ; \
+		sleep 5; \
+	done

@@ -14,13 +14,15 @@
 import os
 import sys
 from os.path import (abspath, join as pjoin, splitext, sep as fsep,
-                     getmtime, isfile, dirname)
+                     getmtime, isfile, dirname, isdir)
 from subprocess import check_call
 
 
 def searchfor(path, extensions):
     """ Search `path` recursively for files with given `extensions`
     """
+    if not isdir(path):
+        return
     for entry in os.scandir(path):
         if entry.name.startswith('.'):
             continue
@@ -157,6 +159,7 @@ class Build:
         check_call(['jupytext', '--to', 'notebook', nb_src])
         # Run .ipynb
         check_call(['jupyter', 'nbconvert', '--inplace',
+                    '--ExecutePreprocessor.timeout=60',
                     '--ExecutePreprocessor.kernel_name=python3',
                     '--to', 'notebook', '--execute', nb_built])
         self._delete_built(base, self.built_exts)
