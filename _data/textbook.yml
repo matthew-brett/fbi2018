@@ -55,7 +55,19 @@ chapters:
   - class: level_1
     title: 4.1 First activation
     url: chapters/04/first_activation
+  - class: level_1
+    title: 4.2 Correlation each voxel
+    url: chapters/04/correlation_each_voxel
+  - class: level_1
+    title: 4.3 Convolution
+    url: chapters/04/convolution
+  - class: level_1
+    title: 4.5 General linear model
+    url: chapters/04/glm_intro
+  - class: level_1
+    title: 4.4 Linear model on one voxel
+    url: chapters/04/glm_one_voxel
   class: level_0
-  title: 4. A6tivation
+  title: 4. Activation
   url: chapters/04/activation
 first_chapter_url: chapters/01/intro
