@@ -15,5 +15,5 @@
   * [3.3 mutual information](notebooks/03/mutual_information.ipynb)
   * [3.4 normalization](notebooks/03/normalization.md)
   * [3.5 smoothing](notebooks/03/smoothing_intro.ipynb)
-* [4. A6tivation](notebooks/04/activation.md)
+* [4. Activation](notebooks/04/activation.md)
   * [4.1 First activation](notebooks/04/first_activation.ipynb)
