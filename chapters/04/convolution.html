@@ -1,0 +1,895 @@
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Improving the haemodynamic model with convolution - FBI 2018</title>
+<meta name="description" content="Improving the haemodynamic model with convolution">
+
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_UK">
+<meta property="og:site_name" content="FBI 2018">
+<meta property="og:title" content="Improving the haemodynamic model with convolution">
+<meta property="og:url" content="https://matthew-brett.github.io/fbi2018/chapters/04/convolution">
+
+
+  <meta property="og:description" content="Improving the haemodynamic model with convolution">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2018-11-20T00:20:12+00:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://matthew-brett.github.io/fbi2018/chapters/04/convolution">
+
+
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Person",
+      "name": "Matthew Brett",
+      "url": "https://matthew-brett.github.io/fbi2018",
+      "sameAs": null
+    }
+  </script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/fbi2018/feed.xml" type="application/atom+xml" rel="alternate" title="FBI 2018 Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/fbi2018/assets/css/main.css">
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+    <!-- start custom head snippets -->
+
+
+<!-- end custom head snippets -->
+
+    <link rel="stylesheet" href="/fbi2018/assets/css/notebook-markdown.css">
+    <link rel="stylesheet" href="/fbi2018/assets/css/custom.css">
+    <link rel="shortcut icon" type="image/png" href="/fbi2018/favicon.png">
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.1/anchor.min.js"></script>
+  </head>
+
+  <body class="layout--textbook">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" class="textbook" role="main">
+  <div id="textbook_wrapper">
+    
+  <div class="sidebar sticky textbook">
+  
+  
+    <img src="/fbi2018/images/fbi2018.png" class="textbook_logo" />
+    
+
+    
+      
+
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">Toggle Menu</label>
+  <ul class="nav__items">
+    
+      <li>
+        
+          
+          
+
+          <a href="/fbi2018/"><span class="nav__sub-title">Home</span></a>
+        
+
+        
+      </li>
+    
+      <li>
+        
+          
+          
+
+          <a href="/fbi2018/chapters/01/intro"><span class="nav__sub-title">1. Introduction to MRI data</span></a>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/01/error" class="level_1">1.1 Why worry?</a></li>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/01/why_python" class="level_1">1.2 Why Python?</a></li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          
+          
+
+          <a href="/fbi2018/chapters/02/fmri_data"><span class="nav__sub-title">2. FMRI data</span></a>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/02/what_is_an_image" class="level_1">2.1 A brain image</a></li>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/02/arrays_and_images" class="level_1">2.2 Arrays and images</a></li>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/02/images_3d" class="level_1">2.3 3D images</a></li>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/02/images_4d" class="level_1">2.4 4D images</a></li>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/02/voxel_time_courses" class="level_1">2.5 Voxel time courses</a></li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          
+          
+
+          <a href="/fbi2018/chapters/03/preprocessing"><span class="nav__sub-title">3. FMRI pre-processing</span></a>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/03/slice_timing" class="level_1">3.1 slice timing</a></li>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/03/optimizing_space" class="level_1">3.2 optimizing space</a></li>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/03/mutual_information" class="level_1">3.3 mutual information</a></li>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/03/normalization" class="level_1">3.4 normalization</a></li>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/03/smoothing_intro" class="level_1">3.5 smoothing</a></li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          
+          
+
+          <a href="/fbi2018/chapters/04/activation"><span class="nav__sub-title">4. Activation</span></a>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/04/first_activation" class="level_1">4.1 First activation</a></li>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/04/correlation_each_voxel" class="level_1">4.2 Correlation each voxel</a></li>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/04/convolution" class="level_1">4.3 Convolution</a></li>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/04/glm_intro" class="level_1">4.5 General linear model</a></li>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/04/glm_one_voxel" class="level_1">4.4 Linear model on one voxel</a></li>
+          
+        </ul>
+        
+      </li>
+    
+  </ul>
+</nav>
+
+    
+
+  
+  </div>
+
+
+    <article class="page textbook" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="headline" content="Improving the haemodynamic model with convolution">
+      <meta itemprop="description" content="Improving the haemodynamic model with convolution">
+      <meta itemprop="datePublished" content="November 20, 2018">
+      
+
+      <div class="page__inner-wrap">
+        
+          <header>
+            <h1 id="page-title" class="page__title" itemprop="headline">Improving the haemodynamic model with convolution
+</h1>
+          </header>
+        
+
+        <section class="page__content" itemprop="text">
+          
+            
+
+<!-- TOC will only show up if it has at least one item -->
+
+
+  <aside class="sidebar__right">
+    <nav class="toc">
+      <header><h4 class="nav__title"><i class="fas fa-list-ul"></i>   On this page</h4></header>
+      <ul class="toc__menu">
+  <li><a href="#getting-the-convolved-regressor">Getting the convolved regressor</a></li>
+  <li><a href="#using-scipy">Using scipy</a></li>
+  <li><a href="#constructing-a-haemodynamic-response-function">Constructing a haemodynamic response function</a></li>
+  <li><a href="#making-the-convolved-regressor">Making the convolved regressor</a></li>
+  <li><a href="#using-the-convolved-regressor">Using the convolved regressor</a></li>
+</ul>
+    </nav>
+  </aside>
+
+
+          
+          <!-- INTERACT LINKS -->
+
+    
+    
+    <a class="notebook-link" href="https://matthew-brett.github.io/fbi2018/notebooks/04/convolution.ipynb">Download notebook</a>
+    <a class="interact-button" href="https://mybinder.org/v2/gh/matthew-brett/fbi2018/master?filepath=notebooks%2F04%2Fconvolution.ipynb">Interact</a>
+
+
+          
+<p>Start with our usual imports:</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="c"># Only show 6 decimals when printing</span>
+<span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+
+<span class="kn">import</span> <span class="nn">nibabel</span> <span class="k">as</span> <span class="n">nib</span>
+</code></pre></div></div>
+
+<p>Load the 4D image ready for analysis:</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">img</span> <span class="o">=</span> <span class="n">nib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s">'ds114_sub009_t2r1.nii'</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">get_fdata</span><span class="p">()</span>
+<span class="n">data</span><span class="o">.</span><span class="n">shape</span>
+</code></pre></div></div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(64, 64, 30, 173)
+</code></pre></div></div>
+
+<h2 id="getting-the-convolved-regressor">Getting the convolved regressor</h2>
+
+<h2 id="using-scipy">Using scipy</h2>
+
+<p><em>Scipy</em> is a large library of scientific routines that builds on top of numpy.</p>
+
+<p>You can think of Numpy as being a subset of MATLAB, and Numpy + Scipy as being
+as being roughly equivalent to MATLAB plus the MATLAB toolboxes.</p>
+
+<p>Scipy has many sub-packages, for doing things like reading MATLAB <code class="highlighter-rouge">.mat</code>
+files (<code class="highlighter-rouge">scipy.io</code>) or working with sparse matrices (<code class="highlighter-rouge">scipy.sparse</code>). We
+are going to be using the functions and objects for working with statistical
+distributions in <code class="highlighter-rouge">scipy.stats</code>:</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">scipy.stats</span>
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">scipy.stats</code> contains objects for working with many different distributions.
+We are going to be working with <code class="highlighter-rouge">scipy.stats.gamma</code>, which implements the
+<a href="https://en.wikipedia.org/wiki/Gamma_distribution">gamma distribution</a>.</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">gamma</span>
+</code></pre></div></div>
+
+<p>In particular we are interested in the <a href="https://en.wikipedia.org/wiki/Probability_density_function">probability density
+function</a> (PDF) of
+the gamma distribution.</p>
+
+<p>Because this is a function, we need to pass it an array of values at which it
+will evaluate.</p>
+
+<p>We can also pass various parameters which change the shape, location and width
+of the gamma PDF. The most important is the first parameter (after the input
+array) known as the <a href="https://en.wikipedia.org/wiki/Shape_parameter">shape
+parameter</a> ($k$ in the
+<a href="https://en.wikipedia.org/wiki/Gamma_distribution">wikipedia page on gamma
+distributions</a>).</p>
+
+<p>First we chose some x values at which to sample from the gamma PDF:</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># From 0 up to 25 in steps of 0.1</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Next we plot the gamma PDF for shape values of 2, 4, 8, 12.</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">gamma</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s">'k=2'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">gamma</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s">'k=4'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">gamma</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s">'k=8'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">gamma</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">12</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s">'k=12'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+</code></pre></div></div>
+
+<p><img src="../../images/chapters/04/convolution_11_0.png" alt="png" /></p>
+
+<h2 id="constructing-a-haemodynamic-response-function">Constructing a haemodynamic response function</h2>
+
+<p>We can use these gamma functions to construct a continuous function that is
+close to the haemodynamic response we observe for a single brief event in the
+brain.</p>
+
+<p>Our function will accept an array that gives the times we want to calculate the
+HRF for, and returns the values of the HRF for those times.  We will assume
+that the true HRF starts at zero, and gets to zero sometime before 35 seconds.</p>
+
+<p>We’re going to try using the sum of two <a href="https://en.wikipedia.org/wiki/Gamma_distribution">gamma
+distribution</a> probability
+density functions.</p>
+
+<p>Here is one example of such a function:</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">hrf</span><span class="p">(</span><span class="n">times</span><span class="p">):</span>
+    <span class="s">""" Return values for HRF at given times """</span>
+    <span class="c"># Gamma pdf for the peak</span>
+    <span class="n">peak_values</span> <span class="o">=</span> <span class="n">gamma</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+    <span class="c"># Gamma pdf for the undershoot</span>
+    <span class="n">undershoot_values</span> <span class="o">=</span> <span class="n">gamma</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span>
+    <span class="c"># Combine them</span>
+    <span class="n">values</span> <span class="o">=</span> <span class="n">peak_values</span> <span class="o">-</span> <span class="mf">0.35</span> <span class="o">*</span> <span class="n">undershoot_values</span>
+    <span class="c"># Scale max to 0.6</span>
+    <span class="k">return</span> <span class="n">values</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="nb">max</span><span class="p">(</span><span class="n">values</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.6</span>
+</code></pre></div></div>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">hrf</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">'time'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">'HRF model of signal'</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p><img src="../../images/chapters/04/convolution_14_0.png" alt="png" /></p>
+
+<p>We can sample from the function, to get the estimates at the times of our TRs.
+Remember, the TR is 2.5 for our example data, meaning the scans were 2.5
+seconds apart.</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">TR</span> <span class="o">=</span> <span class="mf">2.5</span>
+<span class="n">tr_times</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="n">TR</span><span class="p">)</span>
+<span class="n">hrf_at_trs</span> <span class="o">=</span> <span class="n">hrf</span><span class="p">(</span><span class="n">tr_times</span><span class="p">)</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">hrf_at_trs</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tr_times</span><span class="p">,</span> <span class="n">hrf_at_trs</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">'time'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">'HRF sampled every 2.5 seconds'</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p><img src="../../images/chapters/04/convolution_16_0.png" alt="png" /></p>
+
+<h2 id="making-the-convolved-regressor">Making the convolved regressor</h2>
+
+<p>We can use this to convolve our neural (on-off) prediction.  This will give us
+a haemodynamic prediction, under the linear-time-invariant assumptions of the
+convolution.  You will recognize this snippet from the <a href="../02/voxel_time_courses">voxel time
+courses</a> notebook:</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#- Make new zero vector for neural prediction</span>
+<span class="n">neural_prediction</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">img</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<span class="c">#- Read the file into an array called "task".</span>
+<span class="c">#- "task" should have 3 columns (onset, duration, amplitude)</span>
+<span class="n">task</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s">'ds114_sub009_t2r1_cond.txt'</span><span class="p">)</span>
+<span class="c">#- Select first two columns and divide by TR</span>
+<span class="n">ons_durs</span> <span class="o">=</span> <span class="n">task</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">2</span><span class="p">]</span> <span class="o">/</span> <span class="n">TR</span>
+<span class="c">#- Fill in values of 1 for positions of on blocks in time course</span>
+<span class="c"># Convert onsets, durations to integers first</span>
+<span class="n">ons_durs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="nb">round</span><span class="p">(</span><span class="n">ons_durs</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">onset</span><span class="p">,</span> <span class="n">duration</span> <span class="ow">in</span> <span class="n">ons_durs</span><span class="p">:</span>
+    <span class="n">neural_prediction</span><span class="p">[</span><span class="n">onset</span><span class="p">:</span><span class="n">onset</span> <span class="o">+</span> <span class="n">duration</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+</code></pre></div></div>
+
+<p>Plot the on-off neural predictor:</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">all_tr_times</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">173</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">all_tr_times</span><span class="p">,</span> <span class="n">neural_prediction</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p><img src="../../images/chapters/04/convolution_20_0.png" alt="png" /></p>
+
+<p>When we convolve, the output is length N + M-1, where N is the number of values
+in the vector we convolved, and M is the length of the convolution kernel
+(<code class="highlighter-rouge">hrf_at_trs</code> in our case).  For a reminder of why this is, see the <a href="https://matthew-brett.github.io/teaching/on_convolution.html">tutorial
+on convolution</a>.</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">convolved</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">convolve</span><span class="p">(</span><span class="n">neural_prediction</span><span class="p">,</span> <span class="n">hrf_at_trs</span><span class="p">)</span>
+<span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">neural_prediction</span><span class="p">)</span>  <span class="c"># M == n_vols == 173</span>
+<span class="n">M</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">hrf_at_trs</span><span class="p">)</span>  <span class="c"># M == 12</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">convolved</span><span class="p">)</span> <span class="o">==</span> <span class="n">N</span> <span class="o">+</span> <span class="n">M</span> <span class="o">-</span> <span class="mi">1</span>
+</code></pre></div></div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>True
+</code></pre></div></div>
+
+<p>This is because of the HRF convolution kernel falling off the end of the input
+vector. The value at index 172 in the new vector refers to time 172 * 2.5
+= 430.0 seconds, and value at index 173 refers to time 432.5 seconds, which is
+just after the end of the scanning run. To retain only the values in the new
+haemodynamic vector that refer to times up to (and including) 430s, we can just
+drop the last <code class="highlighter-rouge">len(hrf_at_trs) - 1 == M - 1</code> values:</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">n_to_remove</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">hrf_at_trs</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+<span class="n">convolved</span> <span class="o">=</span> <span class="n">convolved</span><span class="p">[:</span><span class="o">-</span><span class="n">n_to_remove</span><span class="p">]</span>
+</code></pre></div></div>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">all_tr_times</span><span class="p">,</span> <span class="n">neural_prediction</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">all_tr_times</span><span class="p">,</span> <span class="n">convolved</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p><img src="../../images/chapters/04/convolution_25_0.png" alt="png" /></p>
+
+<h2 id="using-the-convolved-regressor">Using the convolved regressor</h2>
+
+<p>In <a href="../02/voxel_time_courses">voxel time courses</a> you saw the correlation of
+the neural predictor with the voxel time course.</p>
+
+<p>Now we have a better predictor than the neural predictor.</p>
+
+<p>The signal we have from the FMRI image is haemodynamic.  Therefore, the neural
+signal gets transformed through the haemodynamic response function.</p>
+
+<p>We should therefore correlate the voxel time course with a haemodynamic predictor - that is - the neural predictor convolved with the haemodynamic response function.</p>
+
+<p>We get the voxel time course for the voxel we were looking at in <a href="../02/voxel_time_courses">voxel time courses</a>:</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># This is slicing over all three of the space axes</span>
+<span class="n">voxel_time_course</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="mi">42</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="p">:]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">voxel_time_course</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p><img src="../../images/chapters/04/convolution_27_0.png" alt="png" /></p>
+
+<p>First drop the first element of both regressors, to remove the T1 artifact:</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Drop the first volumes-worth from the regressor</span>
+<span class="n">convolved</span> <span class="o">=</span> <span class="n">convolved</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+<span class="n">voxel_time_course</span> <span class="o">=</span> <span class="n">voxel_time_course</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+</code></pre></div></div>
+
+<p>Plot, and do correlation:</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">convolved</span><span class="p">,</span> <span class="n">voxel_time_course</span><span class="p">,</span> <span class="s">'x'</span><span class="p">)</span>
+<span class="n">np</span><span class="o">.</span><span class="n">corrcoef</span><span class="p">(</span><span class="n">convolved</span><span class="p">,</span> <span class="n">voxel_time_course</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>array([[1.      , 0.700467],
+       [0.700467, 1.      ]])
+</code></pre></div></div>
+
+<p><img src="../../images/chapters/04/convolution_31_1.png" alt="png" /></p>
+
+<p>Compare to <a href="02/voxel_time_courses">voxel time courses</a>.</p>
+
+          
+        </section>
+
+        <footer class="page__meta">
+          
+          
+
+
+        </footer>
+
+        
+
+        
+  <nav class="pagination">
+    
+      <a href="/fbi2018/chapters/04/correlation_each_voxel" class="pagination--pager" title="4.2 Correlation each voxel
+">Previous</a>
+    
+    
+      <a href="/fbi2018/chapters/04/glm_intro" class="pagination--pager" title="4.5 General linear model
+">Next</a>
+    
+  </nav>
+
+
+      </div>
+
+      
+    </article>
+  </div>
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><input type="text" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+    <div id="results" class="results"></div></div>
+      </div>
+    
+
+    
+
+    
+  <script src="/fbi2018/assets/js/main.min.js"></script>
+  <script src="https://use.fontawesome.com/releases/v5.0.12/js/all.js"></script>
+
+
+
+
+<script src="/fbi2018/assets/js/lunr/lunr.min.js"></script>
+<script src="/fbi2018/assets/js/lunr/lunr-store.js"></script>
+<script src="/fbi2018/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+    <!-- Custom scripts to load after site JS is loaded -->
+
+    <!-- Custom HTML used for the textbooks -->
+<!-- Configure, then load MathJax -->
+<script type="text/javascript">
+  window.MathJax = {
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      processEnvironments: true
+    }
+  };
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML-full,Safe" type="text/javascript"></script>
+
+
+<script type="text/javascript">
+// --- To auto-embed hub URLs in interact links if given in a RESTful fashion ---
+function getJsonFromUrl(url) {
+  var query = url.split('?');
+  if (query.length < 2) {
+    // No queries so just return false
+    return false;
+  }
+  query = query[1];
+  // Collect REST params into a dictionary
+  var result = {};
+  query.split("&").forEach(function(part) {
+    var item = part.split("=");
+    result[item[0]] = decodeURIComponent(item[1]);
+  });
+  return result;
+}
+
+// Parse a Binder URL, converting it to the string needed for JupyterHub
+function binder2Jupyterhub(url) {
+  newUrl = {};
+  parts = url.split('v2/gh/')[1];
+  // Grab the base repo information
+  repoinfo = parts.split('?')[0];
+  var [org, repo, ref] = repoinfo.split('/');
+  newUrl['repo'] = ['https://github.com', org, repo].join('/');
+  newUrl['branch'] = ref
+  // Grab extra parameters passed
+  params = getJsonFromUrl(url);
+  if (params['filepath'] !== undefined) {
+    newUrl['subPath'] = params['filepath']
+  }
+  return jQuery.param(newUrl);
+}
+
+// Filter out potentially unsafe characters to prevent xss
+function safeUrl(url)
+{
+   return String(encodeURIComponent(url))
+            .replace(/&/g, '&amp;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#39;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;');
+}
+
+function addParamToInternalLinks(hub) {
+  var links = $("a").each(function() {
+    var href = this.href;
+    // If the link is an internal link...
+    if (href.search("https://matthew-brett.github.io") !== -1 || href.startsWith('/') || href.search("127.0.0.1:") !== -1) {
+      // Assume we're an internal link, add the hub param to it
+      var params = getJsonFromUrl(href);
+      if (params !== false) {
+        // We have REST params, so append a new one
+        params['hub'] = hub;
+      } else {
+        // Create the REST params
+        params = {'hub': hub};
+      }
+      // Update the link
+      var newHref = href.split('?')[0] + '?' + jQuery.param(params);
+      this.setAttribute('href', decodeURIComponent(newHref));
+    }
+  });
+  return false;
+}
+
+  // Update interact links
+function updateInteractLink() {
+    // hack to make this work since it expects a ? in the URL
+    rest = getJsonFromUrl("?" + location.search.substr(1));
+    hubUrl = rest['hub'];
+    if (hubUrl !== undefined) {
+      // Sanitize the hubUrl
+      hubUrl = safeUrl(hubUrl);
+      // Add HTTP text if omitted
+      if (hubUrl.indexOf('http') < 0) {hubUrl = 'http://' + hubUrl;}
+      link = $("a.interact-button")[0];
+      if (link !== undefined) {
+          // Update the interact link URL
+          var href = link.getAttribute('href');
+          if ('binder' == 'binder') {
+            // If binder links exist, we need to re-work them for jupyterhub
+            first = [hubUrl, 'hub', 'user-redirect', 'git-sync'].join('/')
+            href = first + '?' + binder2Jupyterhub(href);
+          } else {
+            // If JupyterHub links, we only need to replace the hub url
+            href = href.replace("https://mybinder.org", hubUrl);
+          }
+          link.setAttribute('href', decodeURIComponent(href));
+
+          // Add text after interact link saying where we're launching
+          hubUrlNoHttp = decodeURIComponent(hubUrl).replace('http://', '').replace('https://', '');
+          $("a.interact-button").after($('<div class="interact-context">on ' + hubUrlNoHttp + '</div>'));
+
+      }
+      // Update internal links so we retain the hub url
+      addParamToInternalLinks(hubUrl);
+    }
+}
+
+// --- Highlight the part of sidebar for current page ---
+
+// helper to replace trailing slash
+function replaceSlash(string)
+{
+    return string.replace(/\/$/, "");
+}
+
+// Add a class to the current page in the sidebar
+function highlightSidebarCurrentPage()
+{
+  var currentpage = location.href;
+  var links = $('.sidebar .nav__items a');
+  var ii = 0;
+  for(ii; ii < links.length; ii++) {
+    var link = links[ii];
+    if(replaceSlash(link.href) == replaceSlash(currentpage)) {
+      // Add CSS for styling
+      link.classList.add("current");
+      // Scroll to this element
+      $('div.sidebar').scrollTop(link.offsetTop - 300);
+    }
+  }
+}
+
+// --- Set up copy/paste for code blocks ---
+function addCopyButtonToCode(){
+  // get all <code> elements
+  var allCodeBlocksElements = $( "div.input_area code, div.highlighter-rouge code" );
+
+  allCodeBlocksElements.each(function(ii) {
+   	// add different id for each code block
+
+  	// target
+    var currentId = "codeblock" + (ii + 1);
+    $(this).attr('id', currentId);
+
+    //trigger
+    var clipButton = '<button class="btn copybtn" data-clipboard-target="#' + currentId + '"><img src="https://clipboardjs.com/assets/images/clippy.svg" width="13" alt="Copy to clipboard"></button>';
+       $(this).after(clipButton);
+    });
+
+    new Clipboard('.btn');
+}
+
+// Run scripts when page is loaded
+$(document).ready(function () {
+  // Add anchors to H1 etc links
+  anchors.add();
+  // Highlight current page in sidebar
+  highlightSidebarCurrentPage();
+  // Add copy button to code blocks
+  addCopyButtonToCode();
+  // Update the Interact link if a REST param given
+  updateInteractLink();
+});
+</script>
+
+  </body>
+</html>

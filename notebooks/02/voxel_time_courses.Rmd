@@ -123,7 +123,7 @@
           
           
             <li class="masthead__menu-item">
-              <a href="/fbi2018/chapters/01/intro">Textbook</a>
+                <a href="/fbi2018/chapters/01/intro">Notes</a>
             </li>
           
           
@@ -190,7 +190,7 @@ For this notebook you will need:
 # Our usual set-up
 import numpy as np
 import matplotlib.pyplot as plt
-%matplotlib inline
+# %matplotlib inline
 # Display array values to 4 digits of precision
 np.set_printoptions(precision=4, suppress=True)
 ```
@@ -257,9 +257,9 @@ with the image value at that position (43, 32, 19), for every point in time:
 
 ```{python}
 # This is slicing over all three of the space axes
-voxel_time_course = data[42, 32, 19]
+voxel_time_course = data[42, 32, 19, :]
 voxel_time_course.shape
-plt.plot(voxel_time_course)
+plt.plot(voxel_time_course);
 ```
 
 We could call this a “voxel time course”.
@@ -275,58 +275,54 @@ We call this a “neural” time course, because we believe that the nerves in t
 relevant brain area will switch on when the task starts (value = 1) and then
 switch off when the task stops (value = 0).
 
-To get this on-off measure, we first need to load the stimulus file:
+To get this on-off measure, we first need to load the stimulus file, and work out the scan numbers at which each block started and ended.
+
+The stimulus file is `ds114_sub009_t2r1_cond.txt`.
+
+In fact, it has times in *seconds*, not scans.
+
+We will need to use the *TR* to convert between seconds and scan numbers.
+
+Remember, the TR is the Time to Repeat, and, for an Echo Planar run (like an FMRI run), it is the time from the start of acquisition of one volume, and the start of acquisition of the next.
 
 ```{python}
-def events2neural(task_fname, tr, n_trs):
-    """ Return predicted neural time course from event file `task_fname`
+TR = 2.5  # time between volumes
+```
 
-    Parameters
-    ----------
-    task_fname : str
-        Filename of event file
-    tr : float
-        TR in seconds
-    n_trs : int
-        Number of TRs in functional run
+Now we can create a vector of ones and zeros, with one value for each scan.
+1 means the scan was during the activation block, and 0 means the scan was
+during a rest block.
 
-    Returns
-    -------
-    time_course : array shape (n_trs,)
-        Predicted neural time course, one value per TR
-    """
-    task = np.loadtxt(task_fname)
-    # Convert onset, duration seconds to TRs
-    task[:, :2] = task[:, :2] / tr
-    ons_dur = task[:, :2]
-    # Neural time course from onset, duration, amplitude for each event
-    time_course = np.zeros(n_trs)
-    for onset, duration, amplitude in task:
-        # Make onset and duration integers
-        onset = int(round(onset))
-        duration = int(round(duration))
-        time_course[onset:onset + duration] = amplitude
-    return time_course
+
+```{python}
+#- Make new zero vector for neural prediction
+neural_prediction = np.zeros(img.shape[-1])
+#- Read the file into an array called "task".
+#- "task" should have 3 columns (onset, duration, amplitude)
+task = np.loadtxt('ds114_sub009_t2r1_cond.txt')
+#- Select first two columns and divide by TR
+ons_durs = task[:, :2] / TR
+#- Fill in values of 1 for positions of on blocks in time course
+# Convert onsets, durations to integers first
+ons_durs = np.round(ons_durs).astype(int)
+for onset, duration in ons_durs:
+    neural_prediction[onset:onset + duration] = 1
 ```
 
 ```{python}
-# Use the new function to load the event traces
-TR = 2.5  # time between volumes
-n_trs = img.shape[-1]  # The original number of TRs
-neural = events2neural('ds114_sub009_t2r1_cond.txt', TR, n_trs)
-plt.plot(neural)
+plt.plot(neural_prediction);
 ```
 
 Here we plot the voxel time course against this neural prediction:
 
 ```{python}
 # Plot the neural prediction against the data
-neural = neural[1:]
+neural_prediction = neural_prediction[1:]
 # Notice the 'o' to specify the "line marker"
-plt.plot(neural, voxel_time_course, 'o')
+plt.plot(neural_prediction, voxel_time_course, 'o')
 # Set the axis limits to give space on left and right
 axis = plt.gca()
-axis.set_xlim(-0.1, 1.1)
+axis.set_xlim(-0.1, 1.1);
 ```
 
 We can look at the correlation between the on-off prediction and the voxel
@@ -334,7 +330,7 @@ time course:
 
 ```{python}
 # Correlate the neural time course with the voxel time course
-np.corrcoef(neural, voxel_time_course)
+np.corrcoef(neural_prediction, voxel_time_course)
 ```
 
         

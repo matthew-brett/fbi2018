@@ -79,10 +79,30 @@ var store = [{
         "tags": [],
         "url": "https://matthew-brett.github.io/fbi2018/chapters/04/activation",
         "teaser":null},{
+        "title": "Improving the haemodynamic model with convolution",
+        "excerpt":"Start with our usual imports: import numpy as np# Only show 6 decimals when printingnp.set_printoptions(precision=6)import matplotlib.pyplot as plt%matplotlib inlineimport nibabel as nibLoad the 4D image ready for analysis: img = nib.load('ds114_sub009_t2r1.nii')data = img.get_fdata()data.shape(64, 64, 30, 173)Getting the convolved regressor Using scipy Scipy is a large library of scientific routines that...","categories": [],
+        "tags": [],
+        "url": "https://matthew-brett.github.io/fbi2018/chapters/04/convolution",
+        "teaser":null},{
+        "title": "Correlation r value for each voxel in the brain",
+        "excerpt":"In this exercise, we will take each voxel time course in the brain, andcalculate a correlation between the task-on / task-off vector and the voxeltime course. We then make a new 3D volume that contains correlation values foreach voxel. # Our usual set-upimport numpy as npimport matplotlib.pyplot as plt%matplotlib inline#...","categories": [],
+        "tags": [],
+        "url": "https://matthew-brett.github.io/fbi2018/chapters/04/correlation_each_voxel",
+        "teaser":null},{
         "title": "First go at brain activation",
         "excerpt":"For this notebook you will need: ds114 FMRI image. ds114 stimulus file.# Our usual set-upimport numpy as npimport matplotlib.pyplot as plt%matplotlib inline# Set 'gray' as the default colormapplt.rcParams['image.cmap'] = 'gray'# Display array values to 4 digits of precisionnp.set_printoptions(precision=4, suppress=True)The task time-course We have previously had a look at the file...","categories": [],
         "tags": [],
         "url": "https://matthew-brett.github.io/fbi2018/chapters/04/first_activation",
+        "teaser":null},{
+        "title": "4.5 General linear model",
+        "excerpt":"$\\newcommand{L}[1]{| #1 |}\\newcommand{VL}[1]{\\L{ \\vec{#1} }}\\newcommand{R}[1]{\\operatorname{Re}\\,(#1)}\\newcommand{I}[1]{\\operatorname{Im}\\, (#1)}$ Introduction to the general linear model These are some notes on simple regression, multiple regression, and thegeneral linear model. For more detail, see The general linear model and fMRI: Does love lastforever?. This page starts by setting up a simple regression. Then I will...","categories": [],
+        "tags": [],
+        "url": "https://matthew-brett.github.io/fbi2018/chapters/04/glm_intro",
+        "teaser":null},{
+        "title": "4.4 Linear model on one voxel",
+        "excerpt":"$\\newcommand{L}[1]{| #1 |}\\newcommand{VL}[1]{\\L{ \\vec{#1} }}\\newcommand{R}[1]{\\operatorname{Re}\\,(#1)}\\newcommand{I}[1]{\\operatorname{Im}\\, (#1)}$ The General Linear Model for one voxel Here we get the convolved regressor and voxel time-courses from theconvolution notebook, and run the general linear model. Start with our usual imports: import numpy as np# Only show 6 decimals when printingnp.set_printoptions(precision=6)import matplotlib.pyplot as plt%matplotlib inlineimport...","categories": [],
+        "tags": [],
+        "url": "https://matthew-brett.github.io/fbi2018/chapters/04/glm_one_voxel",
         "teaser":null},{
         "title": "First announcement!",
         "excerpt":"      HW 11 is due Thursday, 4/19 at 11:59pm. You will receive an early submission bonus point if you turn in your final submission by Wednesday, 4/18 at 11:59pm.         The Project 3 checkpoint is due on Friday, 4/20. The project is due on Friday 4/27.   ","categories": [],
