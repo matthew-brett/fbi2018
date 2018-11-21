@@ -10,7 +10,7 @@ Even identical twins have different sulcal anatomy {%cite klein2012101 %}.  Ther
 
 ![Twin 1]({{ site.url }}{{ site.baseurl }}/images/klein_2012_twin1.png)
 
-![Twin 2]({{ site.url }}{{ site.baseurl }}/images/klein_2012_twin1.png)
+![Twin 2]({{ site.url }}{{ site.baseurl }}/images/klein_2012_twin2.png)
 
 ### Anterior cingulate
 
