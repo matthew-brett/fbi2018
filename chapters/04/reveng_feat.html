@@ -1,0 +1,1302 @@
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Replicating an FSL analysis - FBI 2018</title>
+<meta name="description" content="Replicating an FSL analysis">
+
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_UK">
+<meta property="og:site_name" content="FBI 2018">
+<meta property="og:title" content="Replicating an FSL analysis">
+<meta property="og:url" content="https://matthew-brett.github.io/fbi2018/chapters/04/reveng_feat">
+
+
+  <meta property="og:description" content="Replicating an FSL analysis">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2018-12-04T00:14:40+00:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://matthew-brett.github.io/fbi2018/chapters/04/reveng_feat">
+
+
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Person",
+      "name": "Matthew Brett",
+      "url": "https://matthew-brett.github.io/fbi2018",
+      "sameAs": null
+    }
+  </script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/fbi2018/feed.xml" type="application/atom+xml" rel="alternate" title="FBI 2018 Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/fbi2018/assets/css/main.css">
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+    <!-- start custom head snippets -->
+
+
+<!-- end custom head snippets -->
+
+    <link rel="stylesheet" href="/fbi2018/assets/css/notebook-markdown.css">
+    <link rel="stylesheet" href="/fbi2018/assets/css/custom.css">
+    <link rel="shortcut icon" type="image/png" href="/fbi2018/favicon.png">
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.1/anchor.min.js"></script>
+  </head>
+
+  <body class="layout--textbook">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" class="textbook" role="main">
+  <div id="textbook_wrapper">
+    
+  <div class="sidebar sticky textbook">
+  
+  
+    <img src="/fbi2018/images/fbi2018.png" class="textbook_logo" />
+    
+
+    
+      
+
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">Toggle Menu</label>
+  <ul class="nav__items">
+    
+      <li>
+        
+          
+          
+
+          <a href="/fbi2018/"><span class="nav__sub-title">Home</span></a>
+        
+
+        
+      </li>
+    
+      <li>
+        
+          
+          
+
+          <a href="/fbi2018/chapters/01/intro"><span class="nav__sub-title">1. Introduction to MRI data</span></a>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/01/error" class="level_1">1.1 Why worry?</a></li>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/01/why_python" class="level_1">1.2 Why Python?</a></li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          
+          
+
+          <a href="/fbi2018/chapters/02/fmri_data"><span class="nav__sub-title">2. FMRI data</span></a>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/02/what_is_an_image" class="level_1">2.1 A brain image</a></li>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/02/arrays_and_images" class="level_1">2.2 Arrays and images</a></li>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/02/images_3d" class="level_1">2.3 3D images</a></li>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/02/images_4d" class="level_1">2.4 4D images</a></li>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/02/voxel_time_courses" class="level_1">2.5 Voxel time courses</a></li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          
+          
+
+          <a href="/fbi2018/chapters/03/preprocessing"><span class="nav__sub-title">3. FMRI pre-processing</span></a>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/03/slice_timing" class="level_1">3.1 slice timing</a></li>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/03/optimizing_space" class="level_1">3.2 optimizing space</a></li>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/03/mutual_information" class="level_1">3.3 mutual information</a></li>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/03/normalization" class="level_1">3.4 normalization</a></li>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/03/smoothing_intro" class="level_1">3.5 smoothing</a></li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          
+          
+
+          <a href="/fbi2018/chapters/04/activation"><span class="nav__sub-title">4. Activation</span></a>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/04/first_activation" class="level_1">4.1 First activation</a></li>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/04/correlation_each_voxel" class="level_1">4.2 Correlation each voxel</a></li>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/04/convolution" class="level_1">4.3 Convolution</a></li>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/04/glm_intro" class="level_1">4.5 General linear model</a></li>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/04/glm_one_voxel" class="level_1">4.6 Linear model on one voxel</a></li>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/04/random_effects" class="level_1">4.7 Random effects</a></li>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/04/on_f" class="level_1">4.8 On F tests</a></li>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/04/reveng_feat" class="level_1">4.9 Reverse engineering FEAT</a></li>
+          
+        </ul>
+        
+      </li>
+    
+  </ul>
+</nav>
+
+    
+
+  
+  </div>
+
+
+    <article class="page textbook" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="headline" content="Replicating an FSL analysis">
+      <meta itemprop="description" content="Replicating an FSL analysis">
+      <meta itemprop="datePublished" content="December 04, 2018">
+      
+
+      <div class="page__inner-wrap">
+        
+          <header>
+            <h1 id="page-title" class="page__title" itemprop="headline">Replicating an FSL analysis
+</h1>
+          </header>
+        
+
+        <section class="page__content" itemprop="text">
+          
+            
+
+<!-- TOC will only show up if it has at least one item -->
+
+
+
+          
+          <!-- INTERACT LINKS -->
+
+    
+    
+    <a class="notebook-link" href="https://matthew-brett.github.io/fbi2018/notebooks/04/reveng_feat.ipynb">Download notebook</a>
+    <a class="interact-button" href="https://mybinder.org/v2/gh/matthew-brett/fbi2018/master?filepath=notebooks%2F04%2Freveng_feat.ipynb">Interact</a>
+
+
+          
+<p>You may need:</p>
+
+<ul>
+  <li><a href="https://matthew-brett.github.io/fbi2018/data/ds114_sub009_t2r1.nii">ds114 FMRI image</a>.</li>
+  <li><a href="https://matthew-brett.github.io/fbi2018/data/ds114_sub009_t2r1_cond.txt">ds114 stimulus file</a>.</li>
+  <li><a href="https://matthew-brett.github.io/fbi2018/data/ds114_sub009_t2r1_design.fsf">ds114 design file</a>.</li>
+</ul>
+
+<p>If you don’t have FSL on your computer, you will also need to download and
+unpack the <a href="https://matthew-brett.github.io/fbi2018/data/ds114_sub009_t2r1_feat.zip">ds114 FEAT analysis directory archive</a>.</p>
+
+<p>I start by running an FSL analysis on the <code class="highlighter-rouge">ds114_sub009_t2r1.nii</code> image.</p>
+
+<p>I chose the following options for simplicity of the model:</p>
+
+<ul>
+  <li>stats only (not preprocessing);</li>
+  <li>turn off FILM prewhitening;</li>
+  <li>use the <code class="highlighter-rouge">ds114_sub009_t2r1_cond.txt</code> 3 column file to define my events;</li>
+  <li>use the double gamma HRF;</li>
+  <li>turn off “Add temporal derivative”;</li>
+  <li>turn off “Apply temporal filtering”.</li>
+</ul>
+
+<p>See the file <code class="highlighter-rouge">ds114_sub009_t2r1_simple.fsf</code> for the analysis definition.</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># We will need these later</span>
+<span class="kn">from</span> <span class="nn">os</span> <span class="kn">import</span> <span class="n">listdir</span>  <span class="c"># To list the files in a directory</span>
+<span class="kn">from</span> <span class="nn">os.path</span> <span class="kn">import</span> <span class="n">join</span> <span class="k">as</span> <span class="n">pjoin</span>  <span class="c"># To build file paths</span>
+</code></pre></div></div>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Our standard imports</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>  <span class="c"># The array library</span>
+<span class="kn">import</span> <span class="nn">numpy.linalg</span> <span class="k">as</span> <span class="n">npl</span>  <span class="c"># The linear algebra sub-package</span>
+<span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">suppress</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>  <span class="c"># The plotting library</span>
+<span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+</code></pre></div></div>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># The library to load images</span>
+<span class="c"># You might need to do "pip install nibabel" in the Terminal</span>
+<span class="kn">import</span> <span class="nn">nibabel</span> <span class="k">as</span> <span class="n">nib</span>
+</code></pre></div></div>
+
+<p>We investigate the FEAT output directory:</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">feat_dir</span> <span class="o">=</span> <span class="s">'ds114_sub009_t2r1.feat'</span>
+<span class="n">listdir</span><span class="p">(</span><span class="n">feat_dir</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>['design_cov.png',
+ 'design.png',
+ 'design.con',
+ 'report_log.html',
+ 'design.ppm',
+ 'absbrainthresh.txt',
+ 'design_cov.ppm',
+ 'mask.nii.gz',
+ 'design.trg',
+ 'thresh_zstat1.nii.gz',
+ 'rendered_thresh_zstat1.png',
+ 'cluster_zstat1.html',
+ 'tsplot',
+ 'design.mat',
+ 'design.frf',
+ 'lmax_zstat1.txt',
+ '.files',
+ 'report_prestats.html',
+ '.ramp.gif',
+ 'mean_func.nii.gz',
+ 'report_reg.html',
+ 'report_poststats.html',
+ 'logs',
+ 'design.min',
+ 'design.fsf',
+ 'report_stats.html',
+ 'cluster_zstat1.txt',
+ 'rendered_thresh_zstat1.nii.gz',
+ 'custom_timing_files',
+ 'report.html',
+ 'thresh_zstat1.vol',
+ 'example_func.nii.gz',
+ 'cluster_mask_zstat1.nii.gz',
+ 'stats']
+</code></pre></div></div>
+
+<p>There is a <code class="highlighter-rouge">stats</code> subdirectory in the FEAT directory, with some interesting files:</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">stats_dir</span> <span class="o">=</span> <span class="n">pjoin</span><span class="p">(</span><span class="n">feat_dir</span><span class="p">,</span> <span class="s">'stats'</span><span class="p">)</span>
+<span class="n">listdir</span><span class="p">(</span><span class="n">stats_dir</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>['threshac1.nii.gz',
+ 'tstat1.nii.gz',
+ 'varcope1.nii.gz',
+ 'dof',
+ 'smoothness',
+ 'pe1.nii.gz',
+ 'cope1.nii.gz',
+ 'sigmasquareds.nii.gz',
+ 'logfile',
+ 'zstat1.nii.gz']
+</code></pre></div></div>
+
+<p>The <code class="highlighter-rouge">pe1.nii.gz</code> contains the Parameter Estimate for the regressor:</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">pe_fname</span> <span class="o">=</span> <span class="n">pjoin</span><span class="p">(</span><span class="n">stats_dir</span><span class="p">,</span> <span class="s">'pe1.nii.gz'</span><span class="p">)</span>
+<span class="n">pe_fname</span>
+</code></pre></div></div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>'ds114_sub009_t2r1.feat/stats/pe1.nii.gz'
+</code></pre></div></div>
+
+<p>It’s an image, with one parameter estimate per voxel:</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">pe_img</span> <span class="o">=</span> <span class="n">nib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">pe_fname</span><span class="p">)</span>
+<span class="n">pe_data</span> <span class="o">=</span> <span class="n">pe_img</span><span class="o">.</span><span class="n">get_fdata</span><span class="p">()</span>
+<span class="n">pe_data</span><span class="o">.</span><span class="n">shape</span>
+</code></pre></div></div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(64, 64, 30)
+</code></pre></div></div>
+
+<p>Here’s the 15th slab in the Parameter Estimate volume:</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">pe_data</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">14</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="s">'gray'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;matplotlib.image.AxesImage at 0x117094208&gt;
+</code></pre></div></div>
+
+<p><img src="../../images/chapters/04/reveng_feat_13_1.png" alt="png" /></p>
+
+<p>Compare this image to the <a href="https://github.com/matthew-brett/msc_imaging/blob/master/first_activation.ipynb">first_activation notebook</a> estimate we found.</p>
+
+<p>The design matrix:</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">design_fname</span> <span class="o">=</span> <span class="n">pjoin</span><span class="p">(</span><span class="n">feat_dir</span><span class="p">,</span> <span class="s">'design.mat'</span><span class="p">)</span>
+<span class="n">design_fname</span>
+</code></pre></div></div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>'ds114_sub009_t2r1.feat/design.mat'
+</code></pre></div></div>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Read contents of the design file</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">design_fname</span><span class="p">,</span> <span class="s">'rt'</span><span class="p">)</span> <span class="k">as</span> <span class="n">fobj</span><span class="p">:</span>
+    <span class="n">design</span> <span class="o">=</span> <span class="n">fobj</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="n">design</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="output_stream highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/NumWaves	1
+/NumPoints	173
+/PPheights		1.280507e+00
+
+/Matrix
+-4.855490e-01	
+-4.855491e-01	
+-4.855491e-01	
+-4.855491e-01	
+-4.831242e-01	
+-2.687152e-01	
+2.311866e-01	
+5.548245e-01	
+6.547042e-01	
+6.450099e-01	
+6.010161e-01	
+5.601737e-01	
+5.345309e-01	
+5.219966e-01	
+5.169302e-01	
+5.151719e-01	
+5.122089e-01	
+2.976517e-01	
+-2.022853e-01	
+-5.259232e-01	
+-6.258029e-01	
+-6.161086e-01	
+-5.721148e-01	
+-5.312724e-01	
+-5.056295e-01	
+-4.930953e-01	
+-4.880289e-01	
+-4.862706e-01	
+-4.833076e-01	
+-2.687504e-01	
+2.311866e-01	
+5.548245e-01	
+6.547042e-01	
+6.450099e-01	
+6.010161e-01	
+5.601737e-01	
+5.345309e-01	
+5.219966e-01	
+5.169302e-01	
+5.151719e-01	
+5.122089e-01	
+2.976517e-01	
+-2.022853e-01	
+-5.259232e-01	
+-6.258029e-01	
+-6.161086e-01	
+-5.721148e-01	
+-5.312724e-01	
+-5.056295e-01	
+-4.930953e-01	
+-4.880289e-01	
+-4.862706e-01	
+-4.833076e-01	
+-2.687504e-01	
+2.311866e-01	
+5.548245e-01	
+6.547042e-01	
+6.450099e-01	
+6.010161e-01	
+5.601737e-01	
+5.345309e-01	
+5.219966e-01	
+5.169302e-01	
+5.151719e-01	
+5.122089e-01	
+2.976517e-01	
+-2.022853e-01	
+-5.259232e-01	
+-6.258029e-01	
+-6.161086e-01	
+-5.721148e-01	
+-5.312724e-01	
+-5.056295e-01	
+-4.930953e-01	
+-4.880289e-01	
+-4.862706e-01	
+-4.833076e-01	
+-2.687504e-01	
+2.311866e-01	
+5.548245e-01	
+6.547042e-01	
+6.450099e-01	
+6.010161e-01	
+5.601737e-01	
+5.345309e-01	
+5.219966e-01	
+5.169302e-01	
+5.151719e-01	
+5.122089e-01	
+2.976517e-01	
+-2.022853e-01	
+-5.259232e-01	
+-6.258029e-01	
+-6.161086e-01	
+-5.721148e-01	
+-5.312724e-01	
+-5.056295e-01	
+-4.930953e-01	
+-4.880289e-01	
+-4.862706e-01	
+-4.833076e-01	
+-2.687504e-01	
+2.311866e-01	
+5.548245e-01	
+6.547042e-01	
+6.450099e-01	
+6.010161e-01	
+5.601737e-01	
+5.345309e-01	
+5.219966e-01	
+5.169302e-01	
+5.151719e-01	
+5.122089e-01	
+2.976517e-01	
+-2.022853e-01	
+-5.259232e-01	
+-6.258029e-01	
+-6.161086e-01	
+-5.721148e-01	
+-5.312724e-01	
+-5.056295e-01	
+-4.930953e-01	
+-4.880289e-01	
+-4.862706e-01	
+-4.833076e-01	
+-2.687504e-01	
+2.311866e-01	
+5.548245e-01	
+6.547042e-01	
+6.450099e-01	
+6.010161e-01	
+5.601737e-01	
+5.345309e-01	
+5.219966e-01	
+5.169302e-01	
+5.151719e-01	
+5.122089e-01	
+2.976517e-01	
+-2.022853e-01	
+-5.259232e-01	
+-6.258029e-01	
+-6.161086e-01	
+-5.721148e-01	
+-5.312724e-01	
+-5.056295e-01	
+-4.930953e-01	
+-4.880289e-01	
+-4.862706e-01	
+-4.833076e-01	
+-2.687504e-01	
+2.311866e-01	
+5.548245e-01	
+6.547042e-01	
+6.450099e-01	
+6.010161e-01	
+5.601737e-01	
+5.345309e-01	
+5.219966e-01	
+5.169302e-01	
+5.151719e-01	
+5.122089e-01	
+2.976517e-01	
+-2.022853e-01	
+-5.259232e-01	
+-6.258029e-01	
+-6.161086e-01	
+-5.721148e-01	
+-5.312724e-01	
+-5.056295e-01	
+-4.930953e-01	
+-4.880289e-01	
+-4.862706e-01	
+-4.857324e-01	
+
+
+</code></pre></div></div>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">regressor</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">design_fname</span><span class="p">,</span> <span class="n">comments</span><span class="o">=</span><span class="s">'/'</span><span class="p">)</span>
+<span class="n">regressor</span>
+</code></pre></div></div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>array([-0.4855, -0.4855, -0.4855, -0.4855, -0.4831, -0.2687,  0.2312,
+        0.5548,  0.6547,  0.645 ,  0.601 ,  0.5602,  0.5345,  0.522 ,
+        0.5169,  0.5152,  0.5122,  0.2977, -0.2023, -0.5259, -0.6258,
+       -0.6161, -0.5721, -0.5313, -0.5056, -0.4931, -0.488 , -0.4863,
+       -0.4833, -0.2688,  0.2312,  0.5548,  0.6547,  0.645 ,  0.601 ,
+        0.5602,  0.5345,  0.522 ,  0.5169,  0.5152,  0.5122,  0.2977,
+       -0.2023, -0.5259, -0.6258, -0.6161, -0.5721, -0.5313, -0.5056,
+       -0.4931, -0.488 , -0.4863, -0.4833, -0.2688,  0.2312,  0.5548,
+        0.6547,  0.645 ,  0.601 ,  0.5602,  0.5345,  0.522 ,  0.5169,
+        0.5152,  0.5122,  0.2977, -0.2023, -0.5259, -0.6258, -0.6161,
+       -0.5721, -0.5313, -0.5056, -0.4931, -0.488 , -0.4863, -0.4833,
+       -0.2688,  0.2312,  0.5548,  0.6547,  0.645 ,  0.601 ,  0.5602,
+        0.5345,  0.522 ,  0.5169,  0.5152,  0.5122,  0.2977, -0.2023,
+       -0.5259, -0.6258, -0.6161, -0.5721, -0.5313, -0.5056, -0.4931,
+       -0.488 , -0.4863, -0.4833, -0.2688,  0.2312,  0.5548,  0.6547,
+        0.645 ,  0.601 ,  0.5602,  0.5345,  0.522 ,  0.5169,  0.5152,
+        0.5122,  0.2977, -0.2023, -0.5259, -0.6258, -0.6161, -0.5721,
+       -0.5313, -0.5056, -0.4931, -0.488 , -0.4863, -0.4833, -0.2688,
+        0.2312,  0.5548,  0.6547,  0.645 ,  0.601 ,  0.5602,  0.5345,
+        0.522 ,  0.5169,  0.5152,  0.5122,  0.2977, -0.2023, -0.5259,
+       -0.6258, -0.6161, -0.5721, -0.5313, -0.5056, -0.4931, -0.488 ,
+       -0.4863, -0.4833, -0.2688,  0.2312,  0.5548,  0.6547,  0.645 ,
+        0.601 ,  0.5602,  0.5345,  0.522 ,  0.5169,  0.5152,  0.5122,
+        0.2977, -0.2023, -0.5259, -0.6258, -0.6161, -0.5721, -0.5313,
+       -0.5056, -0.4931, -0.488 , -0.4863, -0.4857])
+</code></pre></div></div>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">regressor</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[&lt;matplotlib.lines.Line2D at 0x1192d4f60&gt;]
+</code></pre></div></div>
+
+<p><img src="../../images/chapters/04/reveng_feat_19_1.png" alt="png" /></p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">regressor</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>-1.1560693609863562e-09
+</code></pre></div></div>
+
+<p>Remember the <a href="https://nbviewer.jupyter.org/github/matthew-brett/msc_imaging/blob/master/all_one_voxel.ipynb">all_one_voxel notebook</a>?</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">img</span> <span class="o">=</span> <span class="n">nib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s">'ds114_sub009_t2r1.nii'</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">get_fdata</span><span class="p">()</span>
+<span class="n">voxel_time_course</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="mi">42</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">19</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">voxel_time_course</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[&lt;matplotlib.lines.Line2D at 0x1193df588&gt;]
+</code></pre></div></div>
+
+<p><img src="../../images/chapters/04/reveng_feat_22_1.png" alt="png" /></p>
+
+<p>Let’s do our own regression:</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># The number of elements in the data (scans)</span>
+<span class="n">N</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">N</span>
+</code></pre></div></div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>173
+</code></pre></div></div>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># The design matrix for a simple regression</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">N</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">regressor</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s">'gray'</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;matplotlib.image.AxesImage at 0x119174e10&gt;
+</code></pre></div></div>
+
+<p><img src="../../images/chapters/04/reveng_feat_25_1.png" alt="png" /></p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Estimate the slope and intercept for this regression</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">voxel_time_course</span>
+<span class="n">B</span> <span class="o">=</span> <span class="n">npl</span><span class="o">.</span><span class="n">pinv</span><span class="p">(</span><span class="n">X</span><span class="p">)</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="n">B</span>
+</code></pre></div></div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>array([  27.6368, 2044.7919])
+</code></pre></div></div>
+
+<p>What does FSL get for slope estimate at this voxel?</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">pe_data</span><span class="p">[</span><span class="mi">42</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">19</span><span class="p">]</span>
+</code></pre></div></div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>27.6368465423584
+</code></pre></div></div>
+
+<p>Remember our contrast, to select the slope of the regressor?</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+<span class="n">c</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">B</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>27.63684567343443
+</code></pre></div></div>
+
+<p>FSL has Contrast Of Parameter Estimate (COPE) files:</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">cope_fname</span> <span class="o">=</span> <span class="n">pjoin</span><span class="p">(</span><span class="n">stats_dir</span><span class="p">,</span> <span class="s">'cope1.nii.gz'</span><span class="p">)</span>
+<span class="n">cope_img</span> <span class="o">=</span> <span class="n">nib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">cope_fname</span><span class="p">)</span>
+<span class="n">cope_data</span> <span class="o">=</span> <span class="n">cope_img</span><span class="o">.</span><span class="n">get_fdata</span><span class="p">()</span>
+<span class="n">cope_data</span><span class="p">[</span><span class="mi">42</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">19</span><span class="p">]</span>
+</code></pre></div></div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>27.6368465423584
+</code></pre></div></div>
+
+<p>FSL also has a <code class="highlighter-rouge">sigmasquareds.nii.gz</code> file, that contains the variance estimate at each voxel:</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">ss_fname</span> <span class="o">=</span> <span class="n">pjoin</span><span class="p">(</span><span class="n">stats_dir</span><span class="p">,</span> <span class="s">'sigmasquareds.nii.gz'</span><span class="p">)</span>
+<span class="n">ss_img</span> <span class="o">=</span> <span class="n">nib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">ss_fname</span><span class="p">)</span>
+<span class="n">ss_data</span> <span class="o">=</span> <span class="n">ss_img</span><span class="o">.</span><span class="n">get_fdata</span><span class="p">()</span>
+<span class="n">ss_data</span><span class="p">[</span><span class="mi">42</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">19</span><span class="p">]</span>
+</code></pre></div></div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>600.3792724609375
+</code></pre></div></div>
+
+<p>Remember the fitted data, and the residuals?</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">fitted</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">B</span><span class="p">)</span>
+<span class="n">residuals</span> <span class="o">=</span> <span class="n">y</span> <span class="o">-</span> <span class="n">fitted</span>
+</code></pre></div></div>
+
+<p>We can calculate the variance with the degrees of freedom and the residuals:</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Degrees of freedom in the design.</span>
+<span class="c"># This is the number of independent columns in the design</span>
+<span class="n">df_design</span> <span class="o">=</span> <span class="n">npl</span><span class="o">.</span><span class="n">matrix_rank</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="n">df_design</span>
+</code></pre></div></div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>2
+</code></pre></div></div>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Degrees of freedom remaining in the data</span>
+<span class="n">df_data</span> <span class="o">=</span> <span class="n">N</span> <span class="o">-</span> <span class="n">df_design</span>
+<span class="n">df_data</span>
+</code></pre></div></div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>171
+</code></pre></div></div>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">variance</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="nb">sum</span><span class="p">(</span><span class="n">residuals</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="n">df_data</span>
+<span class="n">variance</span>
+</code></pre></div></div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>603.8902548558667
+</code></pre></div></div>
+
+<p>Oops - that is not the same as FSL.  It turns out FSL thinks the data has an extra degree of freedom, in its calculation of variance:</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">fsl_df</span> <span class="o">=</span> <span class="n">df_data</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="n">fsl_variance</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="nb">sum</span><span class="p">(</span><span class="n">residuals</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="n">fsl_df</span>
+<span class="n">fsl_variance</span>
+</code></pre></div></div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>600.3792650020536
+</code></pre></div></div>
+
+<p>As you will see, it has (as of FSL 6.0) corrected for this - er - version of variance, in the output of the t-test.</p>
+
+<p>Now let’s do a t-test by hand.</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Top of t - same as COPE</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+<span class="n">top_of_t</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">B</span><span class="p">)</span>
+<span class="n">top_of_t</span>
+</code></pre></div></div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>27.63684567343443
+</code></pre></div></div>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Bottom of t - the standard error of the top part</span>
+<span class="n">design_part</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">npl</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">X</span><span class="p">)))</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+<span class="n">bottom_of_t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">fsl_variance</span> <span class="o">*</span> <span class="n">design_part</span><span class="p">)</span>
+<span class="n">bottom_of_t</span>
+</code></pre></div></div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>3.6412936068015513
+</code></pre></div></div>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">t</span> <span class="o">=</span> <span class="n">top_of_t</span> <span class="o">/</span> <span class="n">bottom_of_t</span>
+<span class="n">t</span>
+</code></pre></div></div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>7.589842692666069
+</code></pre></div></div>
+
+<p>What does FSL get for this voxel?</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">t_fname</span> <span class="o">=</span> <span class="n">pjoin</span><span class="p">(</span><span class="n">stats_dir</span><span class="p">,</span> <span class="s">'tstat1.nii.gz'</span><span class="p">)</span>
+<span class="n">t_img</span> <span class="o">=</span> <span class="n">nib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">t_fname</span><span class="p">)</span>
+<span class="n">t_data</span> <span class="o">=</span> <span class="n">t_img</span><span class="o">.</span><span class="n">get_fdata</span><span class="p">()</span>
+<span class="n">t_data</span><span class="p">[</span><span class="mi">42</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">19</span><span class="p">]</span>
+</code></pre></div></div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>7.589842796325684
+</code></pre></div></div>
+
+<p>Finally, the z value.  From FSL:</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">z_fname</span> <span class="o">=</span> <span class="n">pjoin</span><span class="p">(</span><span class="n">stats_dir</span><span class="p">,</span> <span class="s">'zstat1.nii.gz'</span><span class="p">)</span>
+<span class="n">z_img</span> <span class="o">=</span> <span class="n">nib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">z_fname</span><span class="p">)</span>
+<span class="n">z_data</span> <span class="o">=</span> <span class="n">z_img</span><span class="o">.</span><span class="n">get_fdata</span><span class="p">()</span>
+<span class="n">z_data</span><span class="p">[</span><span class="mi">42</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">19</span><span class="p">]</span>
+</code></pre></div></div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>7.036045551300049
+</code></pre></div></div>
+
+<p>This comes about from the p value for the t statistic, transformed back to a Z score:</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Get p value from t distribution</span>
+<span class="kn">import</span> <span class="nn">scipy.stats</span> <span class="k">as</span> <span class="n">sps</span>  <span class="c"># Statistical distributions</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">sps</span><span class="o">.</span><span class="n">t</span><span class="p">(</span><span class="n">fsl_df</span><span class="p">)</span><span class="o">.</span><span class="n">sf</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>  <span class="c"># Survival function (1-cdf)</span>
+<span class="n">p</span>
+</code></pre></div></div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>9.695004018853872e-13
+</code></pre></div></div>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Get matching z score from p value</span>
+<span class="n">z</span> <span class="o">=</span> <span class="n">sps</span><span class="o">.</span><span class="n">norm</span><span class="p">()</span><span class="o">.</span><span class="n">isf</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>  <span class="c"># The Inverse Survival Function</span>
+<span class="n">z</span>
+</code></pre></div></div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>7.038801702666201
+</code></pre></div></div>
+
+<p>Save these files out to check that R gives the same values:</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">np</span><span class="o">.</span><span class="n">savetxt</span><span class="p">(</span><span class="s">'voxel_time_course.txt'</span><span class="p">,</span> <span class="n">voxel_time_course</span><span class="p">)</span>
+<span class="n">np</span><span class="o">.</span><span class="n">savetxt</span><span class="p">(</span><span class="s">'regressor.txt'</span><span class="p">,</span> <span class="n">regressor</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Here is the R code to do a simple regression on those data files:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># Simple regression model in R
+# Load the voxel time course
+voxels = read.table('voxel_time_course.txt')$V1
+# Load the convolved regressor
+regressor = read.table('regressor.txt')$V1
+# Fit linear model, where intercept is automatically added
+res = lm(voxels ~ regressor)
+# Show the result
+print(summary(res))
+</code></pre></div></div>
+
+<p>On my machine that gives:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Call:
+lm(formula = voxels ~ regressor)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-55.435 -10.818  -2.201   9.052 248.627 
+
+Coefficients:
+            Estimate Std. Error  t value Pr(&gt;|t|)    
+(Intercept) 2044.792      1.868 1094.443  &lt; 2e-16 ***
+regressor     27.637      3.652    7.568 2.25e-12 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 24.57 on 171 degrees of freedom
+Multiple R-squared:  0.2509,	Adjusted R-squared:  0.2465 
+F-statistic: 57.27 on 1 and 171 DF,  p-value: 2.247e-12
+</code></pre></div></div>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># The residual standard error</span>
+<span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">variance</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>24.574178620166876
+</code></pre></div></div>
+
+
+          
+        </section>
+
+        <footer class="page__meta">
+          
+          
+
+
+        </footer>
+
+        
+
+        
+  <nav class="pagination">
+    
+      <a href="/fbi2018/chapters/04/on_f" class="pagination--pager" title="4.8 On F tests
+">Previous</a>
+    
+    
+      <a href="" class="pagination--pager" title="
+">Next</a>
+    
+  </nav>
+
+
+      </div>
+
+      
+    </article>
+  </div>
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><input type="text" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+    <div id="results" class="results"></div></div>
+      </div>
+    
+
+    
+
+    
+  <script src="/fbi2018/assets/js/main.min.js"></script>
+  <script src="https://use.fontawesome.com/releases/v5.0.12/js/all.js"></script>
+
+
+
+
+<script src="/fbi2018/assets/js/lunr/lunr.min.js"></script>
+<script src="/fbi2018/assets/js/lunr/lunr-store.js"></script>
+<script src="/fbi2018/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+    <!-- Custom scripts to load after site JS is loaded -->
+
+    <!-- Custom HTML used for the textbooks -->
+<!-- Configure, then load MathJax -->
+<script type="text/javascript">
+  window.MathJax = {
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      processEnvironments: true
+    }
+  };
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML-full,Safe" type="text/javascript"></script>
+
+
+<script type="text/javascript">
+// --- To auto-embed hub URLs in interact links if given in a RESTful fashion ---
+function getJsonFromUrl(url) {
+  var query = url.split('?');
+  if (query.length < 2) {
+    // No queries so just return false
+    return false;
+  }
+  query = query[1];
+  // Collect REST params into a dictionary
+  var result = {};
+  query.split("&").forEach(function(part) {
+    var item = part.split("=");
+    result[item[0]] = decodeURIComponent(item[1]);
+  });
+  return result;
+}
+
+// Parse a Binder URL, converting it to the string needed for JupyterHub
+function binder2Jupyterhub(url) {
+  newUrl = {};
+  parts = url.split('v2/gh/')[1];
+  // Grab the base repo information
+  repoinfo = parts.split('?')[0];
+  var [org, repo, ref] = repoinfo.split('/');
+  newUrl['repo'] = ['https://github.com', org, repo].join('/');
+  newUrl['branch'] = ref
+  // Grab extra parameters passed
+  params = getJsonFromUrl(url);
+  if (params['filepath'] !== undefined) {
+    newUrl['subPath'] = params['filepath']
+  }
+  return jQuery.param(newUrl);
+}
+
+// Filter out potentially unsafe characters to prevent xss
+function safeUrl(url)
+{
+   return String(encodeURIComponent(url))
+            .replace(/&/g, '&amp;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#39;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;');
+}
+
+function addParamToInternalLinks(hub) {
+  var links = $("a").each(function() {
+    var href = this.href;
+    // If the link is an internal link...
+    if (href.search("https://matthew-brett.github.io") !== -1 || href.startsWith('/') || href.search("127.0.0.1:") !== -1) {
+      // Assume we're an internal link, add the hub param to it
+      var params = getJsonFromUrl(href);
+      if (params !== false) {
+        // We have REST params, so append a new one
+        params['hub'] = hub;
+      } else {
+        // Create the REST params
+        params = {'hub': hub};
+      }
+      // Update the link
+      var newHref = href.split('?')[0] + '?' + jQuery.param(params);
+      this.setAttribute('href', decodeURIComponent(newHref));
+    }
+  });
+  return false;
+}
+
+  // Update interact links
+function updateInteractLink() {
+    // hack to make this work since it expects a ? in the URL
+    rest = getJsonFromUrl("?" + location.search.substr(1));
+    hubUrl = rest['hub'];
+    if (hubUrl !== undefined) {
+      // Sanitize the hubUrl
+      hubUrl = safeUrl(hubUrl);
+      // Add HTTP text if omitted
+      if (hubUrl.indexOf('http') < 0) {hubUrl = 'http://' + hubUrl;}
+      link = $("a.interact-button")[0];
+      if (link !== undefined) {
+          // Update the interact link URL
+          var href = link.getAttribute('href');
+          if ('binder' == 'binder') {
+            // If binder links exist, we need to re-work them for jupyterhub
+            first = [hubUrl, 'hub', 'user-redirect', 'git-sync'].join('/')
+            href = first + '?' + binder2Jupyterhub(href);
+          } else {
+            // If JupyterHub links, we only need to replace the hub url
+            href = href.replace("https://mybinder.org", hubUrl);
+          }
+          link.setAttribute('href', decodeURIComponent(href));
+
+          // Add text after interact link saying where we're launching
+          hubUrlNoHttp = decodeURIComponent(hubUrl).replace('http://', '').replace('https://', '');
+          $("a.interact-button").after($('<div class="interact-context">on ' + hubUrlNoHttp + '</div>'));
+
+      }
+      // Update internal links so we retain the hub url
+      addParamToInternalLinks(hubUrl);
+    }
+}
+
+// --- Highlight the part of sidebar for current page ---
+
+// helper to replace trailing slash
+function replaceSlash(string)
+{
+    return string.replace(/\/$/, "");
+}
+
+// Add a class to the current page in the sidebar
+function highlightSidebarCurrentPage()
+{
+  var currentpage = location.href;
+  var links = $('.sidebar .nav__items a');
+  var ii = 0;
+  for(ii; ii < links.length; ii++) {
+    var link = links[ii];
+    if(replaceSlash(link.href) == replaceSlash(currentpage)) {
+      // Add CSS for styling
+      link.classList.add("current");
+      // Scroll to this element
+      $('div.sidebar').scrollTop(link.offsetTop - 300);
+    }
+  }
+}
+
+// --- Set up copy/paste for code blocks ---
+function addCopyButtonToCode(){
+  // get all <code> elements
+  var allCodeBlocksElements = $( "div.input_area code, div.highlighter-rouge code" );
+
+  allCodeBlocksElements.each(function(ii) {
+   	// add different id for each code block
+
+  	// target
+    var currentId = "codeblock" + (ii + 1);
+    $(this).attr('id', currentId);
+
+    //trigger
+    var clipButton = '<button class="btn copybtn" data-clipboard-target="#' + currentId + '"><img src="https://clipboardjs.com/assets/images/clippy.svg" width="13" alt="Copy to clipboard"></button>';
+       $(this).after(clipButton);
+    });
+
+    new Clipboard('.btn');
+}
+
+// Run scripts when page is loaded
+$(document).ready(function () {
+  // Add anchors to H1 etc links
+  anchors.add();
+  // Highlight current page in sidebar
+  highlightSidebarCurrentPage();
+  // Add copy button to code blocks
+  addCopyButtonToCode();
+  // Update the Interact link if a REST param given
+  updateInteractLink();
+});
+</script>
+
+  </body>
+</html>

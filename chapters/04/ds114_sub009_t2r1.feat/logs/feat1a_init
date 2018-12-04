@@ -1,0 +1,6 @@
+</pre><hr>Initialisation<br><pre>
+
+/opt/fsl/bin/fslmaths /Users/mb312/dev_trees/msc_imaging/ds114_sub009_t2r1 prefiltered_func_data -odt float
+Total original volumes = 173
+
+/opt/fsl/bin/fslroi prefiltered_func_data example_func 86 1

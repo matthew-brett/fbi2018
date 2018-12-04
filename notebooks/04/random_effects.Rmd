@@ -1,0 +1,661 @@
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>FBI 2018</title>
+<meta name="description" content="">
+
+
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="en_UK">
+<meta property="og:site_name" content="FBI 2018">
+<meta property="og:title" content="FBI 2018">
+<meta property="og:url" content="https://matthew-brett.github.io/fbi2018/notebooks/04/random_effects.Rmd">
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://matthew-brett.github.io/fbi2018/notebooks/04/random_effects.Rmd">
+
+
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Person",
+      "name": "Matthew Brett",
+      "url": "https://matthew-brett.github.io/fbi2018",
+      "sameAs": null
+    }
+  </script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/fbi2018/feed.xml" type="application/atom+xml" rel="alternate" title="FBI 2018 Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/fbi2018/assets/css/main.css">
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+    <!-- start custom head snippets -->
+
+
+<!-- end custom head snippets -->
+
+    <link rel="stylesheet" href="/fbi2018/assets/css/notebook-markdown.css">
+    <link rel="stylesheet" href="/fbi2018/assets/css/custom.css">
+    <link rel="shortcut icon" type="image/png" href="/fbi2018/favicon.png">
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.1/anchor.min.js"></script>
+  </head>
+
+  <body class="layout--single">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+    <div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        <a class="site-title" href="/fbi2018/">
+          <img src="/fbi2018/images/fbi2018.png" class="masthead_logo" />
+          FBI 2018
+        </a>
+        <ul class="visible-links">
+          
+            
+            <li class="masthead__menu-item">
+              <a href="https://matthew-brett.github.io/fbi2018/about" >About</a>
+            </li>
+          
+          
+            <li class="masthead__menu-item">
+                <a href="/fbi2018/chapters/01/intro">Notes</a>
+            </li>
+          
+          
+        </ul>
+        
+        <button class="search__toggle" type="button">
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle Menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+    
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    
+    
+    
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <!--  -->
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        # On random effects
+
+Our usual imports
+
+```{python}
+import numpy as np  # The array library
+import numpy.linalg as npl  # The linear algebra sub-package
+# Only show 4 decimals when printing
+np.set_printoptions(precision=6)
+
+import matplotlib.pyplot as plt
+# %matplotlib inline
+```
+
+## The example problem
+
+Remember the scores of “psychopathy” from the 12 students:
+
+```{python}
+psychopathy = [11.416,   4.514,  12.204,  14.835,
+               8.416,   6.563,  17.343, 13.02,
+               15.19 ,  11.902,  22.721,  22.324]
+```
+
+We found out these were students from Berkeley, Stanford and MIT.
+
+
+Now let's say we have two students from Birmingham and two from Cambridge
+(that's Birmingham and Cambridge UK, AKA *actual Birmingham* and *actual
+Cambridge*).
+
+Last time we just had one measurement of the psychopathy score, but this time
+we have 40 measurements for each student - we did the questionnaire score
+every week for 40 weeks.  Here's are the Birmingham student scores:
+
+```{python}
+brum_0 = [9.25, 9.19, 9.26, 9.35, 9.18, 9.18, 9.36, 9.28, 9.15, 9.25, 9.15,
+          9.15, 9.22, 9.01, 9.03, 9.14, 9.1, 9.23, 9.11, 9.06, 9.35, 9.18,
+          9.21, 9.06, 9.15, 9.21, 9.08, 9.24, 9.14, 9.17, 9.14, 9.39, 9.2,
+          9.09, 9.28, 9.08, 9.22, 9.0, 9.07, 9.22]
+brum_1 = [8.94, 8.91, 8.89, 8.88, 8.83, 8.86, 8.88, 8.95, 8.92, 8.81, 8.92,
+          8.88, 8.87, 8.93, 8.95, 8.95, 8.86, 8.88, 8.92, 8.95, 8.88, 8.89,
+          8.84, 8.84, 8.94, 8.97, 8.9, 8.95, 8.92, 8.87, 8.92, 8.98, 8.9,
+          8.98, 8.77, 8.94, 8.9, 8.89, 8.9, 8.8]
+```
+
+Here are the scores for the two Cambridge students:
+
+```{python}
+cam_0 = [8.98, 9.03, 9.11, 8.96, 8.94, 8.96, 9.07, 9.02, 8.96, 9.04, 9.01,
+         9.07, 8.95, 8.98, 8.97, 8.89, 9.02, 9.02, 9.0, 8.98, 8.89, 8.97,
+         8.97, 8.94, 8.99, 9.03, 9.14, 9.01, 9.02, 8.99, 8.86, 9.0, 9.0, 9.18,
+         8.99, 9.02, 9.0, 8.91, 9.09, 9.06]
+cam_1 = [9.37, 9.11, 9.46, 9.04, 9.34, 9.58, 9.1, 9.17, 9.26, 9.17, 9.02,
+         9.26, 9.09, 9.32, 9.11, 9.48, 9.13, 9.2, 9.37, 9.07, 9.28, 9.45,
+         9.01, 9.28, 9.29, 9.37, 9.06, 9.05, 9.33, 9.29, 9.29, 9.3, 9.15,
+         9.28, 9.29, 9.14, 9.53, 9.32, 9.07, 9.35]
+```
+
+We can do a histogram of these scores one under the other, first the
+Birmingham students, then the Cambridge students.
+
+```{python}
+# Make four plots one under the other
+fig, axes = plt.subplots(4, 1)
+axes[0].hist(brum_0)
+axes[1].hist(brum_1)
+axes[2].hist(cam_0)
+axes[3].hist(cam_1)
+axes[3].set_xlabel('Psychopathy')
+# Make sure the axes are the same for each plot
+for ax in axes:
+    ax.axis([8.75, 9.4, 0, 11])
+```
+
+Do you think there is a significant difference in psychopathy between
+Birmingham students and Cambridge students?
+
+
+We can use the machinery from the [GLM introduction](glm_intro) to do a t-test
+on these values.
+
+
+First we concatenate the data from all four students into one long vector:
+
+```{python}
+psycho_repeats = np.concatenate([brum_0, brum_1, cam_0, cam_1])
+len(psycho_repeats)
+```
+
+Next we make a design matrix for our General Linear Model.  We have two dummy
+variables, and therefore two columns in the design matrix:
+
+```{python}
+# Make an empty design matrix
+N = len(psycho_repeats)
+X = np.zeros((N, 2))
+```
+
+The first column indicates whether the psychopathy score is from a Birmingham
+student or not.  There is a 1 corresponding to a value for a Birmingham
+student, and 0 otherwise:
+
+```{python}
+# First column (0) indicates Birmingham student value
+X[:80, 0] = 1
+```
+
+The second column indicates whether the score is from a Cambridge student or
+not:
+
+```{python}
+# Second column (1) indicates Cambridge student value
+X[80:, 1] = 1
+```
+
+Let's have a look at the design matrix:
+
+```{python}
+# Show design in grayscale
+plt.imshow(X, cmap='gray', aspect=0.1)
+```
+
+You might remember that, when we fit this model in the simplest least-squares
+way, the parameters are the means for the Birmingham and Cambridge values:
+
+```{python}
+y = psycho_repeats
+B = np.linalg.pinv(X).dot(y)
+B
+```
+
+```{python}
+np.mean(brum_0 + brum_1)
+```
+
+```{python}
+np.mean(cam_0 + cam_1)
+```
+
+Remember the t-test from the GLM page?
+
+```{python}
+# Get t distribution code from scipy library
+from scipy.stats import t as t_dist
+```
+
+```{python}
+def t_stat(y, X, c):
+    """ betas, t statistic and significance test given data, design matrix, contrast
+
+    This is OLS estimation; we assume the errors to have independent
+    and identical normal distributions around zero for each $i$ in
+    $\e_i$ (i.i.d).
+    """
+    # Make sure y, X, c are all arrays
+    y = np.asarray(y)
+    X = np.asarray(X)
+    c = np.atleast_2d(c).T  # As column vector
+    # Calculate the parameters - b hat
+    beta = npl.pinv(X).dot(y)
+    # The fitted values - y hat
+    fitted = X.dot(beta)
+    # Residual error
+    errors = y - fitted
+    # Residual sum of squares
+    RSS = (errors**2).sum(axis=0)
+    # Degrees of freedom is the number of observations n minus the number
+    # of independent regressors we have used.  If all the regressor
+    # columns in X are independent then the (matrix rank of X) == p
+    # (where p the number of columns in X). If there is one column that
+    # can be expressed as a linear sum of the other columns then
+    # (matrix rank of X) will be p - 1 - and so on.
+    df = X.shape[0] - npl.matrix_rank(X)
+    # Mean residual sum of squares
+    MRSS = RSS / df
+    # calculate bottom half of t statistic
+    SE = np.sqrt(MRSS * c.T.dot(npl.pinv(X.T.dot(X)).dot(c)))
+    t = c.T.dot(beta) / SE
+    # Get p value for t value using cumulative density dunction
+    # (CDF) of t distribution
+    ltp = t_dist.cdf(t, df) # lower tail p
+    p = 1 - ltp # upper tail p
+    return beta, t, df, p
+```
+
+Here is a t-test, testing the null hypothesis that the mean of the Birmingham
+psychopathy values is the same as mean of the Cambridge psychopathy values:
+
+```{python}
+betas, t_value, df, p_value = t_stat(y, X, [-1, 1])
+betas
+```
+
+```{python}
+t_value
+```
+
+```{python}
+df
+```
+
+```{python}
+p_value
+```
+
+It's highly significant.  Do you find that surprising?
+
+
+Let's do a different test.  This time I will take the mean for each student,
+and throw away all individual observations.  I'll refer to this as the *Random
+Effects* test.
+
+```{python}
+y = [np.mean(brum_0), np.mean(brum_1), np.mean(cam_0), np.mean(cam_1)]
+y
+```
+
+```{python}
+N = len(y)
+X = np.zeros((N, 2))
+# Birmingham students
+X[:2, 0] = 1
+# Cambridge students
+X[2:, 1] = 1
+plt.imshow(X, cmap='gray')
+```
+
+When we do the t-test, our parameters and t value are exactly the same.  Why?
+(Clue - there are the same number of psychopathy values for each student).
+
+```{python}
+re_betas, re_t_value, re_df, re_p_value = t_stat(y, X, [-1, 1])
+re_betas
+```
+
+```{python}
+re_t_value
+```
+
+Our degrees of freedom and p value are very different:
+
+```{python}
+re_df
+```
+
+```{python}
+re_p_value
+```
+
+Which do you think is the better p-value - the original - or the random
+effects p value?
+
+
+We used the mean for each student, but looking at the histograms above, there
+seems to be some extra information in the distributions.  Some students have
+less spread in their psychopathy scores than others.  Therefore, the mean of
+their scores will be a more accurate measure of the actual (over the long
+term) psychopathy scores for that student.  Can we use that information
+somehow?
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+        
+      </footer>
+
+      
+
+      
+
+    </div>
+
+    
+  </article>
+
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><input type="text" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+    <div id="results" class="results"></div></div>
+      </div>
+    
+
+    
+
+    
+  <script src="/fbi2018/assets/js/main.min.js"></script>
+  <script src="https://use.fontawesome.com/releases/v5.0.12/js/all.js"></script>
+
+
+
+
+<script src="/fbi2018/assets/js/lunr/lunr.min.js"></script>
+<script src="/fbi2018/assets/js/lunr/lunr-store.js"></script>
+<script src="/fbi2018/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+    <!-- Custom scripts to load after site JS is loaded -->
+
+    <!-- Custom HTML used for the textbooks -->
+<!-- Configure, then load MathJax -->
+<script type="text/javascript">
+  window.MathJax = {
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      processEnvironments: true
+    }
+  };
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML-full,Safe" type="text/javascript"></script>
+
+
+<script type="text/javascript">
+// --- To auto-embed hub URLs in interact links if given in a RESTful fashion ---
+function getJsonFromUrl(url) {
+  var query = url.split('?');
+  if (query.length < 2) {
+    // No queries so just return false
+    return false;
+  }
+  query = query[1];
+  // Collect REST params into a dictionary
+  var result = {};
+  query.split("&").forEach(function(part) {
+    var item = part.split("=");
+    result[item[0]] = decodeURIComponent(item[1]);
+  });
+  return result;
+}
+
+// Parse a Binder URL, converting it to the string needed for JupyterHub
+function binder2Jupyterhub(url) {
+  newUrl = {};
+  parts = url.split('v2/gh/')[1];
+  // Grab the base repo information
+  repoinfo = parts.split('?')[0];
+  var [org, repo, ref] = repoinfo.split('/');
+  newUrl['repo'] = ['https://github.com', org, repo].join('/');
+  newUrl['branch'] = ref
+  // Grab extra parameters passed
+  params = getJsonFromUrl(url);
+  if (params['filepath'] !== undefined) {
+    newUrl['subPath'] = params['filepath']
+  }
+  return jQuery.param(newUrl);
+}
+
+// Filter out potentially unsafe characters to prevent xss
+function safeUrl(url)
+{
+   return String(encodeURIComponent(url))
+            .replace(/&/g, '&amp;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#39;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;');
+}
+
+function addParamToInternalLinks(hub) {
+  var links = $("a").each(function() {
+    var href = this.href;
+    // If the link is an internal link...
+    if (href.search("https://matthew-brett.github.io") !== -1 || href.startsWith('/') || href.search("127.0.0.1:") !== -1) {
+      // Assume we're an internal link, add the hub param to it
+      var params = getJsonFromUrl(href);
+      if (params !== false) {
+        // We have REST params, so append a new one
+        params['hub'] = hub;
+      } else {
+        // Create the REST params
+        params = {'hub': hub};
+      }
+      // Update the link
+      var newHref = href.split('?')[0] + '?' + jQuery.param(params);
+      this.setAttribute('href', decodeURIComponent(newHref));
+    }
+  });
+  return false;
+}
+
+  // Update interact links
+function updateInteractLink() {
+    // hack to make this work since it expects a ? in the URL
+    rest = getJsonFromUrl("?" + location.search.substr(1));
+    hubUrl = rest['hub'];
+    if (hubUrl !== undefined) {
+      // Sanitize the hubUrl
+      hubUrl = safeUrl(hubUrl);
+      // Add HTTP text if omitted
+      if (hubUrl.indexOf('http') < 0) {hubUrl = 'http://' + hubUrl;}
+      link = $("a.interact-button")[0];
+      if (link !== undefined) {
+          // Update the interact link URL
+          var href = link.getAttribute('href');
+          if ('binder' == 'binder') {
+            // If binder links exist, we need to re-work them for jupyterhub
+            first = [hubUrl, 'hub', 'user-redirect', 'git-sync'].join('/')
+            href = first + '?' + binder2Jupyterhub(href);
+          } else {
+            // If JupyterHub links, we only need to replace the hub url
+            href = href.replace("https://mybinder.org", hubUrl);
+          }
+          link.setAttribute('href', decodeURIComponent(href));
+
+          // Add text after interact link saying where we're launching
+          hubUrlNoHttp = decodeURIComponent(hubUrl).replace('http://', '').replace('https://', '');
+          $("a.interact-button").after($('<div class="interact-context">on ' + hubUrlNoHttp + '</div>'));
+
+      }
+      // Update internal links so we retain the hub url
+      addParamToInternalLinks(hubUrl);
+    }
+}
+
+// --- Highlight the part of sidebar for current page ---
+
+// helper to replace trailing slash
+function replaceSlash(string)
+{
+    return string.replace(/\/$/, "");
+}
+
+// Add a class to the current page in the sidebar
+function highlightSidebarCurrentPage()
+{
+  var currentpage = location.href;
+  var links = $('.sidebar .nav__items a');
+  var ii = 0;
+  for(ii; ii < links.length; ii++) {
+    var link = links[ii];
+    if(replaceSlash(link.href) == replaceSlash(currentpage)) {
+      // Add CSS for styling
+      link.classList.add("current");
+      // Scroll to this element
+      $('div.sidebar').scrollTop(link.offsetTop - 300);
+    }
+  }
+}
+
+// --- Set up copy/paste for code blocks ---
+function addCopyButtonToCode(){
+  // get all <code> elements
+  var allCodeBlocksElements = $( "div.input_area code, div.highlighter-rouge code" );
+
+  allCodeBlocksElements.each(function(ii) {
+   	// add different id for each code block
+
+  	// target
+    var currentId = "codeblock" + (ii + 1);
+    $(this).attr('id', currentId);
+
+    //trigger
+    var clipButton = '<button class="btn copybtn" data-clipboard-target="#' + currentId + '"><img src="https://clipboardjs.com/assets/images/clippy.svg" width="13" alt="Copy to clipboard"></button>';
+       $(this).after(clipButton);
+    });
+
+    new Clipboard('.btn');
+}
+
+// Run scripts when page is loaded
+$(document).ready(function () {
+  // Add anchors to H1 etc links
+  anchors.add();
+  // Highlight current page in sidebar
+  highlightSidebarCurrentPage();
+  // Add copy button to code blocks
+  addCopyButtonToCode();
+  // Update the Interact link if a REST param given
+  updateInteractLink();
+});
+</script>
+
+  </body>
+</html>

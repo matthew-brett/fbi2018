@@ -171,9 +171,7 @@
 
       <section class="page__content" itemprop="text">
         
-        $\newcommand{L}[1]{\| #1 \|}\newcommand{VL}[1]{\L{ \vec{#1} }}\newcommand{R}[1]{\operatorname{Re}\,(#1)}\newcommand{I}[1]{\operatorname{Im}\, (#1)}$
-
-# The General Linear Model for one voxel
+        # The General Linear Model for one voxel
 
 Here we get the convolved regressor and voxel time-courses from the
 [convolution](convolution) notebook, and run the general linear model.

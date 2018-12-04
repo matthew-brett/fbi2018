@@ -1,0 +1,1029 @@
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>General linear model and F tests - FBI 2018</title>
+<meta name="description" content="General linear model and F tests">
+
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_UK">
+<meta property="og:site_name" content="FBI 2018">
+<meta property="og:title" content="General linear model and F tests">
+<meta property="og:url" content="https://matthew-brett.github.io/fbi2018/chapters/04/on_f">
+
+
+  <meta property="og:description" content="General linear model and F tests">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2018-12-04T00:14:40+00:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://matthew-brett.github.io/fbi2018/chapters/04/on_f">
+
+
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Person",
+      "name": "Matthew Brett",
+      "url": "https://matthew-brett.github.io/fbi2018",
+      "sameAs": null
+    }
+  </script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/fbi2018/feed.xml" type="application/atom+xml" rel="alternate" title="FBI 2018 Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/fbi2018/assets/css/main.css">
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+    <!-- start custom head snippets -->
+
+
+<!-- end custom head snippets -->
+
+    <link rel="stylesheet" href="/fbi2018/assets/css/notebook-markdown.css">
+    <link rel="stylesheet" href="/fbi2018/assets/css/custom.css">
+    <link rel="shortcut icon" type="image/png" href="/fbi2018/favicon.png">
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.1/anchor.min.js"></script>
+  </head>
+
+  <body class="layout--textbook">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" class="textbook" role="main">
+  <div id="textbook_wrapper">
+    
+  <div class="sidebar sticky textbook">
+  
+  
+    <img src="/fbi2018/images/fbi2018.png" class="textbook_logo" />
+    
+
+    
+      
+
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">Toggle Menu</label>
+  <ul class="nav__items">
+    
+      <li>
+        
+          
+          
+
+          <a href="/fbi2018/"><span class="nav__sub-title">Home</span></a>
+        
+
+        
+      </li>
+    
+      <li>
+        
+          
+          
+
+          <a href="/fbi2018/chapters/01/intro"><span class="nav__sub-title">1. Introduction to MRI data</span></a>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/01/error" class="level_1">1.1 Why worry?</a></li>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/01/why_python" class="level_1">1.2 Why Python?</a></li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          
+          
+
+          <a href="/fbi2018/chapters/02/fmri_data"><span class="nav__sub-title">2. FMRI data</span></a>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/02/what_is_an_image" class="level_1">2.1 A brain image</a></li>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/02/arrays_and_images" class="level_1">2.2 Arrays and images</a></li>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/02/images_3d" class="level_1">2.3 3D images</a></li>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/02/images_4d" class="level_1">2.4 4D images</a></li>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/02/voxel_time_courses" class="level_1">2.5 Voxel time courses</a></li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          
+          
+
+          <a href="/fbi2018/chapters/03/preprocessing"><span class="nav__sub-title">3. FMRI pre-processing</span></a>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/03/slice_timing" class="level_1">3.1 slice timing</a></li>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/03/optimizing_space" class="level_1">3.2 optimizing space</a></li>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/03/mutual_information" class="level_1">3.3 mutual information</a></li>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/03/normalization" class="level_1">3.4 normalization</a></li>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/03/smoothing_intro" class="level_1">3.5 smoothing</a></li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          
+          
+
+          <a href="/fbi2018/chapters/04/activation"><span class="nav__sub-title">4. Activation</span></a>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/04/first_activation" class="level_1">4.1 First activation</a></li>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/04/correlation_each_voxel" class="level_1">4.2 Correlation each voxel</a></li>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/04/convolution" class="level_1">4.3 Convolution</a></li>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/04/glm_intro" class="level_1">4.5 General linear model</a></li>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/04/glm_one_voxel" class="level_1">4.6 Linear model on one voxel</a></li>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/04/random_effects" class="level_1">4.7 Random effects</a></li>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/04/on_f" class="level_1">4.8 On F tests</a></li>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/04/reveng_feat" class="level_1">4.9 Reverse engineering FEAT</a></li>
+          
+        </ul>
+        
+      </li>
+    
+  </ul>
+</nav>
+
+    
+
+  
+  </div>
+
+
+    <article class="page textbook" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="headline" content="General linear model and F tests">
+      <meta itemprop="description" content="General linear model and F tests">
+      <meta itemprop="datePublished" content="December 04, 2018">
+      
+
+      <div class="page__inner-wrap">
+        
+          <header>
+            <h1 id="page-title" class="page__title" itemprop="headline">General linear model and F tests
+</h1>
+          </header>
+        
+
+        <section class="page__content" itemprop="text">
+          
+            
+
+<!-- TOC will only show up if it has at least one item -->
+
+
+  <aside class="sidebar__right">
+    <nav class="toc">
+      <header><h4 class="nav__title"><i class="fas fa-list-ul"></i>   On this page</h4></header>
+      <ul class="toc__menu">
+  <li><a href="#the-problem-again">The problem, again</a></li>
+</ul>
+    </nav>
+  </aside>
+
+
+          
+          <!-- INTERACT LINKS -->
+
+    
+    
+    <a class="notebook-link" href="https://matthew-brett.github.io/fbi2018/notebooks/04/on_f.ipynb">Download notebook</a>
+    <a class="interact-button" href="https://mybinder.org/v2/gh/matthew-brett/fbi2018/master?filepath=notebooks%2F04%2Fon_f.ipynb">Interact</a>
+
+
+          
+<p>See also:
+<a href="https://bic-berkeley.github.io/psych-214-fall-2016/hypothesis_tests.html">https://bic-berkeley.github.io/psych-214-fall-2016/hypothesis_tests.html</a></p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>  <span class="c"># The array library</span>
+<span class="kn">import</span> <span class="nn">numpy.linalg</span> <span class="k">as</span> <span class="n">npl</span>  <span class="c"># The linear algebra sub-package</span>
+<span class="c"># Only show 4 decimals when printing</span>
+<span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+</code></pre></div></div>
+
+<h2 id="the-problem-again">The problem, again</h2>
+
+<p>These two lists of numbers are from the <a href="glm_intro">GLM intro notebook</a>:</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">psychopathy</span> <span class="o">=</span> <span class="p">[</span><span class="mf">11.416</span><span class="p">,</span>   <span class="mf">4.514</span><span class="p">,</span>  <span class="mf">12.204</span><span class="p">,</span>  <span class="mf">14.835</span><span class="p">,</span>
+                <span class="mf">8.416</span><span class="p">,</span>   <span class="mf">6.563</span><span class="p">,</span>  <span class="mf">17.343</span><span class="p">,</span> <span class="mf">13.02</span><span class="p">,</span>
+               <span class="mf">15.19</span> <span class="p">,</span>  <span class="mf">11.902</span><span class="p">,</span>  <span class="mf">22.721</span><span class="p">,</span>  <span class="mf">22.324</span><span class="p">]</span>
+</code></pre></div></div>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">clammy</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.389</span><span class="p">,</span>  <span class="mf">0.2</span>  <span class="p">,</span>  <span class="mf">0.241</span><span class="p">,</span>  <span class="mf">0.463</span><span class="p">,</span>
+          <span class="mf">4.585</span><span class="p">,</span>  <span class="mf">1.097</span><span class="p">,</span>  <span class="mf">1.642</span><span class="p">,</span>  <span class="mf">4.972</span><span class="p">,</span>
+          <span class="mf">7.957</span><span class="p">,</span>  <span class="mf">5.585</span><span class="p">,</span>  <span class="mf">5.527</span><span class="p">,</span>  <span class="mf">6.964</span><span class="p">]</span>
+</code></pre></div></div>
+
+<p>Let’s first check what R gives us for this simple regression model (you will
+need R installed for this):</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># This is code to copy-paste into R
+psychopathy &lt;- c(11.416,   4.514,  12.204,  14.835, 8.416,   6.563,  17.343,
+                13.02, 15.19 ,  11.902,  22.721,  22.324)
+clammy = c(0.389,  0.2  ,  0.241,  0.463, 4.585,  1.097,  1.642,  4.972,
+           7.957,  5.585,  5.527,  6.964)
+
+simple_regression = lm(psychopathy ~ clammy)
+print(summary(simple_regression))
+</code></pre></div></div>
+
+<p>Here are the utilities to show the design matrix graphically, from the GLM
+intro:</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">scale_design_mtx</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
+    <span class="s">"""utility to scale the design matrix for display
+
+    This scales the columns to their own range so we can see the variations
+    across the column for all the columns, regardless of the scaling of the
+    column.
+    """</span>
+    <span class="n">mi</span><span class="p">,</span> <span class="n">ma</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="nb">min</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">X</span><span class="o">.</span><span class="nb">max</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="c"># Vector that is True for columns where values are not</span>
+    <span class="c"># all almost equal to each other</span>
+    <span class="n">col_neq</span> <span class="o">=</span> <span class="p">(</span><span class="n">ma</span> <span class="o">-</span> <span class="n">mi</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">1.e-8</span>
+    <span class="n">Xs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+    <span class="c"># Leave columns with same value throughout with 1s</span>
+    <span class="c"># Scale other columns to min, max in column</span>
+    <span class="n">mi</span> <span class="o">=</span> <span class="n">mi</span><span class="p">[</span><span class="n">col_neq</span><span class="p">]</span>
+    <span class="n">ma</span> <span class="o">=</span> <span class="n">ma</span><span class="p">[</span><span class="n">col_neq</span><span class="p">]</span>
+    <span class="n">Xs</span><span class="p">[:,</span><span class="n">col_neq</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">X</span><span class="p">[:,</span><span class="n">col_neq</span><span class="p">]</span> <span class="o">-</span> <span class="n">mi</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">ma</span> <span class="o">-</span> <span class="n">mi</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">Xs</span>
+</code></pre></div></div>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">show_design</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">design_title</span><span class="p">):</span>
+    <span class="s">""" Show the design matrix nicely """</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">scale_design_mtx</span><span class="p">(</span><span class="n">X</span><span class="p">),</span>
+               <span class="n">interpolation</span><span class="o">=</span><span class="s">'nearest'</span><span class="p">,</span>
+               <span class="n">cmap</span><span class="o">=</span><span class="s">'gray'</span><span class="p">)</span> <span class="c"># Gray colormap</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">design_title</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Remember, the first four students were from Berkeley, the second group of four
+were from Stanford, and the third group were from MIT.</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">university</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">university</span><span class="p">,</span> <span class="n">psychopathy</span><span class="p">,</span> <span class="s">'+'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">'University'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">'Psychopathy'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Text(0, 0.5, 'Psychopathy')
+</code></pre></div></div>
+
+<p><img src="../../images/chapters/04/on_f_12_1.png" alt="png" /></p>
+
+<p><script type="math/tex">\newcommand{Xmat}{\boldsymbol X}</script>
+The F test needs a <em>full model</em> and a <em>reduced model</em>.  Call the full model $\Xmat_f$ and the reduced model $\Xmat_r$.  The formula for the F test is:</p>
+
+<script type="math/tex; mode=display">F_{\nu_1, \nu_2} =
+    \frac{
+    (\textrm{SSR}(\Xmat_r) - \textrm{SSR}(\Xmat_f)) / \nu_1}
+    {\textrm{SSR}(\Xmat_f) / \nu_2}</script>
+
+<p>where $\nu_1$ is called the <em>numerator degrees of freedom</em>, and $\nu_2$ is the
+<em>denominator degrees of freedom</em> or the <em>degrees of freedom of the error</em>.</p>
+
+<p>$\nu_2$ is also the degrees of freedom for the full model.  $\nu_1$ is given
+by $d - \nu_2$ where $d$ is the degrees of freedom from the reduced model.</p>
+
+<p>First, let’s see what R does:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># R script for one-way ANOVA F test
+psychopathy &lt;- c(11.416,   4.514,  12.204,  14.835, 8.416,   6.563,  17.343,
+                13.02, 15.19 ,  11.902,  22.721,  22.324)
+
+university &lt;- factor(c(rep('Berkeley', 4),
+                       rep('Stanford', 4),
+                       rep('MIT', 4)))
+
+one_way_anova = lm(psychopathy ~ university)
+print(summary(one_way_anova))
+</code></pre></div></div>
+
+<p>And now, an F test, the traditional way.</p>
+
+<p>This is the standard F test you may be used to, for a one-way analysis of
+variance.</p>
+
+<p>The reduced model is a model that just has the mean for all the observations,
+independent of group (university).</p>
+
+<p>The full model allows each group (university) to have its own mean.  The
+F test looks at the reduction in variance when we include the group means into
+the model.</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">overall_mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">psychopathy</span><span class="p">)</span>
+<span class="n">overall_mean</span>
+</code></pre></div></div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>13.370666666666667
+</code></pre></div></div>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">overall_mean_corrected</span> <span class="o">=</span> <span class="n">psychopathy</span> <span class="o">-</span> <span class="n">overall_mean</span>
+<span class="n">overall_mean_corrected</span>
+</code></pre></div></div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>array([-1.954667, -8.856667, -1.166667,  1.464333, -4.954667, -6.807667,
+        3.972333, -0.350667,  1.819333, -1.468667,  9.350333,  8.953333])
+</code></pre></div></div>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># What do you think this will be?</span>
+<span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">overall_mean_corrected</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>0.0
+</code></pre></div></div>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">berkeley_mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">psychopathy</span><span class="p">[:</span><span class="mi">4</span><span class="p">])</span>
+<span class="n">stanford_mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">psychopathy</span><span class="p">[</span><span class="mi">4</span><span class="p">:</span><span class="mi">8</span><span class="p">])</span>
+<span class="n">mit_mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">psychopathy</span><span class="p">[</span><span class="mi">8</span><span class="p">:])</span>
+<span class="n">berkeley_mean</span><span class="p">,</span> <span class="n">stanford_mean</span><span class="p">,</span> <span class="n">mit_mean</span>
+</code></pre></div></div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(10.74225, 11.3355, 18.03425)
+</code></pre></div></div>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Subtract the matching group mean from each row</span>
+<span class="n">group_mean_corrected</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">psychopathy</span><span class="p">)</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">group_mean_corrected</span><span class="p">[:</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="n">group_mean_corrected</span><span class="p">[:</span><span class="mi">4</span><span class="p">]</span> <span class="o">-</span> <span class="n">berkeley_mean</span>
+<span class="n">group_mean_corrected</span><span class="p">[</span><span class="mi">4</span><span class="p">:</span><span class="mi">8</span><span class="p">]</span> <span class="o">=</span> <span class="n">group_mean_corrected</span><span class="p">[</span><span class="mi">4</span><span class="p">:</span><span class="mi">8</span><span class="p">]</span> <span class="o">-</span> <span class="n">stanford_mean</span>
+<span class="n">group_mean_corrected</span><span class="p">[</span><span class="mi">8</span><span class="p">:]</span> <span class="o">=</span> <span class="n">group_mean_corrected</span><span class="p">[</span><span class="mi">8</span><span class="p">:]</span> <span class="o">-</span> <span class="n">mit_mean</span>
+<span class="n">group_mean_corrected</span>
+</code></pre></div></div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>array([ 0.67375, -6.22825,  1.46175,  4.09275, -2.9195 , -4.7725 ,
+        6.0075 ,  1.6845 , -2.84425, -6.13225,  4.68675,  4.28975])
+</code></pre></div></div>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">SSR_full</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="nb">sum</span><span class="p">(</span><span class="n">group_mean_corrected</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">SSR_reduced</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="nb">sum</span><span class="p">(</span><span class="n">overall_mean_corrected</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">SSR_full</span><span class="p">,</span> <span class="n">SSR_reduced</span>
+</code></pre></div></div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(214.42201450000005, 345.6199626666667)
+</code></pre></div></div>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">psychopathy</span><span class="p">)</span>
+<span class="n">df_error</span> <span class="o">=</span> <span class="n">N</span> <span class="o">-</span> <span class="mi">3</span>
+<span class="n">df_extra</span> <span class="o">=</span> <span class="mi">3</span> <span class="o">-</span> <span class="mi">1</span>
+<span class="n">F_top</span> <span class="o">=</span> <span class="p">(</span><span class="n">SSR_reduced</span> <span class="o">-</span> <span class="n">SSR_full</span><span class="p">)</span> <span class="o">/</span> <span class="n">df_extra</span>
+<span class="n">F_bottom</span> <span class="o">=</span> <span class="n">SSR_full</span> <span class="o">/</span> <span class="n">df_error</span>
+<span class="n">F_stat</span> <span class="o">=</span> <span class="n">F_top</span> <span class="o">/</span> <span class="n">F_bottom</span>
+<span class="n">F_stat</span>
+</code></pre></div></div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>2.75340555925054
+</code></pre></div></div>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Back to the old model</span>
+<span class="n">X_full</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">N</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="n">X_full</span><span class="p">[:</span><span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c"># Berkeley indicator is first column</span>
+<span class="n">X_full</span><span class="p">[</span><span class="mi">4</span><span class="p">:</span><span class="mi">8</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c"># Stanford indicator is second column</span>
+<span class="n">X_full</span><span class="p">[</span><span class="mi">8</span><span class="p">:,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c"># MIT indicator is third column</span>
+<span class="n">show_design</span><span class="p">(</span><span class="n">X_full</span><span class="p">,</span> <span class="s">'Group mean'</span><span class="p">)</span>
+<span class="n">X_full</span>
+</code></pre></div></div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>array([[1., 0., 0.],
+       [1., 0., 0.],
+       [1., 0., 0.],
+       [1., 0., 0.],
+       [0., 1., 0.],
+       [0., 1., 0.],
+       [0., 1., 0.],
+       [0., 1., 0.],
+       [0., 0., 1.],
+       [0., 0., 1.],
+       [0., 0., 1.],
+       [0., 0., 1.]])
+</code></pre></div></div>
+
+<p><img src="../../images/chapters/04/on_f_24_1.png" alt="png" /></p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">X_full</span>
+</code></pre></div></div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>array([[1., 0., 0.],
+       [1., 0., 0.],
+       [1., 0., 0.],
+       [1., 0., 0.],
+       [0., 1., 0.],
+       [0., 1., 0.],
+       [0., 1., 0.],
+       [0., 1., 0.],
+       [0., 0., 1.],
+       [0., 0., 1.],
+       [0., 0., 1.],
+       [0., 0., 1.]])
+</code></pre></div></div>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">B_full</span> <span class="o">=</span> <span class="n">npl</span><span class="o">.</span><span class="n">pinv</span><span class="p">(</span><span class="n">X_full</span><span class="p">)</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">psychopathy</span><span class="p">)</span>
+<span class="n">B_full</span>
+</code></pre></div></div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>array([10.74225, 11.3355 , 18.03425])
+</code></pre></div></div>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">full_fitted</span> <span class="o">=</span> <span class="n">X_full</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">B_full</span><span class="p">)</span>
+<span class="n">full_residuals</span> <span class="o">=</span> <span class="n">psychopathy</span> <span class="o">-</span> <span class="n">full_fitted</span>
+<span class="n">full_residuals</span>
+</code></pre></div></div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>array([ 0.67375, -6.22825,  1.46175,  4.09275, -2.9195 , -4.7725 ,
+        6.0075 ,  1.6845 , -2.84425, -6.13225,  4.68675,  4.28975])
+</code></pre></div></div>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># The reduced design - the overall mean</span>
+<span class="n">X_reduced</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">N</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">X_reduced</span>
+</code></pre></div></div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>array([[1.],
+       [1.],
+       [1.],
+       [1.],
+       [1.],
+       [1.],
+       [1.],
+       [1.],
+       [1.],
+       [1.],
+       [1.],
+       [1.]])
+</code></pre></div></div>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">B_reduced</span> <span class="o">=</span> <span class="n">npl</span><span class="o">.</span><span class="n">pinv</span><span class="p">(</span><span class="n">X_reduced</span><span class="p">)</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">psychopathy</span><span class="p">)</span>
+<span class="n">B_reduced</span>
+</code></pre></div></div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>array([13.370667])
+</code></pre></div></div>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">reduced_fitted</span> <span class="o">=</span> <span class="n">X_reduced</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">B_reduced</span><span class="p">)</span>
+<span class="n">reduced_residuals</span> <span class="o">=</span> <span class="n">psychopathy</span> <span class="o">-</span> <span class="n">reduced_fitted</span>
+<span class="n">reduced_residuals</span>
+</code></pre></div></div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>array([-1.954667, -8.856667, -1.166667,  1.464333, -4.954667, -6.807667,
+        3.972333, -0.350667,  1.819333, -1.468667,  9.350333,  8.953333])
+</code></pre></div></div>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">GLM_SSR_full</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="nb">sum</span><span class="p">(</span><span class="n">full_residuals</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">GLM_SSR_reduced</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="nb">sum</span><span class="p">(</span><span class="n">reduced_residuals</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">GLM_SSR_full</span><span class="p">,</span> <span class="n">GLM_SSR_reduced</span>
+</code></pre></div></div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(214.42201450000005, 345.61996266666665)
+</code></pre></div></div>
+
+<p>OK - now the same thing with the original clammy model:</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">X_regression_full</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">12</span><span class="p">),</span> <span class="n">clammy</span><span class="p">))</span>
+<span class="n">show_design</span><span class="p">(</span><span class="n">X_regression_full</span><span class="p">,</span> <span class="s">'Simple regression'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><img src="../../images/chapters/04/on_f_33_0.png" alt="png" /></p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">B_regression_full</span> <span class="o">=</span> <span class="n">npl</span><span class="o">.</span><span class="n">pinv</span><span class="p">(</span><span class="n">X_regression_full</span><span class="p">)</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">psychopathy</span><span class="p">)</span>
+<span class="n">B_regression_full</span>
+</code></pre></div></div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>array([10.071286,  0.999257])
+</code></pre></div></div>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">fitted_regression_full</span> <span class="o">=</span> <span class="n">X_regression_full</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">B_regression_full</span><span class="p">)</span>
+<span class="n">residuals_regression_full</span> <span class="o">=</span> <span class="n">psychopathy</span> <span class="o">-</span> <span class="n">fitted_regression_full</span>
+<span class="n">residuals_regression_full</span>
+</code></pre></div></div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>array([ 0.956003, -5.757137,  1.891893,  4.301058, -6.23688 , -4.604471,
+        5.630934, -2.019593, -2.832376, -3.750137,  7.126819,  5.293887])
+</code></pre></div></div>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">fitted_regression_full</span>
+</code></pre></div></div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>array([10.459997, 10.271137, 10.312107, 10.533942, 14.65288 , 11.167471,
+       11.712066, 15.039593, 18.022376, 15.652137, 15.594181, 17.030113])
+</code></pre></div></div>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="mf">10.071286</span> <span class="o">*</span> <span class="mi">1</span> <span class="o">+</span> <span class="mf">0.999257</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">clammy</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>array([10.459997, 10.271137, 10.312107, 10.533942, 14.652879, 11.167471,
+       11.712066, 15.039592, 18.022374, 15.652136, 15.594179, 17.030112])
+</code></pre></div></div>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">SSR_regression_full</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="nb">sum</span><span class="p">(</span><span class="n">residuals_regression_full</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">F_top</span> <span class="o">=</span> <span class="p">(</span><span class="n">SSR_reduced</span> <span class="o">-</span> <span class="n">SSR_regression_full</span><span class="p">)</span> <span class="o">/</span> <span class="mi">1</span>
+<span class="n">F_bottom</span> <span class="o">=</span> <span class="n">SSR_regression_full</span> <span class="o">/</span> <span class="p">(</span><span class="n">N</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">F_stat</span> <span class="o">=</span> <span class="n">F_top</span> <span class="o">/</span> <span class="n">F_bottom</span>
+<span class="n">F_stat</span>
+</code></pre></div></div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>3.6648861899665146
+</code></pre></div></div>
+
+
+          
+        </section>
+
+        <footer class="page__meta">
+          
+          
+
+
+        </footer>
+
+        
+
+        
+  <nav class="pagination">
+    
+      <a href="/fbi2018/chapters/04/random_effects" class="pagination--pager" title="4.7 Random effects
+">Previous</a>
+    
+    
+      <a href="/fbi2018/chapters/04/reveng_feat" class="pagination--pager" title="4.9 Reverse engineering FEAT
+">Next</a>
+    
+  </nav>
+
+
+      </div>
+
+      
+    </article>
+  </div>
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><input type="text" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+    <div id="results" class="results"></div></div>
+      </div>
+    
+
+    
+
+    
+  <script src="/fbi2018/assets/js/main.min.js"></script>
+  <script src="https://use.fontawesome.com/releases/v5.0.12/js/all.js"></script>
+
+
+
+
+<script src="/fbi2018/assets/js/lunr/lunr.min.js"></script>
+<script src="/fbi2018/assets/js/lunr/lunr-store.js"></script>
+<script src="/fbi2018/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+    <!-- Custom scripts to load after site JS is loaded -->
+
+    <!-- Custom HTML used for the textbooks -->
+<!-- Configure, then load MathJax -->
+<script type="text/javascript">
+  window.MathJax = {
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      processEnvironments: true
+    }
+  };
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML-full,Safe" type="text/javascript"></script>
+
+
+<script type="text/javascript">
+// --- To auto-embed hub URLs in interact links if given in a RESTful fashion ---
+function getJsonFromUrl(url) {
+  var query = url.split('?');
+  if (query.length < 2) {
+    // No queries so just return false
+    return false;
+  }
+  query = query[1];
+  // Collect REST params into a dictionary
+  var result = {};
+  query.split("&").forEach(function(part) {
+    var item = part.split("=");
+    result[item[0]] = decodeURIComponent(item[1]);
+  });
+  return result;
+}
+
+// Parse a Binder URL, converting it to the string needed for JupyterHub
+function binder2Jupyterhub(url) {
+  newUrl = {};
+  parts = url.split('v2/gh/')[1];
+  // Grab the base repo information
+  repoinfo = parts.split('?')[0];
+  var [org, repo, ref] = repoinfo.split('/');
+  newUrl['repo'] = ['https://github.com', org, repo].join('/');
+  newUrl['branch'] = ref
+  // Grab extra parameters passed
+  params = getJsonFromUrl(url);
+  if (params['filepath'] !== undefined) {
+    newUrl['subPath'] = params['filepath']
+  }
+  return jQuery.param(newUrl);
+}
+
+// Filter out potentially unsafe characters to prevent xss
+function safeUrl(url)
+{
+   return String(encodeURIComponent(url))
+            .replace(/&/g, '&amp;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#39;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;');
+}
+
+function addParamToInternalLinks(hub) {
+  var links = $("a").each(function() {
+    var href = this.href;
+    // If the link is an internal link...
+    if (href.search("https://matthew-brett.github.io") !== -1 || href.startsWith('/') || href.search("127.0.0.1:") !== -1) {
+      // Assume we're an internal link, add the hub param to it
+      var params = getJsonFromUrl(href);
+      if (params !== false) {
+        // We have REST params, so append a new one
+        params['hub'] = hub;
+      } else {
+        // Create the REST params
+        params = {'hub': hub};
+      }
+      // Update the link
+      var newHref = href.split('?')[0] + '?' + jQuery.param(params);
+      this.setAttribute('href', decodeURIComponent(newHref));
+    }
+  });
+  return false;
+}
+
+  // Update interact links
+function updateInteractLink() {
+    // hack to make this work since it expects a ? in the URL
+    rest = getJsonFromUrl("?" + location.search.substr(1));
+    hubUrl = rest['hub'];
+    if (hubUrl !== undefined) {
+      // Sanitize the hubUrl
+      hubUrl = safeUrl(hubUrl);
+      // Add HTTP text if omitted
+      if (hubUrl.indexOf('http') < 0) {hubUrl = 'http://' + hubUrl;}
+      link = $("a.interact-button")[0];
+      if (link !== undefined) {
+          // Update the interact link URL
+          var href = link.getAttribute('href');
+          if ('binder' == 'binder') {
+            // If binder links exist, we need to re-work them for jupyterhub
+            first = [hubUrl, 'hub', 'user-redirect', 'git-sync'].join('/')
+            href = first + '?' + binder2Jupyterhub(href);
+          } else {
+            // If JupyterHub links, we only need to replace the hub url
+            href = href.replace("https://mybinder.org", hubUrl);
+          }
+          link.setAttribute('href', decodeURIComponent(href));
+
+          // Add text after interact link saying where we're launching
+          hubUrlNoHttp = decodeURIComponent(hubUrl).replace('http://', '').replace('https://', '');
+          $("a.interact-button").after($('<div class="interact-context">on ' + hubUrlNoHttp + '</div>'));
+
+      }
+      // Update internal links so we retain the hub url
+      addParamToInternalLinks(hubUrl);
+    }
+}
+
+// --- Highlight the part of sidebar for current page ---
+
+// helper to replace trailing slash
+function replaceSlash(string)
+{
+    return string.replace(/\/$/, "");
+}
+
+// Add a class to the current page in the sidebar
+function highlightSidebarCurrentPage()
+{
+  var currentpage = location.href;
+  var links = $('.sidebar .nav__items a');
+  var ii = 0;
+  for(ii; ii < links.length; ii++) {
+    var link = links[ii];
+    if(replaceSlash(link.href) == replaceSlash(currentpage)) {
+      // Add CSS for styling
+      link.classList.add("current");
+      // Scroll to this element
+      $('div.sidebar').scrollTop(link.offsetTop - 300);
+    }
+  }
+}
+
+// --- Set up copy/paste for code blocks ---
+function addCopyButtonToCode(){
+  // get all <code> elements
+  var allCodeBlocksElements = $( "div.input_area code, div.highlighter-rouge code" );
+
+  allCodeBlocksElements.each(function(ii) {
+   	// add different id for each code block
+
+  	// target
+    var currentId = "codeblock" + (ii + 1);
+    $(this).attr('id', currentId);
+
+    //trigger
+    var clipButton = '<button class="btn copybtn" data-clipboard-target="#' + currentId + '"><img src="https://clipboardjs.com/assets/images/clippy.svg" width="13" alt="Copy to clipboard"></button>';
+       $(this).after(clipButton);
+    });
+
+    new Clipboard('.btn');
+}
+
+// Run scripts when page is loaded
+$(document).ready(function () {
+  // Add anchors to H1 etc links
+  anchors.add();
+  // Highlight current page in sidebar
+  highlightSidebarCurrentPage();
+  // Add copy button to code blocks
+  addCopyButtonToCode();
+  // Update the Interact link if a REST param given
+  updateInteractLink();
+});
+</script>
+
+  </body>
+</html>

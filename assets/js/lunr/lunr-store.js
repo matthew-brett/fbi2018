@@ -99,10 +99,25 @@ var store = [{
         "tags": [],
         "url": "https://matthew-brett.github.io/fbi2018/chapters/04/glm_intro",
         "teaser":null},{
-        "title": "4.4 Linear model on one voxel",
-        "excerpt":"$\\newcommand{L}[1]{| #1 |}\\newcommand{VL}[1]{\\L{ \\vec{#1} }}\\newcommand{R}[1]{\\operatorname{Re}\\,(#1)}\\newcommand{I}[1]{\\operatorname{Im}\\, (#1)}$ The General Linear Model for one voxel Here we get the convolved regressor and voxel time-courses from theconvolution notebook, and run the general linear model. Start with our usual imports: import numpy as np# Only show 6 decimals when printingnp.set_printoptions(precision=6)import matplotlib.pyplot as plt%matplotlib inlineimport...","categories": [],
+        "title": "The General Linear Model for one voxel",
+        "excerpt":"Here we get the convolved regressor and voxel time-courses from theconvolution notebook, and run the general linear model. Start with our usual imports: import numpy as np# Only show 6 decimals when printingnp.set_printoptions(precision=6)import matplotlib.pyplot as plt%matplotlib inlineimport nibabel as nibfrom scipy.stats import gammaLoad the 4D image ready for analysis: img...","categories": [],
         "tags": [],
         "url": "https://matthew-brett.github.io/fbi2018/chapters/04/glm_one_voxel",
+        "teaser":null},{
+        "title": "General linear model and F tests",
+        "excerpt":"See also:https://bic-berkeley.github.io/psych-214-fall-2016/hypothesis_tests.html import numpy as np # The array libraryimport numpy.linalg as npl # The linear algebra sub-package# Only show 4 decimals when printingnp.set_printoptions(precision=6)import matplotlib.pyplot as plt%matplotlib inlineThe problem, again These two lists of numbers are from the GLM intro notebook: psychopathy = [11.416, 4.514, 12.204, 14.835, 8.416, 6.563, 17.343,...","categories": [],
+        "tags": [],
+        "url": "https://matthew-brett.github.io/fbi2018/chapters/04/on_f",
+        "teaser":null},{
+        "title": "On random effects",
+        "excerpt":"Our usual imports import numpy as np # The array libraryimport numpy.linalg as npl # The linear algebra sub-package# Only show 4 decimals when printingnp.set_printoptions(precision=6)import matplotlib.pyplot as plt%matplotlib inlineThe example problem Remember the scores of “psychopathy” from the 12 students: psychopathy = [11.416, 4.514, 12.204, 14.835, 8.416, 6.563, 17.343, 13.02,...","categories": [],
+        "tags": [],
+        "url": "https://matthew-brett.github.io/fbi2018/chapters/04/random_effects",
+        "teaser":null},{
+        "title": "Replicating an FSL analysis",
+        "excerpt":"You may need: ds114 FMRI image. ds114 stimulus file. ds114 design file.If you don’t have FSL on your computer, you will also need to download andunpack the ds114 FEAT analysis directory archive. I start by running an FSL analysis on the ds114_sub009_t2r1.nii image. I chose the following options for simplicity...","categories": [],
+        "tags": [],
+        "url": "https://matthew-brett.github.io/fbi2018/chapters/04/reveng_feat",
         "teaser":null},{
         "title": "First announcement!",
         "excerpt":"      HW 11 is due Thursday, 4/19 at 11:59pm. You will receive an early submission bonus point if you turn in your final submission by Wednesday, 4/18 at 11:59pm.         The Project 3 checkpoint is due on Friday, 4/20. The project is due on Friday 4/27.   ","categories": [],

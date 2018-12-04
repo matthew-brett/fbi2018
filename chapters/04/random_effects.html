@@ -1,0 +1,972 @@
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>On random effects - FBI 2018</title>
+<meta name="description" content="On random effects">
+
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_UK">
+<meta property="og:site_name" content="FBI 2018">
+<meta property="og:title" content="On random effects">
+<meta property="og:url" content="https://matthew-brett.github.io/fbi2018/chapters/04/random_effects">
+
+
+  <meta property="og:description" content="On random effects">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2018-12-04T00:14:40+00:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://matthew-brett.github.io/fbi2018/chapters/04/random_effects">
+
+
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Person",
+      "name": "Matthew Brett",
+      "url": "https://matthew-brett.github.io/fbi2018",
+      "sameAs": null
+    }
+  </script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/fbi2018/feed.xml" type="application/atom+xml" rel="alternate" title="FBI 2018 Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/fbi2018/assets/css/main.css">
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+    <!-- start custom head snippets -->
+
+
+<!-- end custom head snippets -->
+
+    <link rel="stylesheet" href="/fbi2018/assets/css/notebook-markdown.css">
+    <link rel="stylesheet" href="/fbi2018/assets/css/custom.css">
+    <link rel="shortcut icon" type="image/png" href="/fbi2018/favicon.png">
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.1/anchor.min.js"></script>
+  </head>
+
+  <body class="layout--textbook">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" class="textbook" role="main">
+  <div id="textbook_wrapper">
+    
+  <div class="sidebar sticky textbook">
+  
+  
+    <img src="/fbi2018/images/fbi2018.png" class="textbook_logo" />
+    
+
+    
+      
+
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">Toggle Menu</label>
+  <ul class="nav__items">
+    
+      <li>
+        
+          
+          
+
+          <a href="/fbi2018/"><span class="nav__sub-title">Home</span></a>
+        
+
+        
+      </li>
+    
+      <li>
+        
+          
+          
+
+          <a href="/fbi2018/chapters/01/intro"><span class="nav__sub-title">1. Introduction to MRI data</span></a>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/01/error" class="level_1">1.1 Why worry?</a></li>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/01/why_python" class="level_1">1.2 Why Python?</a></li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          
+          
+
+          <a href="/fbi2018/chapters/02/fmri_data"><span class="nav__sub-title">2. FMRI data</span></a>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/02/what_is_an_image" class="level_1">2.1 A brain image</a></li>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/02/arrays_and_images" class="level_1">2.2 Arrays and images</a></li>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/02/images_3d" class="level_1">2.3 3D images</a></li>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/02/images_4d" class="level_1">2.4 4D images</a></li>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/02/voxel_time_courses" class="level_1">2.5 Voxel time courses</a></li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          
+          
+
+          <a href="/fbi2018/chapters/03/preprocessing"><span class="nav__sub-title">3. FMRI pre-processing</span></a>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/03/slice_timing" class="level_1">3.1 slice timing</a></li>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/03/optimizing_space" class="level_1">3.2 optimizing space</a></li>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/03/mutual_information" class="level_1">3.3 mutual information</a></li>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/03/normalization" class="level_1">3.4 normalization</a></li>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/03/smoothing_intro" class="level_1">3.5 smoothing</a></li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          
+          
+
+          <a href="/fbi2018/chapters/04/activation"><span class="nav__sub-title">4. Activation</span></a>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/04/first_activation" class="level_1">4.1 First activation</a></li>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/04/correlation_each_voxel" class="level_1">4.2 Correlation each voxel</a></li>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/04/convolution" class="level_1">4.3 Convolution</a></li>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/04/glm_intro" class="level_1">4.5 General linear model</a></li>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/04/glm_one_voxel" class="level_1">4.6 Linear model on one voxel</a></li>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/04/random_effects" class="level_1">4.7 Random effects</a></li>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/04/on_f" class="level_1">4.8 On F tests</a></li>
+          
+            
+            
+
+            
+            
+
+            
+
+            <li><a href="/fbi2018/chapters/04/reveng_feat" class="level_1">4.9 Reverse engineering FEAT</a></li>
+          
+        </ul>
+        
+      </li>
+    
+  </ul>
+</nav>
+
+    
+
+  
+  </div>
+
+
+    <article class="page textbook" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="headline" content="On random effects">
+      <meta itemprop="description" content="On random effects">
+      <meta itemprop="datePublished" content="December 04, 2018">
+      
+
+      <div class="page__inner-wrap">
+        
+          <header>
+            <h1 id="page-title" class="page__title" itemprop="headline">On random effects
+</h1>
+          </header>
+        
+
+        <section class="page__content" itemprop="text">
+          
+            
+
+<!-- TOC will only show up if it has at least one item -->
+
+
+  <aside class="sidebar__right">
+    <nav class="toc">
+      <header><h4 class="nav__title"><i class="fas fa-list-ul"></i>   On this page</h4></header>
+      <ul class="toc__menu">
+  <li><a href="#the-example-problem">The example problem</a></li>
+</ul>
+    </nav>
+  </aside>
+
+
+          
+          <!-- INTERACT LINKS -->
+
+    
+    
+    <a class="notebook-link" href="https://matthew-brett.github.io/fbi2018/notebooks/04/random_effects.ipynb">Download notebook</a>
+    <a class="interact-button" href="https://mybinder.org/v2/gh/matthew-brett/fbi2018/master?filepath=notebooks%2F04%2Frandom_effects.ipynb">Interact</a>
+
+
+          
+<p>Our usual imports</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>  <span class="c"># The array library</span>
+<span class="kn">import</span> <span class="nn">numpy.linalg</span> <span class="k">as</span> <span class="n">npl</span>  <span class="c"># The linear algebra sub-package</span>
+<span class="c"># Only show 4 decimals when printing</span>
+<span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+</code></pre></div></div>
+
+<h2 id="the-example-problem">The example problem</h2>
+
+<p>Remember the scores of “psychopathy” from the 12 students:</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">psychopathy</span> <span class="o">=</span> <span class="p">[</span><span class="mf">11.416</span><span class="p">,</span>   <span class="mf">4.514</span><span class="p">,</span>  <span class="mf">12.204</span><span class="p">,</span>  <span class="mf">14.835</span><span class="p">,</span>
+               <span class="mf">8.416</span><span class="p">,</span>   <span class="mf">6.563</span><span class="p">,</span>  <span class="mf">17.343</span><span class="p">,</span> <span class="mf">13.02</span><span class="p">,</span>
+               <span class="mf">15.19</span> <span class="p">,</span>  <span class="mf">11.902</span><span class="p">,</span>  <span class="mf">22.721</span><span class="p">,</span>  <span class="mf">22.324</span><span class="p">]</span>
+</code></pre></div></div>
+
+<p>We found out these were students from Berkeley, Stanford and MIT.</p>
+
+<p>Now let’s say we have two students from Birmingham and two from Cambridge
+(that’s Birmingham and Cambridge UK, AKA <em>actual Birmingham</em> and <em>actual
+Cambridge</em>).</p>
+
+<p>Last time we just had one measurement of the psychopathy score, but this time
+we have 40 measurements for each student - we did the questionnaire score
+every week for 40 weeks.  Here’s are the Birmingham student scores:</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">brum_0</span> <span class="o">=</span> <span class="p">[</span><span class="mf">9.25</span><span class="p">,</span> <span class="mf">9.19</span><span class="p">,</span> <span class="mf">9.26</span><span class="p">,</span> <span class="mf">9.35</span><span class="p">,</span> <span class="mf">9.18</span><span class="p">,</span> <span class="mf">9.18</span><span class="p">,</span> <span class="mf">9.36</span><span class="p">,</span> <span class="mf">9.28</span><span class="p">,</span> <span class="mf">9.15</span><span class="p">,</span> <span class="mf">9.25</span><span class="p">,</span> <span class="mf">9.15</span><span class="p">,</span>
+          <span class="mf">9.15</span><span class="p">,</span> <span class="mf">9.22</span><span class="p">,</span> <span class="mf">9.01</span><span class="p">,</span> <span class="mf">9.03</span><span class="p">,</span> <span class="mf">9.14</span><span class="p">,</span> <span class="mf">9.1</span><span class="p">,</span> <span class="mf">9.23</span><span class="p">,</span> <span class="mf">9.11</span><span class="p">,</span> <span class="mf">9.06</span><span class="p">,</span> <span class="mf">9.35</span><span class="p">,</span> <span class="mf">9.18</span><span class="p">,</span>
+          <span class="mf">9.21</span><span class="p">,</span> <span class="mf">9.06</span><span class="p">,</span> <span class="mf">9.15</span><span class="p">,</span> <span class="mf">9.21</span><span class="p">,</span> <span class="mf">9.08</span><span class="p">,</span> <span class="mf">9.24</span><span class="p">,</span> <span class="mf">9.14</span><span class="p">,</span> <span class="mf">9.17</span><span class="p">,</span> <span class="mf">9.14</span><span class="p">,</span> <span class="mf">9.39</span><span class="p">,</span> <span class="mf">9.2</span><span class="p">,</span>
+          <span class="mf">9.09</span><span class="p">,</span> <span class="mf">9.28</span><span class="p">,</span> <span class="mf">9.08</span><span class="p">,</span> <span class="mf">9.22</span><span class="p">,</span> <span class="mf">9.0</span><span class="p">,</span> <span class="mf">9.07</span><span class="p">,</span> <span class="mf">9.22</span><span class="p">]</span>
+<span class="n">brum_1</span> <span class="o">=</span> <span class="p">[</span><span class="mf">8.94</span><span class="p">,</span> <span class="mf">8.91</span><span class="p">,</span> <span class="mf">8.89</span><span class="p">,</span> <span class="mf">8.88</span><span class="p">,</span> <span class="mf">8.83</span><span class="p">,</span> <span class="mf">8.86</span><span class="p">,</span> <span class="mf">8.88</span><span class="p">,</span> <span class="mf">8.95</span><span class="p">,</span> <span class="mf">8.92</span><span class="p">,</span> <span class="mf">8.81</span><span class="p">,</span> <span class="mf">8.92</span><span class="p">,</span>
+          <span class="mf">8.88</span><span class="p">,</span> <span class="mf">8.87</span><span class="p">,</span> <span class="mf">8.93</span><span class="p">,</span> <span class="mf">8.95</span><span class="p">,</span> <span class="mf">8.95</span><span class="p">,</span> <span class="mf">8.86</span><span class="p">,</span> <span class="mf">8.88</span><span class="p">,</span> <span class="mf">8.92</span><span class="p">,</span> <span class="mf">8.95</span><span class="p">,</span> <span class="mf">8.88</span><span class="p">,</span> <span class="mf">8.89</span><span class="p">,</span>
+          <span class="mf">8.84</span><span class="p">,</span> <span class="mf">8.84</span><span class="p">,</span> <span class="mf">8.94</span><span class="p">,</span> <span class="mf">8.97</span><span class="p">,</span> <span class="mf">8.9</span><span class="p">,</span> <span class="mf">8.95</span><span class="p">,</span> <span class="mf">8.92</span><span class="p">,</span> <span class="mf">8.87</span><span class="p">,</span> <span class="mf">8.92</span><span class="p">,</span> <span class="mf">8.98</span><span class="p">,</span> <span class="mf">8.9</span><span class="p">,</span>
+          <span class="mf">8.98</span><span class="p">,</span> <span class="mf">8.77</span><span class="p">,</span> <span class="mf">8.94</span><span class="p">,</span> <span class="mf">8.9</span><span class="p">,</span> <span class="mf">8.89</span><span class="p">,</span> <span class="mf">8.9</span><span class="p">,</span> <span class="mf">8.8</span><span class="p">]</span>
+</code></pre></div></div>
+
+<p>Here are the scores for the two Cambridge students:</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">cam_0</span> <span class="o">=</span> <span class="p">[</span><span class="mf">8.98</span><span class="p">,</span> <span class="mf">9.03</span><span class="p">,</span> <span class="mf">9.11</span><span class="p">,</span> <span class="mf">8.96</span><span class="p">,</span> <span class="mf">8.94</span><span class="p">,</span> <span class="mf">8.96</span><span class="p">,</span> <span class="mf">9.07</span><span class="p">,</span> <span class="mf">9.02</span><span class="p">,</span> <span class="mf">8.96</span><span class="p">,</span> <span class="mf">9.04</span><span class="p">,</span> <span class="mf">9.01</span><span class="p">,</span>
+         <span class="mf">9.07</span><span class="p">,</span> <span class="mf">8.95</span><span class="p">,</span> <span class="mf">8.98</span><span class="p">,</span> <span class="mf">8.97</span><span class="p">,</span> <span class="mf">8.89</span><span class="p">,</span> <span class="mf">9.02</span><span class="p">,</span> <span class="mf">9.02</span><span class="p">,</span> <span class="mf">9.0</span><span class="p">,</span> <span class="mf">8.98</span><span class="p">,</span> <span class="mf">8.89</span><span class="p">,</span> <span class="mf">8.97</span><span class="p">,</span>
+         <span class="mf">8.97</span><span class="p">,</span> <span class="mf">8.94</span><span class="p">,</span> <span class="mf">8.99</span><span class="p">,</span> <span class="mf">9.03</span><span class="p">,</span> <span class="mf">9.14</span><span class="p">,</span> <span class="mf">9.01</span><span class="p">,</span> <span class="mf">9.02</span><span class="p">,</span> <span class="mf">8.99</span><span class="p">,</span> <span class="mf">8.86</span><span class="p">,</span> <span class="mf">9.0</span><span class="p">,</span> <span class="mf">9.0</span><span class="p">,</span> <span class="mf">9.18</span><span class="p">,</span>
+         <span class="mf">8.99</span><span class="p">,</span> <span class="mf">9.02</span><span class="p">,</span> <span class="mf">9.0</span><span class="p">,</span> <span class="mf">8.91</span><span class="p">,</span> <span class="mf">9.09</span><span class="p">,</span> <span class="mf">9.06</span><span class="p">]</span>
+<span class="n">cam_1</span> <span class="o">=</span> <span class="p">[</span><span class="mf">9.37</span><span class="p">,</span> <span class="mf">9.11</span><span class="p">,</span> <span class="mf">9.46</span><span class="p">,</span> <span class="mf">9.04</span><span class="p">,</span> <span class="mf">9.34</span><span class="p">,</span> <span class="mf">9.58</span><span class="p">,</span> <span class="mf">9.1</span><span class="p">,</span> <span class="mf">9.17</span><span class="p">,</span> <span class="mf">9.26</span><span class="p">,</span> <span class="mf">9.17</span><span class="p">,</span> <span class="mf">9.02</span><span class="p">,</span>
+         <span class="mf">9.26</span><span class="p">,</span> <span class="mf">9.09</span><span class="p">,</span> <span class="mf">9.32</span><span class="p">,</span> <span class="mf">9.11</span><span class="p">,</span> <span class="mf">9.48</span><span class="p">,</span> <span class="mf">9.13</span><span class="p">,</span> <span class="mf">9.2</span><span class="p">,</span> <span class="mf">9.37</span><span class="p">,</span> <span class="mf">9.07</span><span class="p">,</span> <span class="mf">9.28</span><span class="p">,</span> <span class="mf">9.45</span><span class="p">,</span>
+         <span class="mf">9.01</span><span class="p">,</span> <span class="mf">9.28</span><span class="p">,</span> <span class="mf">9.29</span><span class="p">,</span> <span class="mf">9.37</span><span class="p">,</span> <span class="mf">9.06</span><span class="p">,</span> <span class="mf">9.05</span><span class="p">,</span> <span class="mf">9.33</span><span class="p">,</span> <span class="mf">9.29</span><span class="p">,</span> <span class="mf">9.29</span><span class="p">,</span> <span class="mf">9.3</span><span class="p">,</span> <span class="mf">9.15</span><span class="p">,</span>
+         <span class="mf">9.28</span><span class="p">,</span> <span class="mf">9.29</span><span class="p">,</span> <span class="mf">9.14</span><span class="p">,</span> <span class="mf">9.53</span><span class="p">,</span> <span class="mf">9.32</span><span class="p">,</span> <span class="mf">9.07</span><span class="p">,</span> <span class="mf">9.35</span><span class="p">]</span>
+</code></pre></div></div>
+
+<p>We can do a histogram of these scores one under the other, first the
+Birmingham students, then the Cambridge students.</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Make four plots one under the other</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">brum_0</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">brum_1</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">cam_0</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">cam_1</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">'Psychopathy'</span><span class="p">)</span>
+<span class="c"># Make sure the axes are the same for each plot</span>
+<span class="k">for</span> <span class="n">ax</span> <span class="ow">in</span> <span class="n">axes</span><span class="p">:</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">([</span><span class="mf">8.75</span><span class="p">,</span> <span class="mf">9.4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">11</span><span class="p">])</span>
+</code></pre></div></div>
+
+<p><img src="../../images/chapters/04/random_effects_10_0.png" alt="png" /></p>
+
+<p>Do you think there is a significant difference in psychopathy between
+Birmingham students and Cambridge students?</p>
+
+<p>We can use the machinery from the <a href="glm_intro">GLM introduction</a> to do a t-test
+on these values.</p>
+
+<p>First we concatenate the data from all four students into one long vector:</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">psycho_repeats</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">brum_0</span><span class="p">,</span> <span class="n">brum_1</span><span class="p">,</span> <span class="n">cam_0</span><span class="p">,</span> <span class="n">cam_1</span><span class="p">])</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">psycho_repeats</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>160
+</code></pre></div></div>
+
+<p>Next we make a design matrix for our General Linear Model.  We have two dummy
+variables, and therefore two columns in the design matrix:</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Make an empty design matrix</span>
+<span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">psycho_repeats</span><span class="p">)</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">N</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+</code></pre></div></div>
+
+<p>The first column indicates whether the psychopathy score is from a Birmingham
+student or not.  There is a 1 corresponding to a value for a Birmingham
+student, and 0 otherwise:</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># First column (0) indicates Birmingham student value</span>
+<span class="n">X</span><span class="p">[:</span><span class="mi">80</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+</code></pre></div></div>
+
+<p>The second column indicates whether the score is from a Cambridge student or
+not:</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Second column (1) indicates Cambridge student value</span>
+<span class="n">X</span><span class="p">[</span><span class="mi">80</span><span class="p">:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+</code></pre></div></div>
+
+<p>Let’s have a look at the design matrix:</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Show design in grayscale</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s">'gray'</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;matplotlib.image.AxesImage at 0x118966ac8&gt;
+</code></pre></div></div>
+
+<p><img src="../../images/chapters/04/random_effects_22_1.png" alt="png" /></p>
+
+<p>You might remember that, when we fit this model in the simplest least-squares
+way, the parameters are the means for the Birmingham and Cambridge values:</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">y</span> <span class="o">=</span> <span class="n">psycho_repeats</span>
+<span class="n">B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">pinv</span><span class="p">(</span><span class="n">X</span><span class="p">)</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="n">B</span>
+</code></pre></div></div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>array([9.038625, 9.1225  ])
+</code></pre></div></div>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">brum_0</span> <span class="o">+</span> <span class="n">brum_1</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>9.038625
+</code></pre></div></div>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">cam_0</span> <span class="o">+</span> <span class="n">cam_1</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>9.122499999999999
+</code></pre></div></div>
+
+<p>Remember the t-test from the GLM page?</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Get t distribution code from scipy library</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">t</span> <span class="k">as</span> <span class="n">t_dist</span>
+</code></pre></div></div>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">t_stat</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span>
+    <span class="s">""" betas, t statistic and significance test given data, design matrix, contrast
+
+    This is OLS estimation; we assume the errors to have independent
+    and identical normal distributions around zero for each $i$ in
+    $</span><span class="err">\</span><span class="s">e_i$ (i.i.d).
+    """</span>
+    <span class="c"># Make sure y, X, c are all arrays</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_2d</span><span class="p">(</span><span class="n">c</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>  <span class="c"># As column vector</span>
+    <span class="c"># Calculate the parameters - b hat</span>
+    <span class="n">beta</span> <span class="o">=</span> <span class="n">npl</span><span class="o">.</span><span class="n">pinv</span><span class="p">(</span><span class="n">X</span><span class="p">)</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+    <span class="c"># The fitted values - y hat</span>
+    <span class="n">fitted</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">beta</span><span class="p">)</span>
+    <span class="c"># Residual error</span>
+    <span class="n">errors</span> <span class="o">=</span> <span class="n">y</span> <span class="o">-</span> <span class="n">fitted</span>
+    <span class="c"># Residual sum of squares</span>
+    <span class="n">RSS</span> <span class="o">=</span> <span class="p">(</span><span class="n">errors</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="nb">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="c"># Degrees of freedom is the number of observations n minus the number</span>
+    <span class="c"># of independent regressors we have used.  If all the regressor</span>
+    <span class="c"># columns in X are independent then the (matrix rank of X) == p</span>
+    <span class="c"># (where p the number of columns in X). If there is one column that</span>
+    <span class="c"># can be expressed as a linear sum of the other columns then</span>
+    <span class="c"># (matrix rank of X) will be p - 1 - and so on.</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">npl</span><span class="o">.</span><span class="n">matrix_rank</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+    <span class="c"># Mean residual sum of squares</span>
+    <span class="n">MRSS</span> <span class="o">=</span> <span class="n">RSS</span> <span class="o">/</span> <span class="n">df</span>
+    <span class="c"># calculate bottom half of t statistic</span>
+    <span class="n">SE</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">MRSS</span> <span class="o">*</span> <span class="n">c</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">npl</span><span class="o">.</span><span class="n">pinv</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">X</span><span class="p">))</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">c</span><span class="p">)))</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">beta</span><span class="p">)</span> <span class="o">/</span> <span class="n">SE</span>
+    <span class="c"># Get p value for t value using cumulative density dunction</span>
+    <span class="c"># (CDF) of t distribution</span>
+    <span class="n">ltp</span> <span class="o">=</span> <span class="n">t_dist</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">df</span><span class="p">)</span> <span class="c"># lower tail p</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">ltp</span> <span class="c"># upper tail p</span>
+    <span class="k">return</span> <span class="n">beta</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">p</span>
+</code></pre></div></div>
+
+<p>Here is a t-test, testing the null hypothesis that the mean of the Birmingham
+psychopathy values is the same as mean of the Cambridge psychopathy values:</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">betas</span><span class="p">,</span> <span class="n">t_value</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">p_value</span> <span class="o">=</span> <span class="n">t_stat</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">betas</span>
+</code></pre></div></div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>array([9.038625, 9.1225  ])
+</code></pre></div></div>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">t_value</span>
+</code></pre></div></div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>array([[3.250658]])
+</code></pre></div></div>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">df</span>
+</code></pre></div></div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>158
+</code></pre></div></div>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">p_value</span>
+</code></pre></div></div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>array([[0.000704]])
+</code></pre></div></div>
+
+<p>It’s highly significant.  Do you find that surprising?</p>
+
+<p>Let’s do a different test.  This time I will take the mean for each student,
+and throw away all individual observations.  I’ll refer to this as the <em>Random
+Effects</em> test.</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">brum_0</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">brum_1</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">cam_0</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">cam_1</span><span class="p">)]</span>
+<span class="n">y</span>
+</code></pre></div></div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[9.17825, 8.899, 9.0005, 9.244499999999999]
+</code></pre></div></div>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">N</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="c"># Birmingham students</span>
+<span class="n">X</span><span class="p">[:</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="c"># Cambridge students</span>
+<span class="n">X</span><span class="p">[</span><span class="mi">2</span><span class="p">:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s">'gray'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;matplotlib.image.AxesImage at 0x11ab88c88&gt;
+</code></pre></div></div>
+
+<p><img src="../../images/chapters/04/random_effects_38_1.png" alt="png" /></p>
+
+<p>When we do the t-test, our parameters and t value are exactly the same.  Why?
+(Clue - there are the same number of psychopathy values for each student).</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">re_betas</span><span class="p">,</span> <span class="n">re_t_value</span><span class="p">,</span> <span class="n">re_df</span><span class="p">,</span> <span class="n">re_p_value</span> <span class="o">=</span> <span class="n">t_stat</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">re_betas</span>
+</code></pre></div></div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>array([9.038625, 9.1225  ])
+</code></pre></div></div>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">re_t_value</span>
+</code></pre></div></div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>array([[0.452361]])
+</code></pre></div></div>
+
+<p>Our degrees of freedom and p value are very different:</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">re_df</span>
+</code></pre></div></div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>2
+</code></pre></div></div>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">re_p_value</span>
+</code></pre></div></div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>array([[0.347669]])
+</code></pre></div></div>
+
+<p>Which do you think is the better p-value - the original - or the random
+effects p value?</p>
+
+<p>We used the mean for each student, but looking at the histograms above, there
+seems to be some extra information in the distributions.  Some students have
+less spread in their psychopathy scores than others.  Therefore, the mean of
+their scores will be a more accurate measure of the actual (over the long
+term) psychopathy scores for that student.  Can we use that information
+somehow?</p>
+
+          
+        </section>
+
+        <footer class="page__meta">
+          
+          
+
+
+        </footer>
+
+        
+
+        
+  <nav class="pagination">
+    
+      <a href="/fbi2018/chapters/04/glm_one_voxel" class="pagination--pager" title="4.6 Linear model on one voxel
+">Previous</a>
+    
+    
+      <a href="/fbi2018/chapters/04/on_f" class="pagination--pager" title="4.8 On F tests
+">Next</a>
+    
+  </nav>
+
+
+      </div>
+
+      
+    </article>
+  </div>
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><input type="text" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+    <div id="results" class="results"></div></div>
+      </div>
+    
+
+    
+
+    
+  <script src="/fbi2018/assets/js/main.min.js"></script>
+  <script src="https://use.fontawesome.com/releases/v5.0.12/js/all.js"></script>
+
+
+
+
+<script src="/fbi2018/assets/js/lunr/lunr.min.js"></script>
+<script src="/fbi2018/assets/js/lunr/lunr-store.js"></script>
+<script src="/fbi2018/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+    <!-- Custom scripts to load after site JS is loaded -->
+
+    <!-- Custom HTML used for the textbooks -->
+<!-- Configure, then load MathJax -->
+<script type="text/javascript">
+  window.MathJax = {
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      processEnvironments: true
+    }
+  };
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML-full,Safe" type="text/javascript"></script>
+
+
+<script type="text/javascript">
+// --- To auto-embed hub URLs in interact links if given in a RESTful fashion ---
+function getJsonFromUrl(url) {
+  var query = url.split('?');
+  if (query.length < 2) {
+    // No queries so just return false
+    return false;
+  }
+  query = query[1];
+  // Collect REST params into a dictionary
+  var result = {};
+  query.split("&").forEach(function(part) {
+    var item = part.split("=");
+    result[item[0]] = decodeURIComponent(item[1]);
+  });
+  return result;
+}
+
+// Parse a Binder URL, converting it to the string needed for JupyterHub
+function binder2Jupyterhub(url) {
+  newUrl = {};
+  parts = url.split('v2/gh/')[1];
+  // Grab the base repo information
+  repoinfo = parts.split('?')[0];
+  var [org, repo, ref] = repoinfo.split('/');
+  newUrl['repo'] = ['https://github.com', org, repo].join('/');
+  newUrl['branch'] = ref
+  // Grab extra parameters passed
+  params = getJsonFromUrl(url);
+  if (params['filepath'] !== undefined) {
+    newUrl['subPath'] = params['filepath']
+  }
+  return jQuery.param(newUrl);
+}
+
+// Filter out potentially unsafe characters to prevent xss
+function safeUrl(url)
+{
+   return String(encodeURIComponent(url))
+            .replace(/&/g, '&amp;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#39;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;');
+}
+
+function addParamToInternalLinks(hub) {
+  var links = $("a").each(function() {
+    var href = this.href;
+    // If the link is an internal link...
+    if (href.search("https://matthew-brett.github.io") !== -1 || href.startsWith('/') || href.search("127.0.0.1:") !== -1) {
+      // Assume we're an internal link, add the hub param to it
+      var params = getJsonFromUrl(href);
+      if (params !== false) {
+        // We have REST params, so append a new one
+        params['hub'] = hub;
+      } else {
+        // Create the REST params
+        params = {'hub': hub};
+      }
+      // Update the link
+      var newHref = href.split('?')[0] + '?' + jQuery.param(params);
+      this.setAttribute('href', decodeURIComponent(newHref));
+    }
+  });
+  return false;
+}
+
+  // Update interact links
+function updateInteractLink() {
+    // hack to make this work since it expects a ? in the URL
+    rest = getJsonFromUrl("?" + location.search.substr(1));
+    hubUrl = rest['hub'];
+    if (hubUrl !== undefined) {
+      // Sanitize the hubUrl
+      hubUrl = safeUrl(hubUrl);
+      // Add HTTP text if omitted
+      if (hubUrl.indexOf('http') < 0) {hubUrl = 'http://' + hubUrl;}
+      link = $("a.interact-button")[0];
+      if (link !== undefined) {
+          // Update the interact link URL
+          var href = link.getAttribute('href');
+          if ('binder' == 'binder') {
+            // If binder links exist, we need to re-work them for jupyterhub
+            first = [hubUrl, 'hub', 'user-redirect', 'git-sync'].join('/')
+            href = first + '?' + binder2Jupyterhub(href);
+          } else {
+            // If JupyterHub links, we only need to replace the hub url
+            href = href.replace("https://mybinder.org", hubUrl);
+          }
+          link.setAttribute('href', decodeURIComponent(href));
+
+          // Add text after interact link saying where we're launching
+          hubUrlNoHttp = decodeURIComponent(hubUrl).replace('http://', '').replace('https://', '');
+          $("a.interact-button").after($('<div class="interact-context">on ' + hubUrlNoHttp + '</div>'));
+
+      }
+      // Update internal links so we retain the hub url
+      addParamToInternalLinks(hubUrl);
+    }
+}
+
+// --- Highlight the part of sidebar for current page ---
+
+// helper to replace trailing slash
+function replaceSlash(string)
+{
+    return string.replace(/\/$/, "");
+}
+
+// Add a class to the current page in the sidebar
+function highlightSidebarCurrentPage()
+{
+  var currentpage = location.href;
+  var links = $('.sidebar .nav__items a');
+  var ii = 0;
+  for(ii; ii < links.length; ii++) {
+    var link = links[ii];
+    if(replaceSlash(link.href) == replaceSlash(currentpage)) {
+      // Add CSS for styling
+      link.classList.add("current");
+      // Scroll to this element
+      $('div.sidebar').scrollTop(link.offsetTop - 300);
+    }
+  }
+}
+
+// --- Set up copy/paste for code blocks ---
+function addCopyButtonToCode(){
+  // get all <code> elements
+  var allCodeBlocksElements = $( "div.input_area code, div.highlighter-rouge code" );
+
+  allCodeBlocksElements.each(function(ii) {
+   	// add different id for each code block
+
+  	// target
+    var currentId = "codeblock" + (ii + 1);
+    $(this).attr('id', currentId);
+
+    //trigger
+    var clipButton = '<button class="btn copybtn" data-clipboard-target="#' + currentId + '"><img src="https://clipboardjs.com/assets/images/clippy.svg" width="13" alt="Copy to clipboard"></button>';
+       $(this).after(clipButton);
+    });
+
+    new Clipboard('.btn');
+}
+
+// Run scripts when page is loaded
+$(document).ready(function () {
+  // Add anchors to H1 etc links
+  anchors.add();
+  // Highlight current page in sidebar
+  highlightSidebarCurrentPage();
+  // Add copy button to code blocks
+  addCopyButtonToCode();
+  // Update the Interact link if a REST param given
+  updateInteractLink();
+});
+</script>
+
+  </body>
+</html>

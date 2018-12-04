@@ -1,0 +1,89 @@
+<HTML><HEAD>
+<!--refreshstart-->
+
+<!--refreshstop-->
+<link REL=stylesheet TYPE=text/css href=.files/fsl.css>
+<TITLE>FSL</TITLE></HEAD><BODY><OBJECT data=report.html></OBJECT>
+<h2>Progress Report / Log</h2>
+Started at Tue Dec  4 00:00:56 GMT 2018<p>
+Feat main script<br><pre>
+
+/bin/cp /tmp/feat_XUO8DN.fsf design.fsf
+
+/opt/fsl/bin/feat_model design
+
+mkdir .files;cp /opt/fsl/doc/fsl.css .files;cp -r /opt/fsl/doc/images .files/images
+
+/opt/fsl/bin/fsl_sub -T 10 -l logs -N feat0_init   /opt/fsl/bin/feat /Volumes/dsfe/fbi2018/data/ds114_sub009_t2r1.feat/design.fsf -D /Volumes/dsfe/fbi2018/data/ds114_sub009_t2r1.feat -I 1 -init
+68852
+
+/opt/fsl/bin/fsl_sub -T 30 -l logs -N feat2_pre -j 68852  /opt/fsl/bin/feat /Volumes/dsfe/fbi2018/data/ds114_sub009_t2r1.feat/design.fsf -D /Volumes/dsfe/fbi2018/data/ds114_sub009_t2r1.feat -I 1 -prestats
+68923
+
+/opt/fsl/bin/fsl_sub -T 1 -l logs -N feat3_film -j 68923  /opt/fsl/bin/feat /Volumes/dsfe/fbi2018/data/ds114_sub009_t2r1.feat/design.fsf -D /Volumes/dsfe/fbi2018/data/ds114_sub009_t2r1.feat -I 1 -stats
+68997
+
+/opt/fsl/bin/fsl_sub -T 119 -l logs -N feat4_post -j 68997  /opt/fsl/bin/feat /Volumes/dsfe/fbi2018/data/ds114_sub009_t2r1.feat/design.fsf -D /Volumes/dsfe/fbi2018/data/ds114_sub009_t2r1.feat -poststats 0 
+69172
+
+/opt/fsl/bin/fsl_sub -T 1 -l logs -N feat5_stop -j 68923,68997,69172  /opt/fsl/bin/feat /Volumes/dsfe/fbi2018/data/ds114_sub009_t2r1.feat/design.fsf -D /Volumes/dsfe/fbi2018/data/ds114_sub009_t2r1.feat -stop
+</pre><hr>Initialisation<br><pre>
+
+/opt/fsl/bin/fslmaths /Users/mb312/dev_trees/msc_imaging/ds114_sub009_t2r1 prefiltered_func_data -odt float
+Total original volumes = 173
+
+/opt/fsl/bin/fslroi prefiltered_func_data example_func 86 1
+</pre><hr>Preprocessing:Stage 1<br><pre>
+</pre><hr>Preprocessing:Stage 2<br><pre>
+
+/opt/fsl/bin/fslmaths prefiltered_func_data filtered_func_data
+
+/opt/fsl/bin/fslmaths filtered_func_data -Tmin -bin mask -odt char
+
+/opt/fsl/bin/fslstats filtered_func_data -k mask -R | awk '{ print  }' -
+1.000000
+
+/opt/fsl/bin/fslmaths filtered_func_data -Tmean mean_func
+
+/bin/rm -rf prefiltered_func_data*
+</pre><hr>Stats<br><pre>
+
+mkdir -p custom_timing_files ; /opt/fsl/bin/fslFixText /Users/mb312/dev_trees/msc_imaging/ds114_sub009_t2r1_cond.txt custom_timing_files/ev1.txt
+
+/opt/fsl/bin/film_gls --in=filtered_func_data --rn=stats --pd=design.mat --thr=1.000000 --noest --con=design.con  
+Log directory is: stats
+paradigm.getDesignMatrix().Nrows()=173
+paradigm.getDesignMatrix().Ncols()=1
+sizeTS=173
+numTS=117168
+Completed
+Prewhitening and Computing PEs...
+Percentage done:
+1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,Completed
+Saving results... 
+Completed
+
+/opt/fsl/bin/smoothest -d 171   -m mask -r stats/res4d > stats/smoothness
+</pre><hr>Post-stats<br><pre>
+
+/opt/fsl/bin/fslmaths stats/zstat1 -mas mask thresh_zstat1
+
+echo 116401 > thresh_zstat1.vol
+zstat1: DLH=5.89548 VOLUME=116401 RESELS=0.784799
+
+/opt/fsl/bin/cluster -i thresh_zstat1 -t 2.3 --othresh=thresh_zstat1 -o cluster_mask_zstat1 --connectivity=26  --olmax=lmax_zstat1.txt --scalarname=Z -p 0.05 -d 5.89548 --volume=116401 -c stats/cope1 > cluster_zstat1.txt
+
+/opt/fsl/bin/cluster2html . cluster_zstat1 
+
+/opt/fsl/bin/fslstats thresh_zstat1 -l 0.0001 -R 2>/dev/null
+2.303454 7.045168 
+Rendering using zmin=2.303454 zmax=7.045168
+
+/opt/fsl/bin/overlay 1 0 example_func -a thresh_zstat1 2.303454 7.045168 rendered_thresh_zstat1
+
+/opt/fsl/bin/slicer rendered_thresh_zstat1 -A 750 rendered_thresh_zstat1.png
+
+/bin/cp /opt/fsl/etc/luts/ramp.gif .ramp.gif
+
+mkdir -p tsplot ; /opt/fsl/bin/tsplot . -f filtered_func_data -o tsplot
+</pre><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br></BODY></HTML>

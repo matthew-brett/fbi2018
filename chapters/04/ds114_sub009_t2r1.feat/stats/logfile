@@ -1,0 +1,3 @@
+/opt/fsl/bin/film_gls --in=filtered_func_data --rn=stats --pd=design.mat --thr=1.000000 --noest --con=design.con 
+---------------------------------------------
+
