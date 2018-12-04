@@ -1,0 +1,21 @@
+
+/bin/cp /tmp/feat_XUO8DN.fsf design.fsf
+
+/opt/fsl/bin/feat_model design
+
+mkdir .files;cp /opt/fsl/doc/fsl.css .files;cp -r /opt/fsl/doc/images .files/images
+
+/opt/fsl/bin/fsl_sub -T 10 -l logs -N feat0_init   /opt/fsl/bin/feat /Volumes/dsfe/fbi2018/data/ds114_sub009_t2r1.feat/design.fsf -D /Volumes/dsfe/fbi2018/data/ds114_sub009_t2r1.feat -I 1 -init
+68852
+
+/opt/fsl/bin/fsl_sub -T 30 -l logs -N feat2_pre -j 68852  /opt/fsl/bin/feat /Volumes/dsfe/fbi2018/data/ds114_sub009_t2r1.feat/design.fsf -D /Volumes/dsfe/fbi2018/data/ds114_sub009_t2r1.feat -I 1 -prestats
+68923
+
+/opt/fsl/bin/fsl_sub -T 1 -l logs -N feat3_film -j 68923  /opt/fsl/bin/feat /Volumes/dsfe/fbi2018/data/ds114_sub009_t2r1.feat/design.fsf -D /Volumes/dsfe/fbi2018/data/ds114_sub009_t2r1.feat -I 1 -stats
+68997
+
+/opt/fsl/bin/fsl_sub -T 119 -l logs -N feat4_post -j 68997  /opt/fsl/bin/feat /Volumes/dsfe/fbi2018/data/ds114_sub009_t2r1.feat/design.fsf -D /Volumes/dsfe/fbi2018/data/ds114_sub009_t2r1.feat -poststats 0 
+69172
+
+/opt/fsl/bin/fsl_sub -T 1 -l logs -N feat5_stop -j 68923,68997,69172  /opt/fsl/bin/feat /Volumes/dsfe/fbi2018/data/ds114_sub009_t2r1.feat/design.fsf -D /Volumes/dsfe/fbi2018/data/ds114_sub009_t2r1.feat -stop
+69779

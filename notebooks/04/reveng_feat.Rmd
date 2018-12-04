@@ -1,0 +1,337 @@
+---
+jupyter:
+  jupytext:
+    text_representation:
+      extension: .Rmd
+      format_name: rmarkdown
+      format_version: '1.0'
+      jupytext_version: 0.8.5
+  kernelspec:
+    display_name: Python 3
+    language: python
+    name: python3
+  language_info:
+    codemirror_mode:
+      name: ipython
+      version: 3
+    file_extension: .py
+    mimetype: text/x-python
+    name: python
+    nbconvert_exporter: python
+    pygments_lexer: ipython3
+    version: 3.7.1
+---
+
+# Replicating an FSL analysis
+
+You may need:
+
+* [ds114 FMRI image]({{ site.url }}{{ site.baseurl }}/data/ds114_sub009_t2r1.nii).
+* [ds114 stimulus file]({{ site.url }}{{ site.baseurl }}/data/ds114_sub009_t2r1_cond.txt).
+* [ds114 design file]({{ site.url }}{{ site.baseurl }}/data/ds114_sub009_t2r1_design.fsf).
+
+If you don't have FSL on your computer, you will also need to download and
+unpack the [ds114 FEAT analysis directory archive]({{ site.url }}{{ site.baseurl
+}}/data/ds114_sub009_t2r1_feat.zip).
+
+I start by running an FSL analysis on the `ds114_sub009_t2r1.nii` image.
+
+I chose the following options for simplicity of the model:
+
+* stats only (not preprocessing);
+* turn off FILM prewhitening;
+* use the `ds114_sub009_t2r1_cond.txt` 3 column file to define my events;
+* use the double gamma HRF;
+* turn off "Add temporal derivative";
+* turn off "Apply temporal filtering".
+
+See the file `ds114_sub009_t2r1_simple.fsf` for the analysis definition.
+
+```{python}
+# We will need these later
+from os import listdir  # To list the files in a directory
+from os.path import join as pjoin  # To build file paths
+```
+
+```{python}
+# Our standard imports
+import numpy as np  # The array library
+import numpy.linalg as npl  # The linear algebra sub-package
+np.set_printoptions(precision=4, suppress=True)
+import matplotlib.pyplot as plt  # The plotting library
+# %matplotlib inline
+```
+
+```{python}
+# The library to load images
+# You might need to do "pip install nibabel" in the Terminal
+import nibabel as nib
+```
+
+We investigate the FEAT output directory:
+
+```{python}
+feat_dir = 'ds114_sub009_t2r1.feat'
+listdir(feat_dir)
+```
+
+There is a `stats` subdirectory in the FEAT directory, with some interesting files:
+
+```{python}
+stats_dir = pjoin(feat_dir, 'stats')
+listdir(stats_dir)
+```
+
+The `pe1.nii.gz` contains the Parameter Estimate for the regressor:
+
+```{python}
+pe_fname = pjoin(stats_dir, 'pe1.nii.gz')
+pe_fname
+```
+
+It's an image, with one parameter estimate per voxel:
+
+```{python}
+pe_img = nib.load(pe_fname)
+pe_data = pe_img.get_fdata()
+pe_data.shape
+```
+
+Here's the 15th slab in the Parameter Estimate volume:
+
+```{python}
+plt.imshow(pe_data[:, :, 14], cmap='gray')
+```
+
+Compare this image to the [first_activation notebook](https://github.com/matthew-brett/msc_imaging/blob/master/first_activation.ipynb) estimate we found.
+
+
+The design matrix:
+
+```{python}
+design_fname = pjoin(feat_dir, 'design.mat')
+design_fname
+```
+
+```{python}
+# Read contents of the design file
+with open(design_fname, 'rt') as fobj:
+    design = fobj.read()
+print(design)
+```
+
+```{python}
+regressor = np.loadtxt(design_fname, comments='/')
+regressor
+```
+
+```{python}
+plt.plot(regressor)
+```
+
+```{python}
+np.mean(regressor)
+```
+
+Remember the [all_one_voxel notebook](https://nbviewer.jupyter.org/github/matthew-brett/msc_imaging/blob/master/all_one_voxel.ipynb)?
+
+```{python}
+img = nib.load('ds114_sub009_t2r1.nii')
+data = img.get_fdata()
+voxel_time_course = data[42, 32, 19]
+plt.plot(voxel_time_course)
+```
+
+Let's do our own regression:
+
+```{python}
+# The number of elements in the data (scans)
+N = data.shape[-1]
+N
+```
+
+```{python}
+# The design matrix for a simple regression
+X = np.ones((N, 2))
+X[:, 0] = regressor
+plt.imshow(X, cmap='gray', aspect=0.1)
+```
+
+```{python}
+# Estimate the slope and intercept for this regression
+y = voxel_time_course
+B = npl.pinv(X).dot(y)
+B
+```
+
+What does FSL get for slope estimate at this voxel?
+
+```{python}
+pe_data[42, 32, 19]
+```
+
+Remember our contrast, to select the slope of the regressor?
+
+```{python}
+c = np.array([1, 0])
+c.dot(B)
+```
+
+FSL has Contrast Of Parameter Estimate (COPE) files:
+
+```{python}
+cope_fname = pjoin(stats_dir, 'cope1.nii.gz')
+cope_img = nib.load(cope_fname)
+cope_data = cope_img.get_fdata()
+cope_data[42, 32, 19]
+```
+
+FSL also has a `sigmasquareds.nii.gz` file, that contains the variance estimate at each voxel:
+
+```{python}
+ss_fname = pjoin(stats_dir, 'sigmasquareds.nii.gz')
+ss_img = nib.load(ss_fname)
+ss_data = ss_img.get_fdata()
+ss_data[42, 32, 19]
+```
+
+Remember the fitted data, and the residuals?
+
+```{python}
+fitted = X.dot(B)
+residuals = y - fitted
+```
+
+We can calculate the variance with the degrees of freedom and the residuals:
+
+```{python}
+# Degrees of freedom in the design.
+# This is the number of independent columns in the design
+df_design = npl.matrix_rank(X)
+df_design
+```
+
+```{python}
+# Degrees of freedom remaining in the data
+df_data = N - df_design
+df_data
+```
+
+```{python}
+variance = np.sum(residuals ** 2) / df_data
+variance
+```
+
+Oops - that is not the same as FSL.  It turns out FSL thinks the data has an extra degree of freedom, in its calculation of variance:
+
+```{python}
+fsl_df = df_data + 1
+fsl_variance = np.sum(residuals ** 2) / fsl_df
+fsl_variance
+```
+
+As you will see, it has (as of FSL 6.0) corrected for this - er - version of variance, in the output of the t-test.
+
+
+Now let's do a t-test by hand.
+
+```{python}
+# Top of t - same as COPE
+c = np.array([1, 0])
+top_of_t = c.dot(B)
+top_of_t
+```
+
+```{python}
+# Bottom of t - the standard error of the top part
+design_part = c.dot(npl.inv(X.T.dot(X))).dot(c)
+bottom_of_t = np.sqrt(fsl_variance * design_part)
+bottom_of_t
+```
+
+```{python}
+t = top_of_t / bottom_of_t
+t
+```
+
+What does FSL get for this voxel?
+
+```{python}
+t_fname = pjoin(stats_dir, 'tstat1.nii.gz')
+t_img = nib.load(t_fname)
+t_data = t_img.get_fdata()
+t_data[42, 32, 19]
+```
+
+Finally, the z value.  From FSL:
+
+```{python}
+z_fname = pjoin(stats_dir, 'zstat1.nii.gz')
+z_img = nib.load(z_fname)
+z_data = z_img.get_fdata()
+z_data[42, 32, 19]
+```
+
+This comes about from the p value for the t statistic, transformed back to a Z score:
+
+```{python}
+# Get p value from t distribution
+import scipy.stats as sps  # Statistical distributions
+p = sps.t(fsl_df).sf(t)  # Survival function (1-cdf)
+p
+```
+
+```{python}
+# Get matching z score from p value
+z = sps.norm().isf(p)  # The Inverse Survival Function
+z
+```
+
+Save these files out to check that R gives the same values:
+
+```{python}
+np.savetxt('voxel_time_course.txt', voxel_time_course)
+np.savetxt('regressor.txt', regressor)
+```
+
+Here is the R code to do a simple regression on those data files:
+
+```
+# Simple regression model in R
+# Load the voxel time course
+voxels = read.table('voxel_time_course.txt')$V1
+# Load the convolved regressor
+regressor = read.table('regressor.txt')$V1
+# Fit linear model, where intercept is automatically added
+res = lm(voxels ~ regressor)
+# Show the result
+print(summary(res))
+```
+
+
+On my machine that gives:
+
+```
+Call:
+lm(formula = voxels ~ regressor)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-55.435 -10.818  -2.201   9.052 248.627 
+
+Coefficients:
+            Estimate Std. Error  t value Pr(>|t|)    
+(Intercept) 2044.792      1.868 1094.443  < 2e-16 ***
+regressor     27.637      3.652    7.568 2.25e-12 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 24.57 on 171 degrees of freedom
+Multiple R-squared:  0.2509,	Adjusted R-squared:  0.2465 
+F-statistic: 57.27 on 1 and 171 DF,  p-value: 2.247e-12
+```
+
+```{python}
+# The residual standard error
+np.sqrt(variance)
+```

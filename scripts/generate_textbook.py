@@ -155,6 +155,8 @@ def _between_symbols(string, c1, c2):
 def _case_sensitive_fs(path):
     """ True when filesystem at `path` is case sensitive, False otherwise
     """
+    if not op.exists(path):
+        os.makedirs(path)
     root = op.join(path, uuid4().hex)
     fnames = [root + suffix for suffix in 'aA']
     try:

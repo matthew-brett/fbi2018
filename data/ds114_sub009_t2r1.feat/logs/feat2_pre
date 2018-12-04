@@ -1,0 +1,13 @@
+</pre><hr>Preprocessing:Stage 1<br><pre>
+</pre><hr>Preprocessing:Stage 2<br><pre>
+
+/opt/fsl/bin/fslmaths prefiltered_func_data filtered_func_data
+
+/opt/fsl/bin/fslmaths filtered_func_data -Tmin -bin mask -odt char
+
+/opt/fsl/bin/fslstats filtered_func_data -k mask -R | awk '{ print  }' -
+1.000000
+
+/opt/fsl/bin/fslmaths filtered_func_data -Tmean mean_func
+
+/bin/rm -rf prefiltered_func_data*

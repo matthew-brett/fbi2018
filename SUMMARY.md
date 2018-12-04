@@ -20,4 +20,7 @@
   * [4.2 Correlation each voxel](notebooks/04/correlation_each_voxel.ipynb)
   * [4.3 Convolution](notebooks/04/convolution.ipynb)
   * [4.5 General linear model](notebooks/04/glm_intro.ipynb)
-  * [4.4 Linear model on one voxel](notebooks/04/glm_one_voxel.ipynb)
+  * [4.6 Linear model on one voxel](notebooks/04/glm_one_voxel.ipynb)
+  * [4.7 Random effects](notebooks/04/random_effects.ipynb)
+  * [4.8 On F tests](notebooks/04/on_f.ipynb)
+  * [4.9 Reverse engineering FEAT](notebooks/04/reveng_feat.ipynb)
