@@ -1,11 +1,11 @@
 var store = [{
         "title": "Why worry?",
-        "excerpt":"Neuroimaging is a highly technical field, on the border of neuroscience andcomputation. This is a risk of false findings. The reproducibility crisis Many of us are familiar with the replicationcrisis. It is difficult to trace when the issue of replication started to enterdiscussion in the mainstream, but one salient moment...","categories": [],
+        "excerpt":"Neuroimaging is a highly technical field, on the border of neuroscienceand computation. It has a high risk of generating findings that are false. The reproducibility crisis Many of us are familiar with the replicationcrisis. It is difficult to trace when the issue of replication started to enterdiscussion in the mainstream,...","categories": [],
         "tags": [],
         "url": "https://matthew-brett.github.io/fbi2018/chapters/01/error",
         "teaser":null},{
         "title": "These notes",
-        "excerpt":"This section has some background on brain imaging as a science, and motivationfor these notes. ","categories": [],
+        "excerpt":"This section has some background on brain imaging as a science, anddiscussion of the tools we have used to build these pages. ","categories": [],
         "tags": [],
         "url": "https://matthew-brett.github.io/fbi2018/chapters/01/intro",
         "teaser":null},{
