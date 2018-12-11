@@ -171,9 +171,7 @@
 
       <section class="page__content" itemprop="text">
         
-        $\newcommand{L}[1]{\| #1 \|}\newcommand{VL}[1]{\L{ \vec{#1} }}\newcommand{R}[1]{\operatorname{Re}\,(#1)}\newcommand{I}[1]{\operatorname{Im}\, (#1)}$
-
-## Arrays as images, images as arrays
+        ## Arrays as images, images as arrays
 
 You can consider arrays as images, and images as arrays.
 
@@ -260,11 +258,12 @@ plt.plot(an_array[8])
 The x axis is the position in the array (0 through 7) and the y axis is the
 value of the array row at that position.
 
-The plot shows us the 0 values at the edges of the bar of the “i”, an the ramp
-up to the peak at the middle of the bar of the “i”, in columns number 3 and 4.
+The plot shows us the 0 values at the edges of the bar of the “i”; the
+values ramp up to the peak at the middle of the bar of the “i”, in
+columns number 3 and 4.
 
-A transpose in numpy uses the `.T` method on the array. This has the effect
-of flipping the rows and columns (in 2D):
+A transpose in numpy uses the `.T` method on the array. This has the
+effect of flipping the rows and columns (in 2D):
 
 ```{python}
 an_array.T

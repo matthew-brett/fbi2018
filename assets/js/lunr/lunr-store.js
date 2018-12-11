@@ -14,8 +14,8 @@ var store = [{
         "tags": [],
         "url": "https://matthew-brett.github.io/fbi2018/chapters/01/why_python",
         "teaser":null},{
-        "title": "2.2 Arrays and images",
-        "excerpt":"$\\newcommand{L}[1]{| #1 |}\\newcommand{VL}[1]{\\L{ \\vec{#1} }}\\newcommand{R}[1]{\\operatorname{Re}\\,(#1)}\\newcommand{I}[1]{\\operatorname{Im}\\, (#1)}$ Arrays as images, images as arrays You can consider arrays as images, and images as arrays. We start off with our usual imports: import numpy as npimport matplotlib.pyplot as pltLet’s make an array of numbers between 0 through 99: an_array = np.array([[ 0, 0,...","categories": [],
+        "title": "Arrays as images, images as arrays",
+        "excerpt":"You can consider arrays as images, and images as arrays. We start off with our usual imports: import numpy as npimport matplotlib.pyplot as pltLet’s make an array of numbers between 0 through 99: an_array = np.array([[ 0, 0, 0, 0, 0, 0, 0, 0], [ 0, 0, 0, 9, 99,...","categories": [],
         "tags": [],
         "url": "https://matthew-brett.github.io/fbi2018/chapters/02/arrays_and_images",
         "teaser":null},{

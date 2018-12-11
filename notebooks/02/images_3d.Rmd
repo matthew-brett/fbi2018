@@ -194,27 +194,28 @@ We will spend a lot of time loading data from brain images.
 MRI images for functional MRI are usually stored using the [NIfTi
 format](https://nifti.nimh.nih.gov/nifti-1).
 
-As you've already seen, this is a very simple format that is typically a
-single file with extension .  If the file is compressed, it will end with
-`.nii.gz` instead.
+As you've already seen, this is a very simple format that is typically
+a single file with extension `.nii`.  If the file is compressed, it will
+end with `.nii.gz` instead.
 
 Inside, the file contains:
 
-* 352 bytes of *header* information.  The header gives the 3D or 4D shape of
-  the file, and the data type of the pixel (voxel) data among other things.
+* 352 bytes of *header* information.  Among other things, the header
+  gives the 3D or 4D shape of the file, and the data type of the pixel
+  (voxel) data.
 
-* Usually, directly after the header, we have the image data.  If the image
-  data is shape (I, J, K), and S is the number of bytes to store one pixel
-  (voxel) value, then the image data is I \* J \* K \* S in length.  For
-  example, the image might be shape 64, 64, 32, and the data type might be
-  64-bit float, which is 8 bytes long, so the image data would be 64 \* 64 \*
-  32 \* 8 bytes long.
+* Usually, directly after the header, we have the image data.  If the
+  image data is shape (I, J, K), and S is the number of bytes to store
+  the data for one pixel (voxel) value, then the image data is I \* J \*
+  K \* S in length.  For example, the image might be shape 64, 64, 32,
+  and the data type might be 64-bit float, which is 8 bytes long, so the
+  image data would be 64 \* 64 \* 32 \* 8 bytes long.
 
 To load these images into MATLAB, use the
-[SPM](http://www.fil.ion.ucl.ac.uk/spm/) package.  Here we are using Python,
-and the [Nibabel](http://nipy.org/nibabel) package.
+[SPM](http://www.fil.ion.ucl.ac.uk/spm/) package.  Here we are using
+Python, and the [Nibabel](http://nipy.org/nibabel) package.
 
-Start by importing the nibabel library:
+Start by importing the Nibabel library:
 
 ```{python}
 import nibabel as nib

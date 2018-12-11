@@ -3,19 +3,19 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>2.2 Arrays and images - FBI 2018</title>
-<meta name="description" content="$\newcommand{L}[1]{| #1 |}\newcommand{VL}[1]{\L{ \vec{#1} }}\newcommand{R}[1]{\operatorname{Re}\,(#1)}\newcommand{I}[1]{\operatorname{Im}\, (#1)}$">
+<!-- begin _includes/seo.html --><title>Arrays as images, images as arrays - FBI 2018</title>
+<meta name="description" content="Arrays as images, images as arrays">
 
 
 
 <meta property="og:type" content="article">
 <meta property="og:locale" content="en_UK">
 <meta property="og:site_name" content="FBI 2018">
-<meta property="og:title" content="2.2 Arrays and images">
+<meta property="og:title" content="Arrays as images, images as arrays">
 <meta property="og:url" content="https://matthew-brett.github.io/fbi2018/chapters/02/arrays_and_images">
 
 
-  <meta property="og:description" content="$\newcommand{L}[1]{| #1 |}\newcommand{VL}[1]{\L{ \vec{#1} }}\newcommand{R}[1]{\operatorname{Re}\,(#1)}\newcommand{I}[1]{\operatorname{Im}\, (#1)}$">
+  <meta property="og:description" content="Arrays as images, images as arrays">
 
 
 
@@ -23,7 +23,7 @@
 
 
 
-  <meta property="article:published_time" content="2018-12-04T00:14:40+00:00">
+  <meta property="article:published_time" content="2018-12-11T18:10:59+00:00">
 
 
 
@@ -415,15 +415,15 @@
 
 
     <article class="page textbook" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="headline" content="2.2 Arrays and images">
-      <meta itemprop="description" content="$\newcommand{L}[1]{| #1 |}\newcommand{VL}[1]{\L{ \vec{#1} }}\newcommand{R}[1]{\operatorname{Re}\,(#1)}\newcommand{I}[1]{\operatorname{Im}\, (#1)}$">
-      <meta itemprop="datePublished" content="December 04, 2018">
+      <meta itemprop="headline" content="Arrays as images, images as arrays">
+      <meta itemprop="description" content="Arrays as images, images as arrays">
+      <meta itemprop="datePublished" content="December 11, 2018">
       
 
       <div class="page__inner-wrap">
         
           <header>
-            <h1 id="page-title" class="page__title" itemprop="headline">2.2 Arrays and images
+            <h1 id="page-title" class="page__title" itemprop="headline">Arrays as images, images as arrays
 </h1>
           </header>
         
@@ -435,15 +435,6 @@
 <!-- TOC will only show up if it has at least one item -->
 
 
-  <aside class="sidebar__right">
-    <nav class="toc">
-      <header><h4 class="nav__title"><i class="fas fa-list-ul"></i>   On this page</h4></header>
-      <ul class="toc__menu">
-  <li><a href="#arrays-as-images-images-as-arrays">Arrays as images, images as arrays</a></li>
-</ul>
-    </nav>
-  </aside>
-
 
           
           <!-- INTERACT LINKS -->
@@ -454,10 +445,7 @@
     <a class="interact-button" href="https://mybinder.org/v2/gh/matthew-brett/fbi2018/master?filepath=notebooks%2F02%2Farrays_and_images.ipynb">Interact</a>
 
 
-          <p>$\newcommand{L}[1]{| #1 |}\newcommand{VL}[1]{\L{ \vec{#1} }}\newcommand{R}[1]{\operatorname{Re}\,(#1)}\newcommand{I}[1]{\operatorname{Im}\, (#1)}$</p>
-
-<h2 id="arrays-as-images-images-as-arrays">Arrays as images, images as arrays</h2>
-
+          
 <p>You can consider arrays as images, and images as arrays.</p>
 
 <p>We start off with our usual imports:</p>
@@ -497,7 +485,7 @@
 <div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">an_array</span><span class="p">)</span>
 </code></pre></div></div>
 
-<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;matplotlib.image.AxesImage at 0x107696160&gt;
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;matplotlib.image.AxesImage at 0x1187a8e10&gt;
 </code></pre></div></div>
 
 <p><img src="../../images/chapters/02/arrays_and_images_5_1.png" alt="png" /></p>
@@ -518,7 +506,7 @@ to show the colormap:</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
 </code></pre></div></div>
 
-<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;matplotlib.colorbar.Colorbar at 0x1077417b8&gt;
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;matplotlib.colorbar.Colorbar at 0x1188d5f60&gt;
 </code></pre></div></div>
 
 <p><img src="../../images/chapters/02/arrays_and_images_7_1.png" alt="png" /></p>
@@ -530,7 +518,7 @@ to show the colormap:</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
 </code></pre></div></div>
 
-<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;matplotlib.colorbar.Colorbar at 0x1077e7978&gt;
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;matplotlib.colorbar.Colorbar at 0x118907780&gt;
 </code></pre></div></div>
 
 <p><img src="../../images/chapters/02/arrays_and_images_9_1.png" alt="png" /></p>
@@ -551,7 +539,7 @@ the 9th row of the array.</p>
 <div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">an_array</span><span class="p">[</span><span class="mi">8</span><span class="p">])</span>
 </code></pre></div></div>
 
-<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[&lt;matplotlib.lines.Line2D at 0x10787d710&gt;]
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[&lt;matplotlib.lines.Line2D at 0x118a98f28&gt;]
 </code></pre></div></div>
 
 <p><img src="../../images/chapters/02/arrays_and_images_13_1.png" alt="png" /></p>
@@ -559,11 +547,12 @@ the 9th row of the array.</p>
 <p>The x axis is the position in the array (0 through 7) and the y axis is the
 value of the array row at that position.</p>
 
-<p>The plot shows us the 0 values at the edges of the bar of the “i”, an the ramp
-up to the peak at the middle of the bar of the “i”, in columns number 3 and 4.</p>
+<p>The plot shows us the 0 values at the edges of the bar of the “i”; the
+values ramp up to the peak at the middle of the bar of the “i”, in
+columns number 3 and 4.</p>
 
-<p>A transpose in numpy uses the <code class="highlighter-rouge">.T</code> method on the array. This has the effect
-of flipping the rows and columns (in 2D):</p>
+<p>A transpose in numpy uses the <code class="highlighter-rouge">.T</code> method on the array. This has the
+effect of flipping the rows and columns (in 2D):</p>
 
 <div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">an_array</span><span class="o">.</span><span class="n">T</span>
 </code></pre></div></div>
@@ -582,7 +571,7 @@ of flipping the rows and columns (in 2D):</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">an_array</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
 </code></pre></div></div>
 
-<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;matplotlib.image.AxesImage at 0x1078e1358&gt;
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;matplotlib.image.AxesImage at 0x118a084e0&gt;
 </code></pre></div></div>
 
 <p><img src="../../images/chapters/02/arrays_and_images_16_1.png" alt="png" /></p>
@@ -633,9 +622,8 @@ distribution of values in the array:</p>
 <div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">a_1d_array</span><span class="p">)</span>
 </code></pre></div></div>
 
-<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(array([ 75.,   2.,   3.,   1.,   3.,   2.,   1.,   3.,   2.,  28.]),
- array([  0. ,   9.9,  19.8,  29.7,  39.6,  49.5,  59.4,  69.3,  79.2,
-         89.1,  99. ]),
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(array([75.,  2.,  3.,  1.,  3.,  2.,  1.,  3.,  2., 28.]),
+ array([ 0. ,  9.9, 19.8, 29.7, 39.6, 49.5, 59.4, 69.3, 79.2, 89.1, 99. ]),
  &lt;a list of 10 Patch objects&gt;)
 </code></pre></div></div>
 
@@ -647,23 +635,21 @@ many bins you want with the <code class="highlighter-rouge">bins</code> keyword:
 <div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">a_1d_array</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">75</span><span class="p">)</span>
 </code></pre></div></div>
 
-<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(array([ 72.,   0.,   0.,   0.,   1.,   0.,   2.,   0.,   0.,   1.,   0.,
-          0.,   1.,   0.,   0.,   0.,   0.,   0.,   2.,   0.,   1.,   0.,
-          0.,   1.,   0.,   0.,   0.,   0.,   0.,   0.,   0.,   1.,   0.,
-          0.,   1.,   0.,   0.,   1.,   0.,   0.,   0.,   0.,   1.,   0.,
-          1.,   0.,   0.,   1.,   0.,   0.,   0.,   0.,   0.,   0.,   0.,
-          1.,   0.,   0.,   1.,   1.,   1.,   0.,   0.,   0.,   0.,   0.,
-          1.,   0.,   1.,   0.,   0.,   2.,   1.,   0.,  24.]),
- array([  0.  ,   1.32,   2.64,   3.96,   5.28,   6.6 ,   7.92,   9.24,
-         10.56,  11.88,  13.2 ,  14.52,  15.84,  17.16,  18.48,  19.8 ,
-         21.12,  22.44,  23.76,  25.08,  26.4 ,  27.72,  29.04,  30.36,
-         31.68,  33.  ,  34.32,  35.64,  36.96,  38.28,  39.6 ,  40.92,
-         42.24,  43.56,  44.88,  46.2 ,  47.52,  48.84,  50.16,  51.48,
-         52.8 ,  54.12,  55.44,  56.76,  58.08,  59.4 ,  60.72,  62.04,
-         63.36,  64.68,  66.  ,  67.32,  68.64,  69.96,  71.28,  72.6 ,
-         73.92,  75.24,  76.56,  77.88,  79.2 ,  80.52,  81.84,  83.16,
-         84.48,  85.8 ,  87.12,  88.44,  89.76,  91.08,  92.4 ,  93.72,
-         95.04,  96.36,  97.68,  99.  ]),
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(array([72.,  0.,  0.,  0.,  1.,  0.,  2.,  0.,  0.,  1.,  0.,  0.,  1.,
+         0.,  0.,  0.,  0.,  0.,  2.,  0.,  1.,  0.,  0.,  1.,  0.,  0.,
+         0.,  0.,  0.,  0.,  0.,  1.,  0.,  0.,  1.,  0.,  0.,  1.,  0.,
+         0.,  0.,  0.,  1.,  0.,  1.,  0.,  0.,  1.,  0.,  0.,  0.,  0.,
+         0.,  0.,  0.,  1.,  0.,  0.,  1.,  1.,  1.,  0.,  0.,  0.,  0.,
+         0.,  1.,  0.,  1.,  0.,  0.,  2.,  1.,  0., 24.]),
+ array([ 0.  ,  1.32,  2.64,  3.96,  5.28,  6.6 ,  7.92,  9.24, 10.56,
+        11.88, 13.2 , 14.52, 15.84, 17.16, 18.48, 19.8 , 21.12, 22.44,
+        23.76, 25.08, 26.4 , 27.72, 29.04, 30.36, 31.68, 33.  , 34.32,
+        35.64, 36.96, 38.28, 39.6 , 40.92, 42.24, 43.56, 44.88, 46.2 ,
+        47.52, 48.84, 50.16, 51.48, 52.8 , 54.12, 55.44, 56.76, 58.08,
+        59.4 , 60.72, 62.04, 63.36, 64.68, 66.  , 67.32, 68.64, 69.96,
+        71.28, 72.6 , 73.92, 75.24, 76.56, 77.88, 79.2 , 80.52, 81.84,
+        83.16, 84.48, 85.8 , 87.12, 88.44, 89.76, 91.08, 92.4 , 93.72,
+        95.04, 96.36, 97.68, 99.  ]),
  &lt;a list of 75 Patch objects&gt;)
 </code></pre></div></div>
 
@@ -677,7 +663,7 @@ many bins you want with the <code class="highlighter-rouge">bins</code> keyword:
 <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">array_back</span><span class="p">)</span>
 </code></pre></div></div>
 
-<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;matplotlib.image.AxesImage at 0x107d2f400&gt;
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;matplotlib.image.AxesImage at 0x11902f080&gt;
 </code></pre></div></div>
 
 <p><img src="../../images/chapters/02/arrays_and_images_27_1.png" alt="png" /></p>
@@ -725,7 +711,7 @@ always elementwise. For example, this multiplies every array value by 10:</p>
        [False, False,  True,  True,  True, False, False, False],
        [False, False,  True,  True,  True, False, False, False],
        [False, False,  True,  True,  True, False, False, False],
-       [False, False, False, False, False, False, False, False]], dtype=bool)
+       [False, False, False, False, False, False, False, False]])
 </code></pre></div></div>
 
 <p>Matplotlib will treat False as 0 and True as 1, so this is one way of
@@ -734,7 +720,7 @@ binarizing the image at a threshold (of 50 in this case):</p>
 <div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">an_array</span> <span class="o">&gt;</span> <span class="mi">50</span><span class="p">)</span>
 </code></pre></div></div>
 
-<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;matplotlib.image.AxesImage at 0x107d805c0&gt;
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;matplotlib.image.AxesImage at 0x118f880f0&gt;
 </code></pre></div></div>
 
 <p><img src="../../images/chapters/02/arrays_and_images_33_1.png" alt="png" /></p>
@@ -748,7 +734,7 @@ that we want to the top 4 rows, and the last 5 columns:</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">an_array</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">:])</span>
 </code></pre></div></div>
 
-<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;matplotlib.image.AxesImage at 0x107dd0ba8&gt;
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;matplotlib.image.AxesImage at 0x119177550&gt;
 </code></pre></div></div>
 
 <p><img src="../../images/chapters/02/arrays_and_images_35_1.png" alt="png" /></p>
