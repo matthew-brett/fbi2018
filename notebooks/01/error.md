@@ -1,9 +1,9 @@
 # Why worry?
 
-Neuroimaging is a highly technical field, on the border of neuroscience and
-computation.
+Neuroimaging is a highly technical field, on the border of neuroscience
+and computation.
 
-This is a risk of false findings.
+It has a high risk of generating findings that are false.
 
 ## The reproducibility crisis
 
